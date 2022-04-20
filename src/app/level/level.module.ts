@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExerciseListComponent } from './exercise-list/exercise-list.component';
+import { LevelListComponent } from './level-list/level-list.component';
 
 
 
 @NgModule({
     declarations: [
-        ExerciseListComponent
+        LevelListComponent
     ],
     exports: [
-        ExerciseListComponent
+        LevelListComponent
     ],
     imports: [
         CommonModule
     ]
 })
-export class ExerciseModule { }
+export class LevelModule { }
