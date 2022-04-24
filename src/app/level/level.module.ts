@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LevelListComponent} from './level-list/level-list.component';
 import {HttpClientModule} from "@angular/common/http";
+import {SharedModule} from "../shared-module/shared-module";
+import {LevelRoutingModule} from "./level-routing.module";
 
 
 @NgModule({
@@ -11,11 +13,13 @@ import {HttpClientModule} from "@angular/common/http";
   exports: [
     LevelListComponent
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        SharedModule,
+        LevelRoutingModule
 
-  ]
+    ]
 })
 export class LevelModule {
 }
