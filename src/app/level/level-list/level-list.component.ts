@@ -20,10 +20,7 @@ export class LevelListComponent implements OnInit {
   }
 
   loadLevel() {
-    for (let i = 0; i < 8; i++) {
-      this.levelService.getLevels(i).subscribe((l:Level) => this.levelsInfo.push(l));
-    }
-
+      this.levelService.getLevels().subscribe((levels:Level[]) => this.levelsInfo = levels);
 
   }
 }

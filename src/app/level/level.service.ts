@@ -14,8 +14,8 @@ export class LevelService {
   constructor(private http: HttpClient) {
   }
 
-  getLevels(id: number): Observable<Level> {
-    return this.http.get<Level>(this.apiUrl + '/level/' + id);
+  getLevels(): Observable<Level[]> {
+    return this.http.get<Level[]>(this.apiUrl + '/level');
   }
 
 
