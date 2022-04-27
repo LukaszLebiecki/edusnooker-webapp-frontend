@@ -1,0 +1,19 @@
+@import "src/assets/styles/variables";
+
+img {
+  transition-duration: 1.5s;
+  margin: 0 auto;
+  display: block;
+}
+
+img:hover {
+  transform: scale(1.45);
+  -webkit-transform: scale(1.45);
+  -moz-transform: scale(1.45);
+  z-index: 0;
+}
+
+.icon-info {
+  color: black;
+  opacity: 60%;
+}

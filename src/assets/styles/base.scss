@@ -1,11 +1,12 @@
 @import "variables";
 
 body {
-  background: @white;
+  background: $white
 }
 
+
 .ok {
-  color: @green;
+  color: $green
 }
 
 .nok {
@@ -17,54 +18,54 @@ body {
   border: medium solid;
   border-radius: 8px;
   border-width: 2px;
-  border-color: @level-white;
+  border-color: $level-white;
 }
 
 .level-color-1 {
   border: medium solid;
   border-radius: 8px;
   border-width: 2px;
-  border-color: @level-red;
+  border-color: $level-red;
 }
 
 .level-color-2 {
   border: medium solid;
   border-radius: 8px;
   border-width: 2px;
-  border-color: @level-yellow;
+  border-color: $level-yellow;
 }
 
 .level-color-3 {
   border: medium solid;
   border-radius: 8px;
   border-width: 2px;
-  border-color: @level-green;
+  border-color: $level-green;
 }
 
 .level-color-4 {
   border: medium solid;
   border-radius: 8px;
   border-width: 2px;
-  border-color: @level-brown;
+  border-color: $level-brown;
 }
 
 .level-color-5 {
   border: medium solid;
   border-radius: 8px;
   border-width: 2px;
-  border-color: @level-blue;
+  border-color: $level-blue;
 }
 
 .level-color-6 {
   border: medium solid;
   border-radius: 8px;
   border-width: 2px;
-  border-color: @level-pink;
+  border-color: $level-pink;
 }
 
 .level-color-7 {
   border: medium solid;
   border-radius: 8px;
   border-width: 2px;
-  border-color: @level-black;
+  border-color: $level-black;
 }

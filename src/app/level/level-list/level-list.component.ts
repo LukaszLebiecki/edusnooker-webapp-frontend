@@ -5,7 +5,7 @@ import {LevelService} from "../level.service";
 @Component({
   selector: 'app-level-list',
   templateUrl: './level-list.component.html',
-  styleUrls: ['./level-list.component.less']
+  styleUrls: ['./level-list.component.scss']
 })
 export class LevelListComponent implements OnInit {
 
