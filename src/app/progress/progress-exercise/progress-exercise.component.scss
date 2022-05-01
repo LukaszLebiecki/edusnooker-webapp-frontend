@@ -1,0 +1,16 @@
+@import "../../../assets/styles/variables";
+
+.icon-info {
+  color: $black;
+  opacity: 60%;
+}
+
+.icon-info:hover {
+  color: red;
+  opacity: 60%;
+}
+
+.noActive {
+  color: black;
+  opacity: 10%;
+}

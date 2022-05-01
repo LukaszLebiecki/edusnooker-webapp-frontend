@@ -10,22 +10,29 @@ import {ExerciseService} from "./exercise/exercise.service";
 import {CoreModule} from "./core-module/core-module";
 import {AppRoutingModule} from "./app-routing.module";
 import {LevelRoutingModule} from "./level/level-routing.module";
+import {ProgressService} from "./progress/progress.service";
+import { ProgressExerciseComponent } from './progress/progress-exercise/progress-exercise.component';
+
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProgressExerciseComponent
+
   ],
   imports: [
     BrowserModule,
-    ExerciseModule,
     LevelModule,
-    ExerciseModule,
     CoreModule,
     AppRoutingModule,
     LevelRoutingModule
   ],
-  providers: [LevelService, ExerciseService],
+  providers: [LevelService, ExerciseService, ProgressService],
+  exports: [
+    ProgressExerciseComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
