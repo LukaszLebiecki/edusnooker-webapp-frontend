@@ -58,7 +58,9 @@ export class LevelListComponent implements OnInit {
     for (let i = 0; i < 8; i++) {
       let levelIsPass: boolean = (this.levelsInfo[i].numberOfPointToTarget <= this.progressLevel[i].numberOfCompletedExercises);
       this.levelIsPass.push(levelIsPass);
+
     }
   }
+
 
 }
