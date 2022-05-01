@@ -12,6 +12,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {LevelRoutingModule} from "./level/level-routing.module";
 import {ProgressService} from "./progress/progress.service";
 import { ProgressExerciseComponent } from './progress/progress-exercise/progress-exercise.component';
+import {ProgressSharedService} from "./progress/progress-shared.service";
 
 
 
@@ -29,7 +30,7 @@ import { ProgressExerciseComponent } from './progress/progress-exercise/progress
     AppRoutingModule,
     LevelRoutingModule
   ],
-  providers: [LevelService, ExerciseService, ProgressService],
+  providers: [LevelService, ExerciseService, ProgressService, ProgressSharedService],
   exports: [
     ProgressExerciseComponent
   ],

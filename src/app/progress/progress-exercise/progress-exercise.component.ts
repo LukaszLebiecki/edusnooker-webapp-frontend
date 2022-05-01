@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProgressService} from "../progress.service";
 import {ProgressExercise} from "../models/progress-exercise";
 import {ActivatedRoute} from "@angular/router";
+import {ProgressSharedService} from "../progress-shared.service";
 
 
 @Component({
@@ -17,6 +18,7 @@ export class ProgressExerciseComponent implements OnInit {
   levelId: number = +this.route.snapshot.params['id']
 
   constructor(private progressService: ProgressService,
+              private progressSharedService: ProgressSharedService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class ProgressExerciseComponent implements OnInit {
     this.progressService.getProgressExerciseByUser(this.user_id, id).subscribe((p) => {
       for (let exercise of p) {
         this.progressExerciseMap.set(exercise.idExercise, exercise);
+        this.progressSharedService.shareProgress(this.progressExerciseMap);
       }
     });
   }
