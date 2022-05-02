@@ -23,7 +23,7 @@
           <button [routerLinkActive]="'active'" class="btn btn-lg btn-outline-success me-2 text-uppercase"
                   type="button">my account
           </button>
-          <button [routerLinkActive]="'active'" class="btn btn-lg btn-outline-success me-2 text-uppercase"
+          <button [routerLinkActive]="'active'" (click)="logout()" class="btn btn-lg btn-outline-success me-2 text-uppercase"
                   type="button">logout
           </button>
         </form>

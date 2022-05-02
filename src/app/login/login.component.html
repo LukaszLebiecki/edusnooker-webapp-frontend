@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="card card-container shadow p-3 mb-5 bg-body rounded text-dark bg-warning">
+    <img class="img-fluid mx-5 my-3" src="assets/image/es.png"/>
+    <img id="profile-img" class="profile-img-card" src="assets/image/avatar.png"/>
+    <form class="form-signin">
+      <input [(ngModel)]="login" name="login" type="text" id="inputEmail" class="form-control" placeholder="Email">
+      <input [(ngModel)]="password" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" >
+      <button (click)="onSubmit()" class="btn btn-lg btn-success btn-block btn-signin" type="submit">Sign in</button>
+    </form>
+  </div>
+</div>
+
