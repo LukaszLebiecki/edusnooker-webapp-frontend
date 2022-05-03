@@ -22,7 +22,7 @@ export class LoginComponent {
   }
 
   private onSubmitSuccess() {
-    this.router.navigate(['/level']);
+    this.router.navigate(['/home']);
   }
 
   private onSubmitFailure() {

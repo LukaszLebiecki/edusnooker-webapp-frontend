@@ -4,7 +4,7 @@ import {LevelListComponent} from './level-list/level-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "../shared-module/shared-module";
 import {LevelRoutingModule} from "./level-routing.module";
-import {ExerciseListComponent} from "../exercise/exercise-list/exercise-list.component";
+
 
 
 @NgModule({

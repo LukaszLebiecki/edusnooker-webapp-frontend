@@ -1,0 +1,35 @@
+@import "src/assets/styles/variables";
+
+.text-description {
+letter-spacing: 3px;
+  opacity: 80%;
+}
+
+.text-subject {
+  font-weight: 700;
+  font-size: 3.5rem;
+}
+
+.row-main {
+  height: 300px;
+}
+
+.text-online {
+  color: $green;
+}
+
+.text-snooker {
+  color: $red;
+}
+
+.text-title {
+  position: relative;
+  top: 40%;
+  left: 70%;
+  transform: translate(-50%, -50%)
+}
+
+.cytat {
+  font-style: italic;
+}
+
