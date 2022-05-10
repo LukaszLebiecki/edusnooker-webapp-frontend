@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AuthService} from "../auth/auth.service";
+import {AuthenticationService} from "../auth/authentication.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -12,7 +12,7 @@ export class LoginComponent {
   login = '';
   password = '';
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthenticationService, private router: Router) {
   }
 
 

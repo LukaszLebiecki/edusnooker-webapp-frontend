@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {LevelService} from "./level/level.service";
-import {HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {HttpHandler, HttpInterceptor, HttpRequest, HttpClientModule} from "@angular/common/http";
 import {ExerciseService} from "./exercise/exercise.service";
 import {CoreModule} from "./core-module/core-module";
 import {AppRoutingModule} from "./app-routing.module";
@@ -40,7 +40,8 @@ import { HomeComponent } from './home/home/home.component';
     LoginModule,
     AppRoutingModule,
     LoginRoutingModule,
-    LevelRoutingModule
+    LevelRoutingModule,
+    HttpClientModule
   ],
   providers: [LevelService, ExerciseService, ProgressService, ProgressSharedService, AuthService, AuthGuard, LayoutService],
   exports: [
