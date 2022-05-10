@@ -12,13 +12,13 @@ export class LoginComponent {
   login = '';
   password = '';
 
-  constructor(private authService: AuthenticationService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
   }
 
 
   onSubmit() {
-    this.authService.login(this.login, this.password)
-      .then(this.onSubmitSuccess.bind(this), this.onSubmitFailure);
+    // this.authenticationService.login(this.login, this.password)
+    //   .then(this.onSubmitSuccess.bind(this), this.onSubmitFailure);
   }
 
   private onSubmitSuccess() {

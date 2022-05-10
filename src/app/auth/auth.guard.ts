@@ -1,26 +1,30 @@
-import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import { Observable } from 'rxjs';
-import {AuthService} from "./auth.service";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {AuthenticationService} from "./authentication.service";
+import {NotificationService} from "../notification/notification.service";
+import {NotificationType} from "../notification/notification-type.enum";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router ,
+              private notificationService: NotificationService) {
   }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    return this.isUserLoggedIn();
+  }
 
-    if (this.authService.isLoggedIn()) {
+  private isUserLoggedIn(): boolean {
+    if (this.authenticationService.isLoggedIn()) {
       return true;
     }
-
     this.router.navigate(['/login']);
+    this.notificationService.notify(NotificationType.ERROR, `You need to log in to access this page`.toLocaleUpperCase());
     return false;
   }
-
 }
