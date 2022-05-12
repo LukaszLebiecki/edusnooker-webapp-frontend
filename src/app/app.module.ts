@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppComponent} from './app.component';
 import {LevelService} from "./level/level.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -25,6 +24,10 @@ import {UserService} from "./user/user.service";
 import {AuthInterceptor} from "./interceptor/auth.interceptor";
 import {NotificationModule} from "./notification/notification.module";
 import {NotificationService} from "./notification/notification.service";
+import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+import {FormsModule} from "@angular/forms";
+
 
 
 @NgModule({
@@ -33,12 +36,15 @@ import {NotificationService} from "./notification/notification.service";
     ProgressExerciseComponent,
     ExerciseListComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     CoreModule,
+    FormsModule,
     LevelModule,
     LoginModule,
     AppRoutingModule,
