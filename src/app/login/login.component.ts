@@ -4,9 +4,10 @@ import {Router} from "@angular/router";
 import {NotificationService} from "../notification/notification.service";
 import {User} from "../user/models/user";
 import {Subscription} from "rxjs";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpHeaderResponse, HttpResponse} from "@angular/common/http";
 import {NotificationType} from "../notification/notification-type.enum";
 import {HeaderType} from "../http/header-type.enum";
+import {LayoutService} from "../shared-module/services/layout.service";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private layoutService: LayoutService) {
   }
 
   ngOnInit(): void {
@@ -41,21 +43,22 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.authenticationService.addUserToLocalCache(response.body);
           this.router.navigateByUrl('/home');
           this.showLoading = false;
+          this.layoutService.showSidebar();
         },
         (errorResponse: HttpErrorResponse) => {
           console.log(errorResponse);
-          this.sendErrorNotification(NotificationType.ERROR, errorResponse.error.message);
+          this.sendErrorNotification(NotificationType.ERROR,  errorResponse.error.message);
           this.showLoading = false;
         }
       )
     );
   }
 
-  private sendErrorNotification(notificationType: NotificationType, message: string) {
+  private sendErrorNotification(notificationType: NotificationType, message: any): void {
     if (message) {
       this.notificationService.notify(notificationType, message);
     } else {
-      this.notificationService.notify(notificationType, 'AN ERROR OCCURRED, PLEASE TRY AGAIN');
+      this.notificationService.notify(notificationType, 'An error occurred, Please try again.');
     }
   }
 

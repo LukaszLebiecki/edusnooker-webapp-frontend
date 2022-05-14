@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {User} from "../user/models/user";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {LayoutService} from "../shared-module/services/layout.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +15,16 @@ export class AuthenticationService {
   private loggedInUsername: any;
   private jwtHelper = new JwtHelperService();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private layoutService: LayoutService) {
   }
 
   public login(user: User): Observable<HttpResponse<User>> {
-    return this.http.post<User>(`${this.host}.user.login`, user, {observe: 'response'});
+    return this.http.post<User>(`${this.host}/user/login`, user, {observe: 'response'});
   }
 
   public register(user: User): Observable<User> {
-    return this.http.post<User>(`${this.host}.user.register`, user);
+    return this.http.post<User>(`${this.host}/user/register`, user);
   }
 
   public logOut(): void {
@@ -31,6 +33,7 @@ export class AuthenticationService {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     localStorage.removeItem('users');
+    this.layoutService.hideSidebar();
   }
 
   public saveToken(token: string): void {
@@ -60,6 +63,7 @@ export class AuthenticationService {
       if (this.jwtHelper.decodeToken(this.token).sub != null || '') {
         if (!this.jwtHelper.isTokenExpired(this.token)) {
           this.loggedInUsername = this.jwtHelper.decodeToken(this.token).sub;
+          this.layoutService.showSidebar();
           return true;
         }
       }
