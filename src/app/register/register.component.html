@@ -1,1 +1,52 @@
-<p>register works!</p>
+<div class="container">
+  <div class="card card-container shadow p-3 mb-5 bg-body rounded text-dark bg-warning">
+    <img class="img-fluid mx-5 my-3" src="assets/image/es.png"/>
+    <img id="profile-img" class="profile-img-card" src="assets/image/avatar.png"/>
+    <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)" class="form">
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user "></i></span>
+        <input ngModel #firstNameInput="ngModel" type="text" class="form-control w-75 input_user" name="firstName"
+               placeholder="First name" required
+               aria-describedby="basic-addon1">
+        <span class="help-block" style="color: red;" *ngIf="firstNameInput.invalid && firstNameInput.touched">Please enter a  first name.</span>
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon2"><i class="fas fa-user "></i></span>
+        <input ngModel #lastNameInput="ngModel" type="text" class="form-control w-75 input_user" name="lastName"
+               placeholder="Last name" required
+               aria-describedby="basic-addon2">
+        <span class="help-block " style="color: red;" *ngIf="lastNameInput.invalid && lastNameInput.touched">Please enter a  last name.</span>
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon4"><i class="fas fa-id-card "></i></span>
+        <input ngModel #usernameInput="ngModel" type="text" class="form-control w-75 input_user" name="username" placeholder="Username" required
+               aria-describedby="basic-addon4">
+        <span class="help-block" style="color: red;" *ngIf="usernameInput.invalid && usernameInput.touched">Please enter a username.</span>
+      </div>
+
+      <div class="input-group mb-2">
+        <span class="input-group-text" id="basic-addon5"><i class="fas fa-envelope "></i></span>
+        <input ngModel #emailInput="ngModel" type="email" class="form-control w-75 input_pass" name="email"
+               placeholder="Email" required
+               aria-describedby="basic-addon5">
+        <span class="help-block" style="color: red" *ngIf="emailInput.invalid && emailInput.touched">Please enter a email.</span>
+      </div>
+
+      <div class="d-flex justify-content-center mt-3 login_container">
+        <button [disabled]="registerForm.invalid || showLoading" type="submit" name="button" class="btn login_btn btn-">
+          <i *ngIf="showLoading" class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp;
+          <span *ngIf="showLoading" >Loading...</span>
+          <span *ngIf="!showLoading" >Register</span>
+        </button>
+      </div>
+    </form>
+    <div class="mt-4">
+      <div class="d-flex justify-content-center links">
+        Already have an account? &nbsp; <a routerLink="/login" class="ml-2" style="color: #2c3E50;"> Log In</a>
+      </div>
+    </div>
+  </div>
+</div>

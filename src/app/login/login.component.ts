@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {NotificationService} from "../notification/notification.service";
 import {User} from "../user/models/user";
 import {Subscription} from "rxjs";
-import {HttpErrorResponse, HttpHeaderResponse, HttpResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {NotificationType} from "../notification/notification-type.enum";
 import {HeaderType} from "../http/header-type.enum";
 import {LayoutService} from "../shared-module/services/layout.service";
@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public onLogin(user: User): void {
     this.showLoading = true;
-    console.log(user);
     this.subscriptions.push(
       this.authenticationService.login(user).subscribe(
         (response: HttpResponse<User>) => {
@@ -46,8 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.layoutService.showSidebar();
         },
         (errorResponse: HttpErrorResponse) => {
-          console.log(errorResponse);
-          this.sendErrorNotification(NotificationType.ERROR,  errorResponse.error.message);
+          this.sendErrorNotification(NotificationType.ERROR, errorResponse.error.message);
           this.showLoading = false;
         }
       )

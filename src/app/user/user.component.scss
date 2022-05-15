@@ -1,0 +1,12 @@
+@import "src/assets/styles/variables";
+
+.nav_user {
+  background: lightgrey;
+}
+
+.nav_user > div > div > a {
+  cursor: pointer;
+  color: black;
+}
+
+

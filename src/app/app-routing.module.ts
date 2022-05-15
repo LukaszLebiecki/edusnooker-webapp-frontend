@@ -11,7 +11,7 @@ import {LoginComponent} from "./login/login.component";
 const APP_ROUTES: Route[] = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user/management', component: UserComponent},
+  {path: 'user/management', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'level', component: LevelListComponent, canActivate: [AuthGuard]},
   {path: 'favorite', component: FavoriteComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},

@@ -51,7 +51,7 @@ import {FormsModule} from "@angular/forms";
     LoginRoutingModule,
     LevelRoutingModule,
     HttpClientModule,
-    NotificationModule
+    NotificationModule,
   ],
   providers: [
     LevelService,
