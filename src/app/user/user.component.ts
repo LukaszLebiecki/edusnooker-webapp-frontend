@@ -5,6 +5,7 @@ import {UserService} from "./user.service";
 import {NotificationService} from "../notification/notification.service";
 import {NotificationType} from "../notification/notification-type.enum";
 import {HttpErrorResponse} from "@angular/common/http";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-user',
@@ -16,8 +17,10 @@ export class UserComponent implements OnInit {
   public titleAction$ = this.titleSubject.asObservable();
   public users: User[];
   public refreshing: boolean;
-  private subscriptions: Subscription[] = [];
   public selectedUser: User;
+  private subscriptions: Subscription[] = [];
+  private profileImage: File;
+  private fileName: null;
 
   constructor(private userService: UserService,
               private notificationService: NotificationService) {
@@ -45,14 +48,43 @@ export class UserComponent implements OnInit {
         },
         (errorResponse: HttpErrorResponse) => {
           this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+          this.refreshing = false;
         }
       )
     );
   }
 
-  public onSelectUser(selectedUser:User):void {
+  public onSelectUser(selectedUser: User): void {
     this.selectedUser = selectedUser;
-    document.getElementById('openUserInfo').click();
+    this.clickButton('openUserInfo');
+  }
+
+  public onProfileImageChange(event: any):void {
+      this.fileName = event.target.files[0].name;
+      this.profileImage = event.target.files[0];
+  }
+
+  public saveNewUser(): void {
+    this.clickButton('new-user-save');
+  }
+
+  public onAddNewUser(userForm: NgForm): void {
+    const formData = this.userService.createUserFormDate(null, userForm.value, this.profileImage)
+    this.subscriptions.push(
+      this.userService.addUser(formData).subscribe(
+        (response: User) => {
+          this.clickButton('new-user-close');
+          this.getUsers(false);
+          this.fileName = null;
+          this.profileImage = null;
+          userForm.reset();
+          this.sendNotification(NotificationType.SUCCESS, `${response.firstName} ${response.lastName} updated successfully`)
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    );
   }
 
   private sendNotification(notificationType: NotificationType, message: any): void {
@@ -63,5 +95,8 @@ export class UserComponent implements OnInit {
     }
   }
 
+  private clickButton(buttonId: string): void {
+    document.getElementById(buttonId).click();
+  }
 
 }

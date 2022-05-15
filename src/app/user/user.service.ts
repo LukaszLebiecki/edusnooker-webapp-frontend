@@ -63,7 +63,7 @@ export class UserService {
     fromData.append('role', user.role);
     fromData.append('profileImage', profileImage);
     fromData.append('isActive', JSON.stringify(user.active));
-    fromData.append('inNonLocked', JSON.stringify(user.notLocked));
+    fromData.append('isNotLocked', JSON.stringify(user.notLocked));
   return fromData;
   }
 }

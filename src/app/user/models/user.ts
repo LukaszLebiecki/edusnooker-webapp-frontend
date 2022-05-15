@@ -7,7 +7,7 @@ export class User {
   public email: string;
   public logInDateDisplay: Date;
   public joinDate: Date;
-  public profileImage: string;
+  public profileImageUrl: string;
   public active: boolean;
   public notLocked: boolean;
   public role: string;
@@ -24,7 +24,7 @@ export class User {
     this.email = '';
     this.logInDateDisplay = new Date;
     this.joinDate = new Date;
-    this.profileImage = '';
+    this.profileImageUrl = '';
     this.active = false;
     this.notLocked = false;
     this.role = '';
