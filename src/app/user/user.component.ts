@@ -6,6 +6,7 @@ import {NotificationService} from "../notification/notification.service";
 import {NotificationType} from "../notification/notification-type.enum";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NgForm} from "@angular/forms";
+import {CustomHttpResponse} from "../http/models/customHttpResponse";
 
 @Component({
   selector: 'app-user',
@@ -21,6 +22,8 @@ export class UserComponent implements OnInit {
   private subscriptions: Subscription[] = [];
   private profileImage: File;
   private fileName: null;
+  public editUser = new User();
+  private currentUsername: string;
 
   constructor(private userService: UserService,
               private notificationService: NotificationService) {
@@ -59,9 +62,9 @@ export class UserComponent implements OnInit {
     this.clickButton('openUserInfo');
   }
 
-  public onProfileImageChange(event: any):void {
-      this.fileName = event.target.files[0].name;
-      this.profileImage = event.target.files[0];
+  public onProfileImageChange(event: any): void {
+    this.fileName = event.target.files[0].name;
+    this.profileImage = event.target.files[0];
   }
 
   public saveNewUser(): void {
@@ -82,9 +85,83 @@ export class UserComponent implements OnInit {
         },
         (errorResponse: HttpErrorResponse) => {
           this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+          this.profileImage = null;
         }
       )
     );
+  }
+
+  public searchUsers(searchTerm: string): void {
+    const results: User[] = [];
+    for (const user of this.userService.getUsersFromLocalCache()) {
+      if (user.firstName.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+        user.lastName.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+        user.username.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+        user.userId.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+        results.push(user);
+      }
+    }
+    this.users = results;
+    if (results.length === 0 || !searchTerm) {
+      this.users = this.userService.getUsersFromLocalCache();
+    }
+  }
+
+  public onUpdateUser(): void {
+    const formData = this.userService.createUserFormDate(this.currentUsername, this.editUser, this.profileImage)
+    this.subscriptions.push(
+      this.userService.updateUser(formData).subscribe(
+        (response: User) => {
+          this.clickButton('edit-user-close');
+          this.getUsers(false);
+          this.fileName = null;
+          this.profileImage = null;
+          this.sendNotification(NotificationType.SUCCESS, `${response.firstName} ${response.lastName} updated successfully`)
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+          this.profileImage = null;
+        }
+      )
+    );
+  }
+
+  public onEditUser(editUser: User): void {
+    this.editUser = editUser;
+    this.currentUsername = editUser.username;
+    this.clickButton('openUserEdit');
+  }
+
+  public onResetPassword(emailForm: NgForm): void {
+    this.refreshing = true;
+    const emailAddress = emailForm.value['reset-password-email'];
+    this.subscriptions.push(
+      this.userService.resetPassword(emailAddress).subscribe(
+        (response: CustomHttpResponse) => {
+          this.sendNotification(NotificationType.SUCCESS, response.message);
+          this.refreshing = false;
+        },
+        (error: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.WARNING, error.error.message);
+          this.refreshing = false;
+        },
+        () => emailForm.reset()
+      )
+    )
+  }
+
+  public onDeleteUser(userId: number): void {
+    this.subscriptions.push(
+      this.userService.deleteUser(userId).subscribe(
+        (response: CustomHttpResponse) => {
+          this.sendNotification(NotificationType.SUCCESS, response.message);
+          this.getUsers(false);
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    )
   }
 
   private sendNotification(notificationType: NotificationType, message: any): void {
@@ -98,5 +175,4 @@ export class UserComponent implements OnInit {
   private clickButton(buttonId: string): void {
     document.getElementById(buttonId).click();
   }
-
 }

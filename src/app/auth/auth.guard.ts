@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
       return true;
     }
     this.router.navigate(['/login']);
-    this.notificationService.notify(NotificationType.ERROR, `You need to log in to access this page`.toLocaleUpperCase());
+    this.notificationService.notify(NotificationType.ERROR, `You need to log in to access this page`);
     return false;
   }
 }
