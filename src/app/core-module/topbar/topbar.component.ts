@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, OnChanges, OnInit} from '@angular/core';
+import {User} from "../../user/models/user";
 import {AuthenticationService} from "../../auth/authentication.service";
+import {UserService} from "../../shared-module/services/user.service";
 
 @Component({
   selector: 'app-topbar',
@@ -9,14 +10,18 @@ import {AuthenticationService} from "../../auth/authentication.service";
 })
 export class TopbarComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  public user: User
+
+  constructor(private userServiceShow: UserService,
+              private authenticationService: AuthenticationService) {
+  }
 
   ngOnInit(): void {
+    this.user = this.authenticationService.getUserFromLocalCache();
+    this.userServiceShow.userCurrent$.subscribe((user) => {
+      this.user = user
+    });
   }
 
-  logout() {
-    this.authenticationService.logOut();
-    this.router.navigate(['/login']);
-  }
 
 }

@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {User} from "../user/models/user";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {LayoutService} from "../shared-module/services/layout.service";
+import {UserService} from "../shared-module/services/user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class AuthenticationService {
   private jwtHelper = new JwtHelperService();
 
   constructor(private http: HttpClient,
-              private layoutService: LayoutService) {
+              private layoutService: LayoutService,
+              private userServiceShow: UserService) {
   }
 
   public login(user: User): Observable<HttpResponse<User>> {
@@ -43,6 +45,7 @@ export class AuthenticationService {
 
   public addUserToLocalCache(user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
+    this.userServiceShow.showUser(user);
   }
 
   public getUserFromLocalCache(): User {

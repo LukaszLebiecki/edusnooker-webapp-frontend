@@ -27,6 +27,7 @@ import {NotificationService} from "./notification/notification.service";
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import {FormsModule} from "@angular/forms";
+import { MyaccountComponent } from './myaccount/myaccount.component';
 
 
 
@@ -38,7 +39,8 @@ import {FormsModule} from "@angular/forms";
     FooterComponent,
     HomeComponent,
     RegisterComponent,
-    UserComponent
+    UserComponent,
+    MyaccountComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +53,7 @@ import {FormsModule} from "@angular/forms";
     LoginRoutingModule,
     LevelRoutingModule,
     HttpClientModule,
-    NotificationModule,
+    NotificationModule
   ],
   providers: [
     LevelService,

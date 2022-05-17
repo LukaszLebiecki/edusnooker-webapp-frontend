@@ -7,11 +7,13 @@ import {HomeComponent} from "./home/home/home.component";
 import {RegisterComponent} from "./register/register.component";
 import {UserComponent} from "./user/user.component";
 import {LoginComponent} from "./login/login.component";
+import {MyaccountComponent} from "./myaccount/myaccount.component";
 
 const APP_ROUTES: Route[] = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'user/management', component: UserComponent, canActivate: [AuthGuard]},
+  {path: 'myaccount', component: MyaccountComponent, canActivate: [AuthGuard]},
   {path: 'level', component: LevelListComponent, canActivate: [AuthGuard]},
   {path: 'favorite', component: FavoriteComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},

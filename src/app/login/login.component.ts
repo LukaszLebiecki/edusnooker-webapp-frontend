@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigateByUrl('/home');
           this.showLoading = false;
           this.layoutService.showSidebar();
+          this.sendErrorNotification(NotificationType.SUCCESS, `Login is successful, have a nice exercise`)
         },
         (errorResponse: HttpErrorResponse) => {
           this.sendErrorNotification(NotificationType.ERROR, errorResponse.error.message);
