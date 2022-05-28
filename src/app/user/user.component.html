@@ -1,4 +1,4 @@
-<div class="container">
+<div [hidden]="!isAdmin" class="container">
   <div class="row mb-2 mt-2 text-center">
     <div class="col-md-4">
     </div>
@@ -22,11 +22,6 @@
         <a class="nav-item nav-link mt-2 ms-2 me-2 mb-0" (click)="changeTitle('Settings')" data-bs-toggle="tab" href="#reset-password">
           <i class="fa fa-cogs"></i>
           Settings
-        </a>
-        <a class="nav-item nav-link move-right mt-2 ms-2 me-2 mb-0" (click)="changeTitle('Profile')"
-           data-bs-toggle="tab">
-          Profile
-          <i class="fa fa-user"></i>
         </a>
       </div>
     </div>
@@ -231,11 +226,10 @@
                 <div class="form-group my-2">
                   <label id="authority">Role</label>
                   <select name="role" required ngModel="ROLE_USER" class="form-control">
-                    <option value="ROLE_USER">USER</option>
-                    <option value="ROLE_HR">HR</option>
-                    <option value="ROLE_MANAGER">MANAGER</option>
+                    <option value="ROLE_DEMO">DEMO</option>
+                    <option value="ROLE_BASIC">BASIC</option>
+                    <option value="ROLE_PREMIUM">PREMIUM</option>
                     <option value="ROLE_ADMIN">ADMIN</option>
-                    <option value="ROLE_SUPER_ADMIN">SUPER ADMIN</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -307,11 +301,10 @@
                 <div class="form-group my-2">
                   <label for="authority">Role</label>
                   <select name="role" required [(ngModel)]="editUser.role" class="form-control">
-                    <option value="ROLE_USER">USER</option>
-                    <option value="ROLE_HR">HR</option>
-                    <option value="ROLE_MANAGER">MANAGER</option>
+                    <option value="ROLE_DEMO">DEMO</option>
+                    <option value="ROLE_BASIC">BASIC</option>
+                    <option value="ROLE_PREMIUM">PREMIUM</option>
                     <option value="ROLE_ADMIN">ADMIN</option>
-                    <option value="ROLE_SUPER_ADMIN">SUPER ADMIN</option>
                   </select>
                 </div>
                 <div class="form-group">

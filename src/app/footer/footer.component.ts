@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Role} from "../role/role.enum";
+import {AuthenticationService} from "../auth/authentication.service";
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService ) { }
 
   ngOnInit(): void {
   }
 
+  public get isAdmin(): boolean {
+    return this.getUserRole() === Role.ADMIN;
+  }
+
+  private getUserRole(): string {
+    return this.authenticationService.getUserFromLocalCache().role;
+  }
 }

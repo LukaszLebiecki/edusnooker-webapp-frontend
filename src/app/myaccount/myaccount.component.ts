@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from "../user/user.service";
 import {NotificationService} from "../notification/notification.service";
 import {AuthenticationService} from "../auth/authentication.service";
@@ -8,6 +8,7 @@ import {NotificationType} from "../notification/notification-type.enum";
 import {HttpErrorResponse, HttpEvent, HttpEventType} from "@angular/common/http";
 import {BehaviorSubject, Subscription} from "rxjs";
 import {FileUploadStatus} from "./models/file-upload.status";
+import {SubSink} from "subsink";
 
 
 @Component({
@@ -15,8 +16,8 @@ import {FileUploadStatus} from "./models/file-upload.status";
   templateUrl: './myaccount.component.html',
   styleUrls: ['./myaccount.component.scss']
 })
-export class MyaccountComponent implements OnInit {
-
+export class MyaccountComponent implements OnInit, OnDestroy {
+  private subs = new SubSink();
   public user: User;
   public refreshing: boolean;
   private titleSubject = new BehaviorSubject<string>('Users');
@@ -55,7 +56,7 @@ export class MyaccountComponent implements OnInit {
     const formData = new FormData();
     formData.append('username', this.user.username);
     formData.append('profileImage', this.profileImage);
-    this.subscriptions.push(
+    this.subs.add(
       this.userService.updateProfileImage(formData).subscribe(
         (event: HttpEvent<any>) => {
           this.reportUploadProgress(event);
@@ -75,7 +76,7 @@ export class MyaccountComponent implements OnInit {
 
   public getUsers(showNotification: boolean): void {
     this.refreshing = true;
-    this.subscriptions.push(
+    this.subs.add(
       this.userService.getUsers().subscribe(
         (response: User[]) => {
           this.userService.addUsersToLocalCache(response);
@@ -97,7 +98,7 @@ export class MyaccountComponent implements OnInit {
     this.refreshing = true;
     this.currentUsername = this.authenticationService.getUserFromLocalCache().username;
     const formData = this.userService.createUserFormDate(this.currentUsername, this.user, this.profileImage);
-    this.subscriptions.push(
+    this.subs.add(
       this.userService.updateUser(formData).subscribe(
         (response: User) => {
           this.authenticationService.addUserToLocalCache(response);
@@ -146,6 +147,10 @@ export class MyaccountComponent implements OnInit {
       default:
         `Finished all processes`;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 
 }

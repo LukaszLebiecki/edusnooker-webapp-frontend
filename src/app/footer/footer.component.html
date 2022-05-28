@@ -15,5 +15,5 @@
   <div class="row-cols-1 text-center bg-success text-white m-1">
     <p>edusnooker.pl © 2022</p>
   </div>
-  <button [routerLink]="['/user/management']" class="btn btn-warning btn-admin">Admin panel</button>
+  <button [hidden]="!isAdmin" [routerLink]="['/user/management']" class="btn btn-warning btn-admin">Admin panel</button>
 </footer>
