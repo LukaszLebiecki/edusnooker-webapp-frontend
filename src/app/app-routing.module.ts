@@ -8,10 +8,12 @@ import {RegisterComponent} from "./register/register.component";
 import {UserComponent} from "./user/user.component";
 import {LoginComponent} from "./login/login.component";
 import {MyaccountComponent} from "./myaccount/myaccount.component";
+import {ResetpasswordComponent} from "./resetpassword/resetpassword.component";
 
 const APP_ROUTES: Route[] = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'resetpassword', component: ResetpasswordComponent},
   {path: 'user/management', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'myaccount', component: MyaccountComponent, canActivate: [AuthGuard]},
   {path: 'level', component: LevelListComponent, canActivate: [AuthGuard]},

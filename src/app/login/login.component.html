@@ -16,6 +16,7 @@
         <input ngModel #passwordInput="ngModel" type="password" class="form-control w-75 input_pass" name="password" placeholder="Password" required
                aria-describedby="basic-addon2">
         <span class="help-block" style="color: red" *ngIf="passwordInput.invalid && passwordInput.touched">Please enter a password.</span>
+        <small class="w-100"><a class="ml-2 d-flex justify-content-end" routerLink="/resetpassword" style="color: #2c3E50;">Don't you remember the password?</a></small>
       </div>
 
       <div class="d-flex justify-content-center mt-3 login_container">
