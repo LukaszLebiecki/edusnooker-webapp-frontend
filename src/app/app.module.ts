@@ -29,6 +29,7 @@ import { UserComponent } from './user/user.component';
 import {FormsModule} from "@angular/forms";
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ExerciseComponent } from './exercise/exercise/exercise.component';
 
 
 
@@ -42,7 +43,8 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     RegisterComponent,
     UserComponent,
     MyaccountComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    ExerciseComponent
   ],
   imports: [
     CommonModule,

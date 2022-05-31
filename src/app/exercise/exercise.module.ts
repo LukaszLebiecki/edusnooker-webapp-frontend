@@ -9,11 +9,9 @@ import {ProgressSharedService} from "../progress/progress-shared.service";
 
 @NgModule({
   declarations: [
-    ExerciseListComponent,
     FavoriteComponent
   ],
   exports: [
-    ExerciseListComponent
   ],
   imports: [
     CommonModule,

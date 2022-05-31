@@ -9,6 +9,7 @@ import {UserComponent} from "./user/user.component";
 import {LoginComponent} from "./login/login.component";
 import {MyaccountComponent} from "./myaccount/myaccount.component";
 import {ResetpasswordComponent} from "./resetpassword/resetpassword.component";
+import {ExerciseComponent} from "./exercise/exercise/exercise.component";
 
 const APP_ROUTES: Route[] = [
   {path: 'login', component: LoginComponent},
