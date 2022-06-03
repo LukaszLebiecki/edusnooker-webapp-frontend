@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {async, interval, Subscription} from "rxjs";
+import {interval, Subscription} from "rxjs";
 
 @Component({
   selector: '[app-exercise]',
@@ -8,16 +8,44 @@ import {async, interval, Subscription} from "rxjs";
 })
 export class ExerciseComponent implements OnInit {
 
-  private subscription: Subscription;
+  public timeEnd: boolean = false;
   public clicked: boolean = false;
-  public TIME_LIMIT: number = 5;
+  public TIME_LIMIT: number = 20;
+  private subscription: Subscription;
   private timePassed: number = 0;
   private timeLeft: number = this.TIME_LIMIT;
-  timeEnd: boolean = false;
+  private WARNING_THRESHOLD: number = 10;
+  private ALERT_THRESHOLD: number = 5;
+  private FULL_DASH_ARRAY: number = 283;
 
-
-  constructor() {
+  refresh(): void {
+    const { alert, warning, info } = this.COLOR_CODES;
+    this.subscription.unsubscribe();
+    this.clicked = false;
+    this.timePassed = 0;
+    this.timeLeft = this.TIME_LIMIT;
+    this.timeEnd = false;
+    document.getElementById("base-timer-label").innerHTML = this.formatTime(this.timeLeft);
+    document.getElementById("base-timer-path-remaining").classList.remove(info.color);
+    document.getElementById("base-timer-path-remaining").classList.remove(warning.color);
+    document.getElementById("base-timer-path-remaining").classList.remove(alert.color);
+    document.getElementById("base-timer-path-remaining").classList.add(info.color);
   }
+
+  COLOR_CODES = {
+    info: {
+      color: "green"
+    },
+    warning: {
+      color: "orange",
+      threshold: this.WARNING_THRESHOLD
+    },
+    alert: {
+      color: "red",
+      threshold: this.ALERT_THRESHOLD
+    }
+  };
+  remainingPathColor = this.COLOR_CODES.info.color;
 
   ngOnInit(): void {
 
@@ -44,19 +72,46 @@ export class ExerciseComponent implements OnInit {
 
         } else {
           document.getElementById("base-timer-label").innerHTML = this.formatTime(this.timeLeft);
+          this.setCircleDasharray();
+          this.setRemainingPathColor(this.timeLeft);
         }
       }
     );
   }
 
-  refresh(): void {
-    this.subscription.unsubscribe();
-    this.clicked = false;
-    this.TIME_LIMIT = 5;
-    this.timePassed = 0;
-    this.timeLeft = this.TIME_LIMIT;
-    this.timeEnd = false;
-    document.getElementById("base-timer-label").innerHTML = this.formatTime(this.timeLeft);
+
+  calculateTimeFraction() {
+    const rawTimeFraction = this.timeLeft / this.TIME_LIMIT;
+    return rawTimeFraction - (1 / this.TIME_LIMIT) * (1 - rawTimeFraction);
   }
 
+  setCircleDasharray() {
+    const circleDasharray = `${(
+      this.calculateTimeFraction() * this.FULL_DASH_ARRAY
+    ).toFixed(0)} 283`;
+    document
+      .getElementById("base-timer-path-remaining")
+      .setAttribute("stroke-dasharray", circleDasharray);
+  }
+
+  setRemainingPathColor(timeLeft) {
+    const { alert, warning, info } = this.COLOR_CODES;
+
+    if (timeLeft <= alert.threshold) {
+      document
+        .getElementById("base-timer-path-remaining")
+        .classList.remove(warning.color);
+      document
+        .getElementById("base-timer-path-remaining")
+        .classList.add(alert.color);
+
+    } else if (timeLeft <= warning.threshold) {
+      document
+        .getElementById("base-timer-path-remaining")
+        .classList.remove(info.color);
+      document
+        .getElementById("base-timer-path-remaining")
+        .classList.add(warning.color);
+    }
+  }
 }

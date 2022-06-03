@@ -46,3 +46,38 @@
   /* Sort of an arbitrary number; adjust to your liking */
   font-size: 48px;
 }
+
+.base-timer__svg {
+  /* Flips the svg and makes the animation to move left-to-right */
+  transform: scaleX(-1);
+}
+
+.base-timer__path-remaining.green {
+  color: rgb(65, 184, 131);
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.orange {
+  color: orange;
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.red {
+  color: red;
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  stroke: currentColor;
+}
