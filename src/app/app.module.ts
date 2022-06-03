@@ -31,8 +31,6 @@ import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ExerciseComponent } from './exercise/exercise/exercise.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
