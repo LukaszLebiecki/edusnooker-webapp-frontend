@@ -10,26 +10,35 @@ export class ExerciseComponent implements OnInit {
 
   public timeEnd: boolean = false;
   public clicked: boolean = false;
+  public clickStart: boolean = false;
   public TIME_LIMIT: number = 20;
+  public blockedButtonStart: boolean = false;
+  public blockedButtonPause = false;
   private subscription: Subscription;
   private timePassed: number = 0;
   private timeLeft: number = this.TIME_LIMIT;
   private WARNING_THRESHOLD: number = 10;
   private ALERT_THRESHOLD: number = 5;
   private FULL_DASH_ARRAY: number = 283;
+  private audio: any = new Audio();
 
   refresh(): void {
-    const { alert, warning, info } = this.COLOR_CODES;
+    const {alert, warning, info} = this.COLOR_CODES;
     this.subscription.unsubscribe();
     this.clicked = false;
     this.timePassed = 0;
     this.timeLeft = this.TIME_LIMIT;
     this.timeEnd = false;
+    this.clickStart = false;
+    this.blockedButtonStart = false;
+    this.blockedButtonPause = false;
     document.getElementById("base-timer-label").innerHTML = this.formatTime(this.timeLeft);
     document.getElementById("base-timer-path-remaining").classList.remove(info.color);
     document.getElementById("base-timer-path-remaining").classList.remove(warning.color);
     document.getElementById("base-timer-path-remaining").classList.remove(alert.color);
     document.getElementById("base-timer-path-remaining").classList.add(info.color);
+    this.setCircleDasharray();
+    this.setRemainingPathColor(this.timeLeft);
   }
 
   COLOR_CODES = {
@@ -60,17 +69,30 @@ export class ExerciseComponent implements OnInit {
     return `${minutes}:${seconds}`;
   }
 
+  playAudio() {
+    this.audio.src = "../../../assets/sound/StartTimer.mp3";
+    this.audio.load();
+    this.audio.play();
+  }
+
   startTimer(): void {
+    this.blockedButtonStart = true;
+    this.playAudio();
     this.subscription = interval(1000).subscribe(x => {
 
         this.timePassed = this.timePassed += 1;
         this.timeLeft = this.TIME_LIMIT - this.timePassed;
 
+        if (this.timeLeft < 6 && this.timeLeft > 0) {
+          this.playAudio();
+        }
+
         if (this.timeLeft < 0) {
+          this.blockedButtonPause = true;
           this.timeEnd = true;
           this.subscription.unsubscribe();
-
         } else {
+          this.clickStart = true;
           document.getElementById("base-timer-label").innerHTML = this.formatTime(this.timeLeft);
           this.setCircleDasharray();
           this.setRemainingPathColor(this.timeLeft);
@@ -79,6 +101,12 @@ export class ExerciseComponent implements OnInit {
     );
   }
 
+  pauseTimer() {
+    this.blockedButtonStart = false;
+    this.clickStart = false;
+    this.subscription.unsubscribe();
+    this.clicked = false;
+  }
 
   calculateTimeFraction() {
     const rawTimeFraction = this.timeLeft / this.TIME_LIMIT;
@@ -95,7 +123,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   setRemainingPathColor(timeLeft) {
-    const { alert, warning, info } = this.COLOR_CODES;
+    const {alert, warning, info} = this.COLOR_CODES;
 
     if (timeLeft <= alert.threshold) {
       document
