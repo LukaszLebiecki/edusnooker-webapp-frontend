@@ -81,3 +81,66 @@
   transition: 1s linear all;
   stroke: currentColor;
 }
+
+.btn-red,
+.btn-yellow,
+.btn-green,
+.btn-brown,
+.btn-blue,
+.btn-pink,
+.btn-black,
+.btn-bonus {
+  border: none;
+  color: white;
+  text-align: center;
+  font-style: inherit;
+  border-radius: 14px;
+  font-size: 20px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.btn-red:hover,
+.btn-yellow:hover,
+.btn-green:hover,
+.btn-brown:hover,
+.btn-blue:hover,
+.btn-pink:hover,
+.btn-black:hover,
+.btn-bonus:hover {
+  opacity: 80%;
+}
+
+.btn-red {
+  background-color: $level-red;
+}
+
+.btn-yellow {
+  background-color: $level-yellow;
+}
+
+.btn-green {
+  background-color: $level-green;
+}
+
+.btn-brown {
+  background-color: $level-brown;
+}
+
+.btn-blue {
+  background-color: $level-blue;
+}
+
+.btn-pink {
+  background-color: $level-pink;
+}
+
+.btn-black {
+  background-color: $level-black;
+}
+
+.btn-bonus {
+  background-color: $level-white;
+}

@@ -2,8 +2,9 @@
    href="#workout1">Go to exercise
 </a>
 
-
-<div class="modal fade" id="workout1" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="workout1ToggleLabel" tabindex="-1">
+<!--part-1 exercise-->
+<div class="modal fade" id="workout1" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+     aria-labelledby="workout1ToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -71,8 +72,9 @@
   </div>
 </div>
 
-
-<div class="modal fade" id="workout2" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="workout2ToggleLabel" tabindex="-1">
+<!--part-2 exercise-->
+<div class="modal fade" id="workout2" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+     aria-labelledby="workout2ToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -109,11 +111,13 @@
             </div>
             <div class="row">
               <div class="col-12">
-                <button *ngIf="!clickStart" [disabled]="blockedButtonStart" class="btn btn-success align-content-end w-100"
-                        (click)="startTimer()">START
+                <button *ngIf="!clickStart" [disabled]="blockedButtonStart"
+                        class="btn btn-success align-content-end w-100"
+                        (click)="startTimer()"><i class="bi bi-play-circle"></i> &nbsp; START
                 </button>
-                <button *ngIf="clickStart" [disabled]="blockedButtonPause" class="btn btn-outline-success align-content-end w-100"
-                        (click)="pauseTimer()">PAUSE
+                <button *ngIf="clickStart" [disabled]="blockedButtonPause"
+                        class="btn btn-outline-success align-content-end w-100"
+                        (click)="pauseTimer()"><i class="bi bi-pause-circle"></i> &nbsp; PAUSE
                 </button>
               </div>
             </div>
@@ -133,8 +137,9 @@
   </div>
 </div>
 
-
-<div class="modal fade" id="workout3" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="workout3ToggleLabel" tabindex="-1">
+<!--part-3 exercise-->
+<div class="modal fade" id="workout3" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+     aria-labelledby="workout3ToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -142,7 +147,39 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Sprawdzian - podejście punktowe
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center">
+            <img src="/assets/image/e001.png" class="img-fluid" alt="...">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <button class="btn-red w-100">1</button>
+          </div>
+          <div class="col-3">
+            <button class="btn-yellow w-100">2</button>
+          </div>
+          <div class="col-3">
+            <button class="btn-green w-100">3</button>
+          </div>
+          <div class="col-3">
+            <button class="btn-brown w-100">4</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <button class="btn-blue w-100">5</button>
+          </div>
+          <div class="col-3">
+            <button class="btn-pink w-100">6</button>
+          </div>
+          <div class="col-3">
+            <button class="btn-black w-100">7</button>
+          </div>
+          <div class="col-3">
+            <button class="btn-bonus w-100">Bonus</button>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" data-bs-dismiss="modal">Save</button>

@@ -11,7 +11,7 @@ export class ExerciseComponent implements OnInit {
   public timeEnd: boolean = false;
   public clicked: boolean = false;
   public clickStart: boolean = false;
-  public TIME_LIMIT: number = 20;
+  public TIME_LIMIT: number = 3;
   public blockedButtonStart: boolean = false;
   public blockedButtonPause = false;
   private subscription: Subscription;
@@ -69,22 +69,32 @@ export class ExerciseComponent implements OnInit {
     return `${minutes}:${seconds}`;
   }
 
-  playAudio() {
+  playAudioStart() {
     this.audio.src = "../../../assets/sound/StartTimer.mp3";
+    this.audio.load();
+    this.audio.play();
+  }
+
+  playAudioStop() {
+    this.audio.src = "../../../assets/sound/StopTimer.mp3";
     this.audio.load();
     this.audio.play();
   }
 
   startTimer(): void {
     this.blockedButtonStart = true;
-    this.playAudio();
+    this.playAudioStart();
     this.subscription = interval(1000).subscribe(x => {
 
         this.timePassed = this.timePassed += 1;
         this.timeLeft = this.TIME_LIMIT - this.timePassed;
 
         if (this.timeLeft < 6 && this.timeLeft > 0) {
-          this.playAudio();
+          this.playAudioStart();
+        }
+
+        if (this.timeLeft == 0) {
+          this.playAudioStop();
         }
 
         if (this.timeLeft < 0) {
