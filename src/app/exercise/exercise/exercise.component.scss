@@ -5,6 +5,10 @@
   font-size: 1.6rem;
 }
 
+.text-font-scoring {
+  font-size: 1.1rem;
+}
+
 .font-days {
   font-size: 0.8rem;
 }
@@ -90,11 +94,10 @@
 .btn-pink,
 .btn-black,
 .btn-bonus {
-  border: none;
-  color: white;
+  background-color: transparent;
   text-align: center;
   font-style: inherit;
-  border-radius: 14px;
+  border-radius: 4px;
   font-size: 20px;
   padding-top: 2px;
   padding-bottom: 2px;
@@ -114,33 +117,36 @@
 }
 
 .btn-red {
-  background-color: $level-red;
+  border: 1px solid $level-red;
+  color: $level-red;
 }
 
 .btn-yellow {
-  background-color: $level-yellow;
+  border: 1px solid $level-yellow;
+  color: $level-yellow;
 }
 
 .btn-green {
-  background-color: $level-green;
+  border: 1px solid $level-green;
+  color: $level-green;
 }
 
 .btn-brown {
-  background-color: $level-brown;
+  border: 1px solid $level-brown;
+  color: $level-brown;
 }
 
 .btn-blue {
-  background-color: $level-blue;
+  border: 1px solid $level-blue;
+  color: $level-blue;
 }
 
 .btn-pink {
-  background-color: $level-pink;
+  border: 1px solid $level-pink;
+  color: $level-pink;
 }
 
 .btn-black {
-  background-color: $level-black;
-}
-
-.btn-bonus {
-  background-color: $level-white;
+  border: 1px solid $level-black;
+  color: $level-black;
 }

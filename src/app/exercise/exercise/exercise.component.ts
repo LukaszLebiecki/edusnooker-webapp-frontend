@@ -83,18 +83,18 @@ export class ExerciseComponent implements OnInit {
 
   startTimer(): void {
     this.blockedButtonStart = true;
-    this.playAudioStart();
+    // this.playAudioStart();
     this.subscription = interval(1000).subscribe(x => {
 
         this.timePassed = this.timePassed += 1;
         this.timeLeft = this.TIME_LIMIT - this.timePassed;
 
         if (this.timeLeft < 6 && this.timeLeft > 0) {
-          this.playAudioStart();
+          // this.playAudioStart();
         }
 
         if (this.timeLeft == 0) {
-          this.playAudioStop();
+          // this.playAudioStop();
         }
 
         if (this.timeLeft < 0) {
