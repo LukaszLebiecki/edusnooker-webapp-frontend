@@ -1,6 +1,6 @@
 export interface ExerciseList {
   "name": string;
-  "shortDescription": string;
+  "description": string;
   "img": string;
   "idExercise": number;
 }
