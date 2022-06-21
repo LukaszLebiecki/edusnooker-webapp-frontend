@@ -10,6 +10,7 @@ import {CustomHttpResponse} from "../http/models/customHttpResponse";
 import {AuthenticationService} from "../auth/authentication.service";
 import {Role} from "../role/role.enum";
 import {SubSink} from "subsink";
+import {Exercise} from "./models/exercise";
 
 @Component({
   selector: 'app-user',
@@ -21,8 +22,10 @@ export class UserComponent implements OnInit, OnDestroy {
   private titleSubject = new BehaviorSubject<string>('Users');
   public titleAction$ = this.titleSubject.asObservable();
   public users: User[];
+  public exercises: Exercise[];
   public refreshing: boolean;
   public selectedUser: User;
+  public selectedExercise: Exercise;
   private subscriptions: Subscription[] = [];
   private profileImage: File;
   private fileName: null;
@@ -36,6 +39,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getUsers(true);
+    this.getExercises(true);
   }
 
   public changeTitle(title: string): void {
@@ -62,9 +66,34 @@ export class UserComponent implements OnInit, OnDestroy {
     );
   }
 
+  public getExercises(showNotification: boolean): void {
+    this.refreshing = true;
+    this.subs.add(
+      this.userService.getExercises().subscribe(
+        (response: Exercise[]) => {
+          this.userService.addExerciseToLocalCache(response);
+          this.exercises = response;
+          this.refreshing = false;
+          if (showNotification) {
+            this.sendNotification(NotificationType.SUCCESS, `${response.length} exercise(s) loaded successfully.`);
+          }
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+          this.refreshing = false;
+        }
+      )
+    );
+  }
+
   public onSelectUser(selectedUser: User): void {
     this.selectedUser = selectedUser;
     this.clickButton('openUserInfo');
+  }
+
+  public onSelectExercise(selectedExercise: Exercise): void {
+    this.selectedExercise = selectedExercise;
+    this.clickButton('openExerciseInfo');
   }
 
   public onProfileImageChange(event: any): void {

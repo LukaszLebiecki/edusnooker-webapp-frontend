@@ -107,7 +107,7 @@
           </button>
         </div>
         <div class="btn-group">
-          <button type="button" (click)="getUsers(true)" class="btn btn-outline-success">
+          <button type="button" (click)="getExercises(true)" class="btn btn-outline-success">
             <i *ngIf="refreshing" class="fas fa-sync fa-spin"></i><i *ngIf="!refreshing" class="fas fa-sync"></i>
           </button>
         </div>
@@ -115,34 +115,19 @@
       <table class="table table-hover">
         <thead class="table-borderless">
         <tr class="text-center">
-          <th>Image</th>
           <th>ID</th>
           <th>Name</th>
           <th>Description</th>
-          <th>Short description</th>
           <th>Level</th>
-          <th>Number of points to passed</th>
-          <th>Status</th>
           <th>Action</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let appExercise of exercises">
         <tr class="text-center">
-          <td>
-            <img height="40" width="40" src=""
-                 class="rounded-circle img-fluid img-thumbnail"
-                 alt=""/>
-          </td>
-          <td >aaaaa</td>
-          <td >aaaaa</td>
-          <td >aaaaa</td>
-          <td >aaaaa</td>
-          <td >aaaaa</td>
-          <td >aaaaa</td>
-          <td>
-            <span  class="badge bg-success">Active</span>
-            <span  class="badge bg-danger">Inactive</span>
-          </td>
+          <td (click)="onSelectExercise(appExercise)" >{{appExercise?.exerciseId}}</td>
+          <td (click)="onSelectExercise(appExercise)" >{{appExercise?.name}}</td>
+          <td (click)="onSelectExercise(appExercise)" >{{appExercise?.description}}</td>
+          <td (click)="onSelectExercise(appExercise)" >{{appExercise?.level}}</td>
           <td class="">
             <div class="btn-group">
               <button class="btn btn-outline-info" ><i class="fas fa-edit"></i></button>
@@ -153,7 +138,10 @@
         </tbody>
       </table>
     </div>
-
+    <button [hidden]="true" type="button" id="openExerciseInfo" data-bs-toggle="modal" data-bs-target="#viewExerciseModal">
+    </button>
+    <button [hidden]="true" type="button" id="openExerciseEdit" data-bs-toggle="modal" data-bs-target="#editExerciseModal">
+    </button>
 
     <!--    modal user info-->
     <div class="modal fade bd-example-modal-lg" id="viewUserModal" tabindex="-1" role="dialog" aria-labelledby=""
@@ -233,6 +221,75 @@
       </div>
     </div>
 
+    <!--    modal exercise info-->
+    <div class="modal fade bd-example-modal-lg" id="viewExerciseModal" tabindex="-1" role="dialog" aria-labelledby=""
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center"
+                id="exerciseModalLongTitle">{{selectedExercise?.name}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-sm-auto">
+                      <div class="mx-auto">
+                        <div class="d-flex justify-content-center align-items-center rounded">
+                          <img class="rounded img-fluid" src="assets/image/{{selectedExercise?.img}}"
+                               alt="{{selectedExercise?.name}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><i class="float-start fw-bold">ID:&nbsp;</i>{{selectedExercise?.exerciseId}}
+                  </li>
+                  <li class="list-group-item"><i class="float-start fw-bold">Description:&nbsp;</i>{{selectedExercise?.description}}
+                  </li>
+                  <li class="list-group-item"><i class="float-start fw-bold">Level:&nbsp;</i>{{selectedExercise?.level}}
+                  </li>
+                  <li class="list-group-item"><i class="float-start fw-bold">Video Url:&nbsp;</i>{{selectedExercise?.videoUrl}}
+                  </li>
+                  <li class="list-group-item"><i class="float-start fw-bold">Number of points to passed:&nbsp;</i>{{selectedExercise?.numberOfPointsToPassed}}
+                  </li>
+                  <li class="list-group-item"><i class="float-start fw-bold">Max points:&nbsp;</i>{{selectedExercise?.maxPoints}}
+                  </li>
+                  <li class="list-group-item"><i class="float-start fw-bold">Number of attempts:&nbsp;</i>{{selectedExercise?.numberOfAttempts}}
+                  </li>
+                  <li class="list-group-item"><i class="float-start fw-bold">
+                    <div class="col-12">
+                      <img [hidden]="!selectedExercise?.white" class="img-fluid" src="assets/image/white.png"/>
+                      <img [hidden]="!selectedExercise?.red" class="img-fluid" src="assets/image/red.png"/>
+                      <img [hidden]="!selectedExercise?.yellow" class="img-fluid" src="assets/image/yellow.png"/>
+                      <img [hidden]="!selectedExercise?.green" class="img-fluid" src="assets/image/green.png"/>
+                      <img [hidden]="!selectedExercise?.brown" class="img-fluid" src="assets/image/brown.png"/>
+                      <img [hidden]="!selectedExercise?.blue" class="img-fluid" src="assets/image/blue.png"/>
+                      <img [hidden]="!selectedExercise?.pink" class="img-fluid" src="assets/image/pink.png"/>
+                      <img [hidden]="!selectedExercise?.black" class="img-fluid" src="assets/image/black.png"/>
+                    </div>
+                  </i>
+                  </li>
+                  <li [hidden]="!selectedExercise?.bonusPoint"
+                      class="list-group-item"><i class="float-start fw-bold">Bonus info:&nbsp;</i>{{selectedExercise?.bonusInfo}}
+                  </li>
+                  <li [hidden]="!selectedExercise?.bonusPoint"
+                      class="list-group-item"><i class="float-start fw-bold">Bonus number of points:&nbsp;</i>{{selectedExercise?.bonusNumberOfPoints}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!--    modal add user-->
     <div class="modal fade bd-example-modal-lg" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby=""

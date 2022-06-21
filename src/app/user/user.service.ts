@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {User} from "../user/models/user";
 import {CustomHttpResponse} from "../http/models/customHttpResponse";
+import {Exercise} from "./models/exercise";
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,10 @@ export class UserService {
     localStorage.setItem('users', JSON.stringify(users));
   }
 
+  public addExerciseToLocalCache(exercises: Exercise[]): void {
+    localStorage.setItem('exercises', JSON.stringify(exercises));
+  }
+
   public getUsersFromLocalCache(): User[] | null {
     if (localStorage.getItem('users')) {
       return JSON.parse(localStorage.getItem('users') || '');
@@ -65,5 +70,9 @@ export class UserService {
     fromData.append('isActive', JSON.stringify(user.active));
     fromData.append('isNotLocked', JSON.stringify(user.notLocked));
   return fromData;
+  }
+
+  public getExercises(): Observable<Exercise[]> {
+    return this.http.get<Exercise[]>(`${this.host}/api/exercise`);
   }
 }
