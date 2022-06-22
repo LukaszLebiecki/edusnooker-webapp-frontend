@@ -125,6 +125,27 @@ export class UserComponent implements OnInit, OnDestroy {
     );
   }
 
+  public saveNewExercise(): void {
+    this.clickButton('new-exercise-save');
+  }
+
+  public onAddNewExercise(exerciseForm: NgForm): void {
+    const formData = this.userService.createExerciseFormDate(exerciseForm.value)
+    this.subs.add(
+      this.userService.addExercise(formData).subscribe(
+        (response: Exercise) => {
+          this.clickButton('new-exercise-close');
+          this.getExercises(false);
+          exerciseForm.reset();
+          this.sendNotification(NotificationType.SUCCESS, `${response.exerciseId} ${response.name} updated successfully`)
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    );
+  }
+
   public searchUsers(searchTerm: string): void {
     const results: User[] = [];
     for (const user of this.userService.getUsersFromLocalCache()) {

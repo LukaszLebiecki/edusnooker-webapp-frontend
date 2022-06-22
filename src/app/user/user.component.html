@@ -15,11 +15,13 @@
   <nav class="navbar navbar-expand-md breadcrumb nav_user">
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="nav nav-tabs">
-        <a class="nav-item nav-link active mt-2 ms-2 me-2 mb-0" (click)="changeTitle('Users')" data-bs-toggle="tab" href="#users">
+        <a class="nav-item nav-link active mt-2 ms-2 me-2 mb-0" (click)="changeTitle('Users')" data-bs-toggle="tab"
+           href="#users">
           <i class="fa fa-users"></i>
           Users
         </a>
-        <a class="nav-item nav-link mt-2 ms-2 me-2 mb-0" (click)="changeTitle('Exercises')" data-bs-toggle="tab" href="#exercises">
+        <a class="nav-item nav-link mt-2 ms-2 me-2 mb-0" (click)="changeTitle('Exercises')" data-bs-toggle="tab"
+           href="#exercises">
           <i class="fa fa-cogs"></i>
           Exercises
         </a>
@@ -80,7 +82,8 @@
           <td class="">
             <div class="btn-group">
               <button class="btn btn-outline-info" (click)="onEditUser(appUser)"><i class="fas fa-edit"></i></button>
-              <button class="btn btn-outline-danger" (click)="onDeleteUser(appUser.username)"><i class="fas fa-trash"></i></button>
+              <button class="btn btn-outline-danger" (click)="onDeleteUser(appUser.username)"><i
+                class="fas fa-trash"></i></button>
             </div>
           </td>
         </tr>
@@ -93,7 +96,7 @@
     <button [hidden]="true" type="button" id="openUserEdit" data-bs-toggle="modal" data-bs-target="#editUserModal">
     </button>
 
-<!--    exercises-->
+    <!--    exercises-->
     <div class="tab-pane fade" id="exercises">
       <div class="mb-3 float-end">
         <div class="btn-group me-2">
@@ -102,7 +105,8 @@
                    (ngModelChange)="searchUsers(searchInput.value)"
                    type="search" placeholder="Search users...">
           </form>
-          <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addUserModal">
+          <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                  data-bs-target="#addExerciseModal">
             <i class="fa fa-plus"></i>New Exercise
           </button>
         </div>
@@ -124,23 +128,25 @@
         </thead>
         <tbody *ngFor="let appExercise of exercises">
         <tr class="text-center">
-          <td (click)="onSelectExercise(appExercise)" >{{appExercise?.exerciseId}}</td>
-          <td (click)="onSelectExercise(appExercise)" >{{appExercise?.name}}</td>
-          <td (click)="onSelectExercise(appExercise)" >{{appExercise?.description}}</td>
-          <td (click)="onSelectExercise(appExercise)" >{{appExercise?.level}}</td>
+          <td (click)="onSelectExercise(appExercise)">{{appExercise?.exerciseId}}</td>
+          <td (click)="onSelectExercise(appExercise)">{{appExercise?.name}}</td>
+          <td (click)="onSelectExercise(appExercise)">{{appExercise?.description}}</td>
+          <td (click)="onSelectExercise(appExercise)">{{appExercise?.level}}</td>
           <td class="">
             <div class="btn-group">
-              <button class="btn btn-outline-info" ><i class="fas fa-edit"></i></button>
-              <button class="btn btn-outline-danger" ><i class="fas fa-trash"></i></button>
+              <button class="btn btn-outline-info"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
             </div>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
-    <button [hidden]="true" type="button" id="openExerciseInfo" data-bs-toggle="modal" data-bs-target="#viewExerciseModal">
+    <button [hidden]="true" type="button" id="openExerciseInfo" data-bs-toggle="modal"
+            data-bs-target="#viewExerciseModal">
     </button>
-    <button [hidden]="true" type="button" id="openExerciseEdit" data-bs-toggle="modal" data-bs-target="#editExerciseModal">
+    <button [hidden]="true" type="button" id="openExerciseEdit" data-bs-toggle="modal"
+            data-bs-target="#editExerciseModal">
     </button>
 
     <!--    modal user info-->
@@ -247,19 +253,25 @@
                   </div>
                 </div>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><i class="float-start fw-bold">ID:&nbsp;</i>{{selectedExercise?.exerciseId}}
+                  <li class="list-group-item"><i
+                    class="float-start fw-bold">ID:&nbsp;</i>{{selectedExercise?.exerciseId}}
                   </li>
-                  <li class="list-group-item"><i class="float-start fw-bold">Description:&nbsp;</i>{{selectedExercise?.description}}
+                  <li class="list-group-item"><i
+                    class="float-start fw-bold">Description:&nbsp;</i>{{selectedExercise?.description}}
                   </li>
                   <li class="list-group-item"><i class="float-start fw-bold">Level:&nbsp;</i>{{selectedExercise?.level}}
                   </li>
-                  <li class="list-group-item"><i class="float-start fw-bold">Video Url:&nbsp;</i>{{selectedExercise?.videoUrl}}
+                  <li class="list-group-item"><i class="float-start fw-bold">Video
+                    Url:&nbsp;</i>{{selectedExercise?.videoUrl}}
                   </li>
-                  <li class="list-group-item"><i class="float-start fw-bold">Number of points to passed:&nbsp;</i>{{selectedExercise?.numberOfPointsToPassed}}
+                  <li class="list-group-item"><i class="float-start fw-bold">Number of points to
+                    passed:&nbsp;</i>{{selectedExercise?.numberOfPointsToPassed}}
                   </li>
-                  <li class="list-group-item"><i class="float-start fw-bold">Max points:&nbsp;</i>{{selectedExercise?.maxPoints}}
+                  <li class="list-group-item"><i class="float-start fw-bold">Max
+                    points:&nbsp;</i>{{selectedExercise?.maxPoints}}
                   </li>
-                  <li class="list-group-item"><i class="float-start fw-bold">Number of attempts:&nbsp;</i>{{selectedExercise?.numberOfAttempts}}
+                  <li class="list-group-item"><i class="float-start fw-bold">Number of
+                    attempts:&nbsp;</i>{{selectedExercise?.numberOfAttempts}}
                   </li>
                   <li class="list-group-item"><i class="float-start fw-bold">
                     <div class="col-12">
@@ -275,10 +287,12 @@
                   </i>
                   </li>
                   <li [hidden]="!selectedExercise?.bonusPoint"
-                      class="list-group-item"><i class="float-start fw-bold">Bonus info:&nbsp;</i>{{selectedExercise?.bonusInfo}}
+                      class="list-group-item"><i class="float-start fw-bold">Bonus
+                    info:&nbsp;</i>{{selectedExercise?.bonusInfo}}
                   </li>
                   <li [hidden]="!selectedExercise?.bonusPoint"
-                      class="list-group-item"><i class="float-start fw-bold">Bonus number of points:&nbsp;</i>{{selectedExercise?.bonusNumberOfPoints}}
+                      class="list-group-item"><i class="float-start fw-bold">Bonus number of
+                    points:&nbsp;</i>{{selectedExercise?.bonusNumberOfPoints}}
                   </li>
                 </ul>
               </div>
@@ -366,6 +380,157 @@
       </div>
     </div>
 
+    <!--    modal add exercise-->
+    <div class="modal fade bd-example-modal-lg" id="addExerciseModal" tabindex="-1" role="dialog" aria-labelledby=""
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center">New Exercise</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <form #newExerciseForm="ngForm" (ngSubmit)="onAddNewExercise(newExerciseForm)">
+                <div class="form-group my-2">
+                  <label id="name">Name exercise</label>
+                  <input type="text" name="name" required ngModel class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label id="description">Description</label>
+                  <input type="text" name="description" required ngModel class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label id="videoUrl">Video Url</label>
+                  <input type="text" name="videoUrl" required ngModel class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label id="img">Img</label>
+                  <input type="text" name="img" required ngModel class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label id="numberOfPointsToPassed">Number of points to passed</label>
+                  <input type="number" name="numberOfPointsToPassed" required ngModel class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label id="maxPoints">Max points</label>
+                  <input type="number" name="maxPoints" required ngModel class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label id="numberOfAttempts">Number of attempts</label>
+                  <input type="number" name="numberOfAttempts" required ngModel class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label id="level">Level</label>
+                  <select name="level" required ngModel class="form-control">
+                    <option value="WHITE">WHITE</option>
+                    <option value="RED">RED</option>
+                    <option value="YELLOW">YELLOW</option>
+                    <option value="GREEN">GREEN</option>
+                    <option value="BROWN">BROWN</option>
+                    <option value="BLUE">BLUE</option>
+                    <option value="PINK">PINK</option>
+                    <option value="BLACK">BLACK</option>
+                  </select>
+                </div>
+                <fieldset class="form-group">
+                  <div class="row">
+                    <div class="col-3">
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="white" ngModel class="form-check-input">
+                          White
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="red" ngModel class="form-check-input">
+                          Red
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="yellow" ngModel class="form-check-input">
+                          Yellow
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="green" ngModel class="form-check-input">
+                          Green
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="brown" ngModel class="form-check-input">
+                          Brown
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="blue" ngModel class="form-check-input">
+                          Blue
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="pink" ngModel class="form-check-input">
+                          Pink
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="black" ngModel class="form-check-input">
+                          Black
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="buttonPass" ngModel class="form-check-input">
+                          Button pass
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="bonusPoint" ngModel class="form-check-input">
+                          Bonus point
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="form-group my-2">
+                  <label id="bonusInfo">Bonus info</label>
+                  <input type="text" name="bonusInfo" required ngModel class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label id="bonusNumberOfPoints">Bonus number of points</label>
+                  <input type="number" name="bonusNumberOfPoints" required ngModel class="form-control">
+                </div>
+                <button type="submit" style="display: none;" id="new-exercise-save"></button>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="new-exercise-close">Close
+            </button>
+            <button type="button" (click)="saveNewExercise()" [disabled]="newExerciseForm.invalid"
+                    class="btn btn-success">Save
+              changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!--    modal edit user-->
     <div class="modal fade bd-example-modal-lg" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby=""
          aria-hidden="true">
@@ -433,7 +598,8 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="edit-user-close">Close</button>
-            <button type="button" (click)="onUpdateUser()" [disabled]="editUserForm.invalid" class="btn btn-success">Save
+            <button type="button" (click)="onUpdateUser()" [disabled]="editUserForm.invalid" class="btn btn-success">
+              Save
               changes
             </button>
           </div>

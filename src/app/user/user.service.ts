@@ -75,4 +75,33 @@ export class UserService {
   public getExercises(): Observable<Exercise[]> {
     return this.http.get<Exercise[]>(`${this.host}/api/exercise`);
   }
+
+  public addExercise(formData: FormData): Observable<Exercise> {
+    return this.http.post<Exercise>(`${this.host}/api/exercise/add`, formData);
+  }
+
+  public createExerciseFormDate(exercise: Exercise): FormData {
+    const formData = new FormData();
+    formData.append('name', exercise.name);
+    formData.append('description', exercise.description);
+    formData.append('videoUrl', exercise.videoUrl);
+    formData.append('img', exercise.img);
+    formData.append('numberOfPointsToPassed', JSON.stringify(exercise.numberOfPointsToPassed));
+    formData.append('maxPoints', JSON.stringify(exercise.maxPoints));
+    formData.append('numberOfAttempts', JSON.stringify(exercise.numberOfAttempts));
+    formData.append('level', exercise.level);
+    formData.append('isWhite', JSON.stringify(exercise.white));
+    formData.append('isRed', JSON.stringify(exercise.red));
+    formData.append('isYellow', JSON.stringify(exercise.yellow));
+    formData.append('isGreen', JSON.stringify(exercise.green));
+    formData.append('isBrown', JSON.stringify(exercise.brown));
+    formData.append('isBlue', JSON.stringify(exercise.blue));
+    formData.append('isPink', JSON.stringify(exercise.pink));
+    formData.append('isBlack', JSON.stringify(exercise.black));
+    formData.append('isButtonPass', JSON.stringify(exercise.buttonPass));
+    formData.append('isBonusPoint', JSON.stringify(exercise.bonusPoint));
+    formData.append('bonusInfo', exercise.bonusInfo);
+    formData.append('bonusNumberOfPoints', JSON.stringify(exercise.bonusNumberOfPoints));
+    return formData;
+  }
 }
