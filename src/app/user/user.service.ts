@@ -90,9 +90,9 @@ export class UserService {
     formData.append('maxPoints', JSON.stringify(exercise.maxPoints));
     formData.append('numberOfAttempts', JSON.stringify(exercise.numberOfAttempts));
     formData.append('level', exercise.level);
-    formData.append('isWhite', JSON.stringify(exercise.white));
-    formData.append('isRed', JSON.stringify(exercise.red));
-    formData.append('isYellow', JSON.stringify(exercise.yellow));
+    formData.append('isWhite', JSON.stringify(exercise?.white));
+    formData.append('isRed', JSON.stringify(exercise?.red));
+    formData.append('isYellow', JSON.stringify(exercise?.yellow));
     formData.append('isGreen', JSON.stringify(exercise.green));
     formData.append('isBrown', JSON.stringify(exercise.brown));
     formData.append('isBlue', JSON.stringify(exercise.blue));
