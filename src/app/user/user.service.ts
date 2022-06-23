@@ -58,6 +58,13 @@ export class UserService {
     return null;
   }
 
+  public getExercisesFromLocalCache(): Exercise[] | null {
+    if (localStorage.getItem('exercises')) {
+      return JSON.parse(localStorage.getItem('exercises') || '');
+    }
+    return null;
+  }
+
   public createUserFormDate(loggedInUsername: string, user: User, profileImage: File): FormData {
     const fromData = new FormData();
     fromData.append('currentUsername', loggedInUsername);

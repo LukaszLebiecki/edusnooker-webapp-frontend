@@ -162,6 +162,20 @@ export class UserComponent implements OnInit, OnDestroy {
     }
   }
 
+  public searchExercises(searchTerm: string): void {
+    const results: Exercise[] = [];
+    for (const exercise of this.userService.getExercisesFromLocalCache()) {
+      if (exercise.exerciseId.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+        exercise.level.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+        results.push(exercise);
+      }
+    }
+    this.exercises = results;
+    if (results.length === 0 || !searchTerm) {
+      this.exercises = this.userService.getExercisesFromLocalCache();
+    }
+  }
+
   public onUpdateUser(): void {
     const formData = this.userService.createUserFormDate(this.currentUsername, this.editUser, this.profileImage)
     this.subscriptions.push(
