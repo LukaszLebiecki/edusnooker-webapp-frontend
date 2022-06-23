@@ -134,7 +134,7 @@
           <td class="">
             <div class="btn-group">
               <button class="btn btn-outline-info" (click)="onEditExercise(appExercise)"><i class="fas fa-edit"></i></button>
-              <button class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+              <button class="btn btn-outline-danger" (click)="onDeleteExercise(appExercise.exerciseId)"><i class="fas fa-trash"></i></button>
             </div>
           </td>
         </tr>

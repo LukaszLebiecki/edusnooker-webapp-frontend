@@ -91,6 +91,10 @@ export class UserService {
     return this.http.post<Exercise>(`${this.host}/api/exercise/update`, formData);
   }
 
+  public deleteExercise(exerciseId: string): Observable<CustomHttpResponse> {
+    return this.http.delete<CustomHttpResponse>(`${this.host}/api/exercise/delete/${exerciseId}`);
+  }
+
   public createExerciseFormDate(currentExerciseId: string, exercise: Exercise): FormData {
     const formData = new FormData();
     formData.append('currentExerciseId', exercise.exerciseId)

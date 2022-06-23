@@ -239,6 +239,20 @@ export class UserComponent implements OnInit, OnDestroy {
     )
   }
 
+  public onDeleteExercise(exerciseId: string): void {
+    this.subscriptions.push(
+      this.userService.deleteExercise(exerciseId).subscribe(
+        (response: CustomHttpResponse) => {
+          this.sendNotification(NotificationType.SUCCESS, response.message);
+          this.getExercises(false);
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    )
+  }
+
   public get isAdmin(): boolean {
     return this.getUserRole() === Role.ADMIN;
   }
