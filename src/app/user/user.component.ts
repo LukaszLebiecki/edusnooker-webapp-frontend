@@ -30,7 +30,9 @@ export class UserComponent implements OnInit, OnDestroy {
   private profileImage: File;
   private fileName: null;
   public editUser = new User();
+  public editExercise = new Exercise();
   private currentUsername: string;
+  private currentExerciseId: string;
 
   constructor(private userService: UserService,
               private notificationService: NotificationService,
@@ -130,7 +132,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   public onAddNewExercise(exerciseForm: NgForm): void {
-    const formData = this.userService.createExerciseFormDate(exerciseForm.value)
+    const formData = this.userService.createExerciseFormDate(null, exerciseForm.value)
     this.subs.add(
       this.userService.addExercise(formData).subscribe(
         (response: Exercise) => {
@@ -199,6 +201,28 @@ export class UserComponent implements OnInit, OnDestroy {
     this.editUser = editUser;
     this.currentUsername = editUser.username;
     this.clickButton('openUserEdit');
+  }
+
+  public onUpdateExercise(): void {
+    const formData = this.userService.createExerciseFormDate(this.currentExerciseId, this.editExercise)
+    this.subscriptions.push(
+      this.userService.updateExercise(formData).subscribe(
+        (response: Exercise) => {
+          this.clickButton('edit-exercise-close');
+          this.getExercises(false);
+          this.sendNotification(NotificationType.SUCCESS, `${response.exerciseId} updated successfully`)
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    );
+  }
+
+  public onEditExercise(editExercise: Exercise): void {
+    this.editExercise = editExercise;
+    this.currentExerciseId = editExercise.exerciseId;
+    this.clickButton('openExerciseEdit');
   }
 
   public onDeleteUser(username: string): void {

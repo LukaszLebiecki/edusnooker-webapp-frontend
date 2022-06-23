@@ -90,7 +90,6 @@
         </tbody>
       </table>
     </div>
-
     <button [hidden]="true" type="button" id="openUserInfo" data-bs-toggle="modal" data-bs-target="#viewUserModal">
     </button>
     <button [hidden]="true" type="button" id="openUserEdit" data-bs-toggle="modal" data-bs-target="#editUserModal">
@@ -134,7 +133,7 @@
           <td (click)="onSelectExercise(appExercise)">{{appExercise?.level}}</td>
           <td class="">
             <div class="btn-group">
-              <button class="btn btn-outline-info"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-outline-info" (click)="onEditExercise(appExercise)"><i class="fas fa-edit"></i></button>
               <button class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
             </div>
           </td>
@@ -600,6 +599,157 @@
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="edit-user-close">Close</button>
             <button type="button" (click)="onUpdateUser()" [disabled]="editUserForm.invalid" class="btn btn-success">
               Save
+              changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--    modal edit exercise-->
+    <div class="modal fade bd-example-modal-lg" id="editExerciseModal" tabindex="-1" role="dialog" aria-labelledby=""
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center">Edit exercise: {{editExercise?.exerciseId}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <form #editExerciseForm="ngForm">
+                <div class="form-group my-2">
+                  <label for="name">Name exercise</label>
+                  <input type="text" name="name" required [(ngModel)]="editExercise.name" class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label for="description">Description</label>
+                  <input type="text" name="description" required [(ngModel)]="editExercise.description" class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label for="videoUrl">Video Url</label>
+                  <input type="text" name="videoUrl" required [(ngModel)]="editExercise.videoUrl" class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label for="img">Img</label>
+                  <input type="text" name="img" required [(ngModel)]="editExercise.img" class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label for="numberOfPointsToPassed">Number of points to passed</label>
+                  <input type="number" name="numberOfPointsToPassed" required [(ngModel)]="editExercise.numberOfPointsToPassed" class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label for="maxPoints">Max points</label>
+                  <input type="number" name="maxPoints" required [(ngModel)]="editExercise.maxPoints" class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label for="numberOfAttempts">Number of attempts</label>
+                  <input type="number" name="numberOfAttempts" required [(ngModel)]="editExercise.numberOfAttempts" class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label for="level">Level</label>
+                  <select name="level" required [(ngModel)]="editExercise.level" class="form-control">
+                    <option value="WHITE">WHITE</option>
+                    <option value="RED">RED</option>
+                    <option value="YELLOW">YELLOW</option>
+                    <option value="GREEN">GREEN</option>
+                    <option value="BROWN">BROWN</option>
+                    <option value="BLUE">BLUE</option>
+                    <option value="PINK">PINK</option>
+                    <option value="BLACK">BLACK</option>
+                  </select>
+                </div>
+                <fieldset class="form-group">
+                  <div class="row">
+                    <div class="col-3">
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="white" [(ngModel)]="editExercise.white" class="form-check-input">
+                          White
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="red" [(ngModel)]="editExercise.red" class="form-check-input">
+                          Red
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="yellow" [(ngModel)]="editExercise.yellow" class="form-check-input">
+                          Yellow
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="green" [(ngModel)]="editExercise.green" class="form-check-input">
+                          Green
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="brown" [(ngModel)]="editExercise.brown" class="form-check-input">
+                          Brown
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="blue" [(ngModel)]="editExercise.blue" class="form-check-input">
+                          Blue
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="pink" [(ngModel)]="editExercise.pink" class="form-check-input">
+                          Pink
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="black" [(ngModel)]="editExercise.black" class="form-check-input">
+                          Black
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="buttonPass" [(ngModel)]="editExercise.buttonPass" class="form-check-input">
+                          Button pass
+                        </label>
+                      </div>
+                      <div class="form-check  my-1">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="bonusPoint" [(ngModel)]="editExercise.bonusPoint" class="form-check-input">
+                          Bonus point
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="form-group my-2">
+                  <label for="bonusInfo">Bonus info</label>
+                  <input type="text" name="bonusInfo" required [(ngModel)]="editExercise.bonusInfo" class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label for="bonusNumberOfPoints">Bonus number of points</label>
+                  <input type="number" name="bonusNumberOfPoints" required [ngModel]="editExercise.bonusNumberOfPoints" class="form-control">
+                </div>
+                <button type="submit" style="display: none;" id="edit-exercise-save"></button>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="edit-exercise-close">Close
+            </button>
+            <button type="button" (click)="onUpdateExercise()" [disabled]="editExerciseForm.invalid"
+                    class="btn btn-success">Save
               changes
             </button>
           </div>
