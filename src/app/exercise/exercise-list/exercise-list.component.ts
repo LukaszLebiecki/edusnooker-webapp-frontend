@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ExerciseList} from "../models/exercise-list";
 import {ExerciseService} from "../exercise.service";
 import {ActivatedRoute} from "@angular/router";
 import {ProgressExercise} from "../../progress/models/progress-exercise";

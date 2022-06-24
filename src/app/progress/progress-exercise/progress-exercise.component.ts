@@ -13,7 +13,7 @@ import {AuthenticationService} from "../../auth/authentication.service";
 })
 export class ProgressExerciseComponent implements OnInit {
 
-  @Input() exercise: number = 5;
+  @Input() exercise: string = "e001";
   progressExerciseMap: Map<string, ProgressExercise> = new Map<string, ProgressExercise>();
   user_id: string = "";
   levelId: number = +this.route.snapshot.params['id']
