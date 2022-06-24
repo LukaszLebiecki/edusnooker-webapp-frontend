@@ -6,9 +6,9 @@ import {ProgressExercise} from "./models/progress-exercise";
   providedIn: 'root'
 })
 export class ProgressSharedService {
-  progressExerciseMap$ = new Subject<Map<number, ProgressExercise>>();
+  progressExerciseMap$ = new Subject<Map<string, ProgressExercise>>();
 
-  shareProgress (progress: Map<number, ProgressExercise>) {
+  shareProgress (progress: Map<string, ProgressExercise>) {
     this.progressExerciseMap$.next(progress);
   }
 

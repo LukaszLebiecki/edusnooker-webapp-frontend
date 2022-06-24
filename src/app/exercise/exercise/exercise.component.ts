@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {interval, Subscription} from "rxjs";
+import {Exercise} from "../../user/models/exercise";
 
 @Component({
   selector: '[app-exercise]',
@@ -14,6 +15,7 @@ export class ExerciseComponent implements OnInit {
   public TIME_LIMIT: number = 3;
   public blockedButtonStart: boolean = false;
   public blockedButtonPause = false;
+  public selectedExercise = new Exercise;
   private subscription: Subscription;
   private timePassed: number = 0;
   private timeLeft: number = this.TIME_LIMIT;
@@ -152,4 +154,9 @@ export class ExerciseComponent implements OnInit {
         .classList.add(warning.color);
     }
   }
+
+  public onSelectExercise(selectedExercise: Exercise): void {
+    this.selectedExercise = selectedExercise;
+  }
+
 }

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 p-4 ">
-    <div *ngFor="let exercise of exerciseList; let i = index" class="col">
+    <tbody *ngFor="let exercise of exerciseList; let i = index" class="col">
       <div class="card shadow p-3 m-auto my-3 bg-body rounded text-dark bg-warning" style="width: 24rem; height: 30rem">
         <div class="level-color-{{index}}">
           <img src="assets/image/{{exercise.img}}" class="card-img-top" alt="...">
@@ -8,9 +8,9 @@
             <div class="row">
               <div class="col-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                     class="bi bi-check-lg noActive"
-                     [ngClass]="{'ok': progressMap?.get(exercise.idExercise)?.pass}"
-                     viewBox="0 0 16 16">
+                     class="bi bi-check-lg noActive" viewBox="0 0 16 16">
+<!--                     [ngClass]="{'ok': progressMap?.get(exercise.exerciseId)?.pass}"-->
+
                   <path
                     d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
                 </svg>
@@ -18,18 +18,253 @@
               <div class="col-9">
                 <h5 class="card-title">{{exercise.name}}</h5>
               </div>
-              <div class="col-2 text-end"
-                   app-progress-exercise [exercise]="exercise.idExercise">
+              <div class="col-2 text-end">
+<!--                   app-progress-exercise [exercise]="exercise.exerciseId"-->
               </div>
             </div>
             <p style="height: 7rem" class="card-text">{{exercise.description}}</p>
             <div class="container-fluid">
               <div class="row-cols-1">
-                <a app-exercise></a>
+                <a class="btn btn-success w-100 justify-content-center" role="button" data-bs-toggle="modal"
+                   href="#workout1" (click)="onSelectExercise(exercise)">Go to exercise
+                </a>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </tbody>
+  </div>
+</div>
+
+<!--part-1 exercise-->
+<div class="modal fade" id="workout1" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+     aria-labelledby="workout1ToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="workout1ToggleLabel">{{selectedExercise.name}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <h5>#ID Name exercise</h5>
+        <div class="ratio ratio-16x9">
+          <iframe class="d-flex" src="https://player.vimeo.com/video/716137858?h=2b7303636f"
+                  frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="alert alert-success text-start row m-1 mt-3 position-relative" role="alert">
+              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                   class="bi bi-bullseye col-3" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+              </svg>
+              <span class="col-6 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Points to pass</span>
+              <span class="col-3 text-font text-end position-absolute end-0">10</span>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="alert alert-info text-start row m-1 mt-3 position-relative" role="alert">
+              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                   class="bi bi-arrow-clockwise col-3" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                <path
+                  d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+              </svg>
+              <span class="col-6 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Number of attempts</span>
+              <span class="col-3 text-font text-end position-absolute end-0">10</span>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="alert alert-danger text-start row m-1 mt-3 position-relative" role="alert">
+              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                   class="bi bi-bookmark-star col-3" viewBox="0 0 16 16">
+                <path
+                  d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"/>
+                <path
+                  d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+              </svg>
+              <span
+                class="col-6 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Max points</span>
+              <span class="col-3 text-font text-end position-absolute end-0">10</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#workout2" data-bs-toggle="modal" data-bs-dismiss="modal">
+          Training
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--part-2 exercise-->
+<div class="modal fade" id="workout2" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+     aria-labelledby="workout2ToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="workout2ToggleLabel">Training</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="refresh()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xl-5">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <div class="base-timer">
+                  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g class="base-timer__circle">
+                      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"/>
+                      <path
+                        id="base-timer-path-remaining"
+                        stroke-dasharray="283"
+                        class="base-timer__path-remaining {{remainingPathColor}}"
+                        d="
+          M 50, 50
+          m -45, 0
+          a 45,45 0 1,0 90,0
+          a 45,45 0 1,0 -90,0
+        "
+                      ></path>
+                    </g>
+                  </svg>
+                  <span id="base-timer-label" class="base-timer__label">
+            {{formatTime(TIME_LIMIT)}}
+          </span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <button *ngIf="!clickStart" [disabled]="blockedButtonStart"
+                        class="btn btn-success align-content-end w-100"
+                        (click)="startTimer()"><i class="bi bi-play-circle"></i> &nbsp; START
+                </button>
+                <button *ngIf="clickStart" [disabled]="blockedButtonPause"
+                        class="btn btn-outline-success align-content-end w-100"
+                        (click)="pauseTimer()"><i class="bi bi-pause-circle"></i> &nbsp; PAUSE
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-7 d-flex justify-content-center">
+            <img src="/assets/image/e001.png" class="img-fluid" alt="...">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#workout3" data-bs-toggle="modal" data-bs-dismiss="modal"
+                [disabled]="!timeEnd" (click)="refresh()">
+          Scoring test
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--part-3 exercise-->
+<div class="modal fade" id="workout3" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+     aria-labelledby="workout3ToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="workout3ToggleLabel">Scoring test</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-4">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button class="btn btn-success m-1 mt-2 mt-lg-1 w-75">PASS</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button class="btn btn-danger m-1 mt-2 mt-lg-1 w-75">MISS</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button class="btn-red w-75 mt-2 mt-lg-1 ">
+                  <img src="assets/image/red.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 1</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button class="btn-yellow w-75 mt-2 mt-lg-1 ">
+                  <img src="assets/image/yellow.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 2</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button class="btn-green w-75 mt-2 mt-lg-1 ">
+                  <img src="assets/image/green.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 3</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button class="btn-brown w-75 mt-2 mt-lg-1 ">
+                  <img src="assets/image/brown.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 4</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button class="btn-blue w-75 mt-2 mt-lg-1 ">
+                  <img src="assets/image/blue.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 5</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button class="btn-pink w-75 mt-2 mt-lg-1 ">
+                  <img src="assets/image/pink.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 6</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button class="btn-black w-75 mt-2 mt-lg-1 ">
+                  <img src="assets/image/black.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 7</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <img src="/assets/image/e001.png" class="img-fluid" alt="...">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 d-flex justify-content-center">
+                <div class="alert alert-success text-start row m-1 w-100" role="alert">
+                  <span class="col-12 text-font-scoring text-center"><small>Points</small> <br> 5</span>
+                </div>
+              </div>
+              <div class="col-lg-4 d-flex justify-content-center">
+                <div class="alert alert-info text-start row m-1 w-100" role="alert">
+                  <span class="col-12 text-font-scoring text-center"><small>Attempt</small> <br> 1</span>
+                </div>
+              </div>
+              <div class="col-lg-4 d-flex justify-content-center">
+                <div class="alert alert-danger text-start row m-1 w-100" role="alert">
+                  <span class="col-12 text-font-scoring text-center"><small>Max points</small> <br> 5/10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-dismiss="modal">Save</button>
       </div>
     </div>
   </div>

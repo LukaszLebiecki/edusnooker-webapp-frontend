@@ -1,5 +1,5 @@
 export interface ProgressExercise {
-  "idExercise": number;
+  "idExercise": string;
   "nameExercise": string;
   "numberOfAttempts": number;
   "recentActivity": number;

@@ -1,111 +1,111 @@
-<a *ngIf="progressExerciseMap?.has(exercise)" class="icon-info" role="button" data-bs-toggle="modal"
-   href="#exercise{{exercise}}">
-  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-       class="bi bi-info-square" viewBox="0 0 16 16">
+<!--<a *ngIf="progressExerciseMap?.has(exercise)" class="icon-info" role="button" data-bs-toggle="modal"-->
+<!--   href="#exercise{{exercise}}">-->
+<!--  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"-->
+<!--       class="bi bi-info-square" viewBox="0 0 16 16">-->
 
-    <path
-      d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-    <path
-      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-  </svg>
-</a>
+<!--    <path-->
+<!--      d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>-->
+<!--    <path-->
+<!--      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>-->
+<!--  </svg>-->
+<!--</a>-->
 
-<a *ngIf="!progressExerciseMap?.has(exercise)" class="noActive" data-bs-toggle="modal">
-  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-       class="bi bi-info-square" viewBox="0 0 16 16">
+<!--<a *ngIf="!progressExerciseMap?.has(exercise)" class="noActive" data-bs-toggle="modal">-->
+<!--  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"-->
+<!--       class="bi bi-info-square" viewBox="0 0 16 16">-->
 
-    <path
-      d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-    <path
-      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-  </svg>
-</a>
+<!--    <path-->
+<!--      d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>-->
+<!--    <path-->
+<!--      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>-->
+<!--  </svg>-->
+<!--</a>-->
 
-<div *ngIf="progressExerciseMap?.has(exercise)" class="modal fade" id="exercise{{exercise}}" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="col-6">
-          <h5 class="modal-title text-start" id="exampleModalLabel">
-            #{{exercise}} {{progressExerciseMap?.get(exercise)?.nameExercise}}</h5>
-        </div>
-        <div class="col-6 text-end">
-          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-               class="bi bi-check-lg ok" [ngClass]="{'nok': !progressExerciseMap?.get(exercise)?.pass}"
-               viewBox="0 0 16 16">
-            <path
-              d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-          </svg>
-        </div>
-      </div>
-      <div class="modal-body">
-        <div class="row">
+<!--<div *ngIf="progressExerciseMap?.has(exercise)" class="modal fade" id="exercise{{exercise}}" tabindex="-1"-->
+<!--     aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <div class="col-6">-->
+<!--          <h5 class="modal-title text-start" id="exampleModalLabel">-->
+<!--            #{{exercise}} {{progressExerciseMap?.get(exercise)?.nameExercise}}</h5>-->
+<!--        </div>-->
+<!--        <div class="col-6 text-end">-->
+<!--          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"-->
+<!--               class="bi bi-check-lg ok" [ngClass]="{'nok': !progressExerciseMap?.get(exercise)?.pass}"-->
+<!--               viewBox="0 0 16 16">-->
+<!--            <path-->
+<!--              d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>-->
+<!--          </svg>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <div class="row">-->
 
-          <div class="col-12">
-            <div class="alert alert-success text-start row m-1 position-relative" role="alert">
-              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-bullseye col-2" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
-                <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
-                <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-              </svg>
-              <span class="col-8 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Number of points to pass</span>
-              <span class="col-2 text-font text-end position-absolute end-0">{{progressExerciseMap?.get(exercise)?.resultToPass}}</span>
-            </div>
-          </div>
+<!--          <div class="col-12">-->
+<!--            <div class="alert alert-success text-start row m-1 position-relative" role="alert">-->
+<!--              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-bullseye col-2" viewBox="0 0 16 16">-->
+<!--                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>-->
+<!--                <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>-->
+<!--                <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>-->
+<!--                <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>-->
+<!--              </svg>-->
+<!--              <span class="col-8 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Number of points to pass</span>-->
+<!--              <span class="col-2 text-font text-end position-absolute end-0">{{progressExerciseMap?.get(exercise)?.resultToPass}}</span>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="col-12">
-            <div class="alert alert-warning text-start row m-1 position-relative" role="alert">
-              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-journal-check col-2" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
-                <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
-              </svg>
-              <span class="col-8 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Last result</span>
-              <span class="col-2 text-font text-end position-absolute end-0">{{progressExerciseMap?.get(exercise)?.lastResult}}</span>
-            </div>
-          </div>
+<!--          <div class="col-12">-->
+<!--            <div class="alert alert-warning text-start row m-1 position-relative" role="alert">-->
+<!--              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-journal-check col-2" viewBox="0 0 16 16">-->
+<!--                <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>-->
+<!--                <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>-->
+<!--                <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>-->
+<!--              </svg>-->
+<!--              <span class="col-8 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Last result</span>-->
+<!--              <span class="col-2 text-font text-end position-absolute end-0">{{progressExerciseMap?.get(exercise)?.lastResult}}</span>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="col-12">
-            <div class="alert alert-danger text-start row m-1 position-relative" role="alert">
-              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-bookmark-star col-2" viewBox="0 0 16 16">
-                <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"/>
-                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-              </svg>
-              <span class="col-8 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Best result</span>
-              <span class="col-2 text-font text-end position-absolute end-0">{{progressExerciseMap?.get(exercise)?.theBestResult}}</span>
-            </div>
-          </div>
+<!--          <div class="col-12">-->
+<!--            <div class="alert alert-danger text-start row m-1 position-relative" role="alert">-->
+<!--              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-bookmark-star col-2" viewBox="0 0 16 16">-->
+<!--                <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"/>-->
+<!--                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>-->
+<!--              </svg>-->
+<!--              <span class="col-8 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Best result</span>-->
+<!--              <span class="col-2 text-font text-end position-absolute end-0">{{progressExerciseMap?.get(exercise)?.theBestResult}}</span>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="col-12">
-            <div class="alert alert-info text-start row m-1 position-relative" role="alert">
-              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-arrow-clockwise col-2" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-              </svg>
-              <span class="col-8 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Number of attempts</span>
-              <span class="col-2 text-font text-end position-absolute end-0">{{progressExerciseMap?.get(exercise)?.numberOfAttempts}}</span>
-            </div>
-          </div>
+<!--          <div class="col-12">-->
+<!--            <div class="alert alert-info text-start row m-1 position-relative" role="alert">-->
+<!--              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-arrow-clockwise col-2" viewBox="0 0 16 16">-->
+<!--                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>-->
+<!--                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>-->
+<!--              </svg>-->
+<!--              <span class="col-8 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Number of attempts</span>-->
+<!--              <span class="col-2 text-font text-end position-absolute end-0">{{progressExerciseMap?.get(exercise)?.numberOfAttempts}}</span>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="col-12">
-            <div class="alert alert-secondary text-start row m-1 position-relative" role="alert">
-              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-calendar-event col-2" viewBox="0 0 16 16">
-                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-              </svg>
-              <span class="col-8 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Recent activity</span>
-              <span class="col-4 text-font text-end position-absolute end-0">{{progressExerciseMap?.get(exercise)?.recentActivity}}
-                <span class="font-days">days ago</span></span>
-            </div>
-          </div>
+<!--          <div class="col-12">-->
+<!--            <div class="alert alert-secondary text-start row m-1 position-relative" role="alert">-->
+<!--              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-calendar-event col-2" viewBox="0 0 16 16">-->
+<!--                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>-->
+<!--                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>-->
+<!--              </svg>-->
+<!--              <span class="col-8 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Recent activity</span>-->
+<!--              <span class="col-4 text-font text-end position-absolute end-0">{{progressExerciseMap?.get(exercise)?.recentActivity}}-->
+<!--                <span class="font-days">days ago</span></span>-->
+<!--            </div>-->
+<!--          </div>-->
 
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

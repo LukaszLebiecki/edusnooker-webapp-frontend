@@ -6,6 +6,7 @@ import {ProgressLevel} from "../../progress/models/progress-level";
 import {ProgressExercise} from "../../progress/models/progress-exercise";
 import {ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "../../auth/authentication.service";
+import {Exercise} from "../../user/models/exercise";
 
 @Component({
   selector: 'app-level-list',
