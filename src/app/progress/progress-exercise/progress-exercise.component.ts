@@ -3,6 +3,7 @@ import {ProgressService} from "../progress.service";
 import {ProgressExercise} from "../models/progress-exercise";
 import {ActivatedRoute} from "@angular/router";
 import {ProgressSharedService} from "../progress-shared.service";
+import {AuthenticationService} from "../../auth/authentication.service";
 
 
 @Component({
@@ -14,14 +15,16 @@ export class ProgressExerciseComponent implements OnInit {
 
   @Input() exercise: number = 5;
   progressExerciseMap: Map<number, ProgressExercise> = new Map<number, ProgressExercise>();
-  user_id: number = 1;
+  user_id: string = "";
   levelId: number = +this.route.snapshot.params['id']
 
   constructor(private progressService: ProgressService,
               private progressSharedService: ProgressSharedService,
+              private authenticationService: AuthenticationService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.user_id = this.getCurrentUserId();
     this.loadProgressExercise();
   }
 
@@ -35,4 +38,7 @@ export class ProgressExerciseComponent implements OnInit {
     });
   }
 
+  private getCurrentUserId(): string {
+    return this.authenticationService.getUserFromLocalCache().userId;
+  }
 }

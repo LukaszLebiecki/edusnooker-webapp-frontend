@@ -13,11 +13,11 @@ export class ProgressService {
 
   constructor(private http: HttpClient) { }
 
-  getProgressLevelListByUser(user_id: number): Observable<ProgressLevel[]> {
+  getProgressLevelListByUser(user_id: string): Observable<ProgressLevel[]> {
     return this.http.get<ProgressLevel[]>(this.apiUrl + user_id + '/progress');
   }
 
-  getProgressExerciseByUser(user_id: number, level_id: number): Observable<ProgressExercise[]> {
+  getProgressExerciseByUser(user_id: string, level_id: number): Observable<ProgressExercise[]> {
     return this.http.get<ProgressExercise[]>(this.apiUrl + user_id + '/progress/' + level_id);
   }
 }

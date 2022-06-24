@@ -5,6 +5,7 @@ import {ProgressService} from "../../progress/progress.service";
 import {ProgressLevel} from "../../progress/models/progress-level";
 import {ProgressExercise} from "../../progress/models/progress-exercise";
 import {ActivatedRoute} from "@angular/router";
+import {AuthenticationService} from "../../auth/authentication.service";
 
 @Component({
   selector: 'app-level-list',
@@ -17,18 +18,20 @@ export class LevelListComponent implements OnInit {
   progressLevel: ProgressLevel[] = [];
   progressExercise: ProgressExercise[] = [];
   levelIsPass: boolean[] = [];
-  user_id: number = 1;
+  user_id: string = "";
   progressBar: number[] = [];
   index: number = +this.route.snapshot.params['id']
 
 
   constructor(private levelService: LevelService,
               private progressService: ProgressService,
+              private authenticationService: AuthenticationService,
               private route: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
+    this.user_id = this.getCurrentUserId();
     this.loadLevelProgress();
   }
 
@@ -62,5 +65,8 @@ export class LevelListComponent implements OnInit {
     }
   }
 
+  private getCurrentUserId(): string {
+    return this.authenticationService.getUserFromLocalCache().userId;
+  }
 
 }
