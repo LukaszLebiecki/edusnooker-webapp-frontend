@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ExerciseService} from "../exercise.service";
 import {ActivatedRoute} from "@angular/router";
 import {ProgressExercise} from "../../progress/models/progress-exercise";
@@ -35,10 +35,11 @@ export class ExerciseListComponent implements OnInit {
   index: number = +this.route.snapshot.params['id']
   progressMap: Map<string, ProgressExercise> = new Map<string, ProgressExercise>();
 
-  constructor( private exerciseService: ExerciseService,
-               private progressSharedService: ProgressSharedService,
-               private sanitizer: DomSanitizer,
-               private route: ActivatedRoute) { }
+  constructor(private exerciseService: ExerciseService,
+              private progressSharedService: ProgressSharedService,
+              private sanitizer: DomSanitizer,
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.progressSharedService.progressExerciseMap$.subscribe((progress) => this.progressMap = progress);
@@ -61,6 +62,9 @@ export class ExerciseListComponent implements OnInit {
     this.updateVideoUrl(selectedExercise.videoUrl);
   }
 
+  reload() {
+    window.location.reload();
+  }
 
   refresh(): void {
     const {alert, warning, info} = this.COLOR_CODES;
