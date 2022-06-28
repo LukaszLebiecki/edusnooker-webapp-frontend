@@ -5,6 +5,7 @@ import {ProgressExercise} from "../../progress/models/progress-exercise";
 import {ProgressSharedService} from "../../progress/progress-shared.service";
 import {Exercise} from "../../user/models/exercise";
 import {interval, Subscription} from "rxjs";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-exercise-list',
@@ -20,6 +21,8 @@ export class ExerciseListComponent implements OnInit {
   public TIME_LIMIT: number = 3;
   public blockedButtonStart: boolean = false;
   public blockedButtonPause = false;
+  public videoUrl: SafeResourceUrl = "";
+  private dangerousVideoUrl: string = "";
   private subscription: Subscription;
   private timePassed: number = 0;
   private timeLeft: number = this.TIME_LIMIT;
@@ -34,11 +37,18 @@ export class ExerciseListComponent implements OnInit {
 
   constructor( private exerciseService: ExerciseService,
                private progressSharedService: ProgressSharedService,
+               private sanitizer: DomSanitizer,
                private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.progressSharedService.progressExerciseMap$.subscribe((progress) => this.progressMap = progress);
     this.loadExerciseList()
+  }
+
+  updateVideoUrl(id: string) {
+    this.dangerousVideoUrl = 'https://player.vimeo.com/video/' + id;
+    this.videoUrl =
+      this.sanitizer.bypassSecurityTrustResourceUrl(this.dangerousVideoUrl);
   }
 
   loadExerciseList() {
@@ -48,6 +58,7 @@ export class ExerciseListComponent implements OnInit {
 
   public onSelectExercise(selectedExercise: Exercise): void {
     this.selectedExercise = selectedExercise;
+    this.updateVideoUrl(selectedExercise.videoUrl);
   }
 
 
@@ -109,18 +120,18 @@ export class ExerciseListComponent implements OnInit {
 
   startTimer(): void {
     this.blockedButtonStart = true;
-    // this.playAudioStart();
+    this.playAudioStart();
     this.subscription = interval(1000).subscribe(x => {
 
         this.timePassed = this.timePassed += 1;
         this.timeLeft = this.TIME_LIMIT - this.timePassed;
 
         if (this.timeLeft < 6 && this.timeLeft > 0) {
-          // this.playAudioStart();
+          this.playAudioStart();
         }
 
         if (this.timeLeft == 0) {
-          // this.playAudioStop();
+          this.playAudioStop();
         }
 
         if (this.timeLeft < 0) {

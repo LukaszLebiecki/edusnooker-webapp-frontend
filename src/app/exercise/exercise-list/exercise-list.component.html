@@ -10,8 +10,6 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                      class="bi bi-check-lg noActive"  [ngClass]="{'ok': progressMap?.get(exercise.exerciseId)?.pass}"
                      viewBox="0 0 16 16">
-
-
                   <path
                     d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
                 </svg>
@@ -44,14 +42,14 @@
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="workout1ToggleLabel">{{selectedExercise.name}}</h5>
+        <h5 class="modal-title" id="workout1ToggleLabel">{{selectedExercise?.name}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
-        <h5>#{{selectedExercise.exerciseId}}</h5>
+        <h5>#{{selectedExercise?.exerciseId}}</h5>
         <div class="ratio ratio-16x9">
-          <iframe class="d-flex" src="https://player.vimeo.com/video/716137858?h=2b7303636f"
+          <iframe class="d-flex e2e-iframe-trusted-src" [src]="videoUrl"
                   frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="row">
@@ -65,7 +63,7 @@
                 <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
               </svg>
               <span class="col-6 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Points to pass</span>
-              <span class="col-3 text-font text-end position-absolute end-0">{{selectedExercise.numberOfPointsToPassed}}</span>
+              <span class="col-3 text-font text-end position-absolute end-0">{{selectedExercise?.numberOfPointsToPassed}}</span>
             </div>
           </div>
 
@@ -78,7 +76,7 @@
                   d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
               </svg>
               <span class="col-6 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Number of attempts</span>
-              <span class="col-3 text-font text-end position-absolute end-0">{{selectedExercise.numberOfAttempts}}</span>
+              <span class="col-3 text-font text-end position-absolute end-0">{{selectedExercise?.numberOfAttempts}}</span>
             </div>
           </div>
 
@@ -93,7 +91,7 @@
               </svg>
               <span
                 class="col-6 text-uppercase me-auto position-absolute top-50 start-50 translate-middle">Max points</span>
-              <span class="col-3 text-font text-end position-absolute end-0">{{selectedExercise.maxPoints}}</span>
+              <span class="col-3 text-font text-end position-absolute end-0">{{selectedExercise?.maxPoints}}</span>
             </div>
           </div>
 
