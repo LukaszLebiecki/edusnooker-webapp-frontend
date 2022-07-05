@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {Level} from "./models/level";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 
 @Injectable({
@@ -9,13 +10,13 @@ import {HttpClient} from "@angular/common/http";
 })
 export class LevelService {
 
-  private apiUrl: string = "http://localhost:8080/api"
+  private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {
   }
 
   getLevels(): Observable<Level[]> {
-    return this.http.get<Level[]>(this.apiUrl + '/level');
+    return this.http.get<Level[]>(this.apiUrl + '/api/level');
   }
 
 
