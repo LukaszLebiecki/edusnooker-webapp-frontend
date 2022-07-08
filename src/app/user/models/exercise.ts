@@ -8,6 +8,7 @@ export class Exercise {
   public numberOfPointsToPassed: number;
   public maxPoints: number;
   public numberOfAttempts: number;
+  public numberOfStrokesInOneAttempt: number;
   public level: string;
   public white: boolean;
   public red: boolean;
@@ -33,6 +34,7 @@ export class Exercise {
     this.numberOfPointsToPassed = 0;
     this.maxPoints = 0;
     this.numberOfAttempts = 0;
+    this.numberOfStrokesInOneAttempt = 0;
     this.level = '';
     this.white = false;
     this.red = false;

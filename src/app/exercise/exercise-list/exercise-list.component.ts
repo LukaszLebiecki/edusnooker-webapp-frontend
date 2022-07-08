@@ -6,6 +6,14 @@ import {ProgressSharedService} from "../../progress/progress-shared.service";
 import {Exercise} from "../../user/models/exercise";
 import {interval, Subscription} from "rxjs";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {ProgressUser} from "../../progress/models/progress-user";
+import {UserService} from "../../shared-module/services/user.service";
+import {AuthenticationService} from "../../auth/authentication.service";
+import {User} from "../../user/models/user";
+import {NotificationType} from "../../notification/notification-type.enum";
+import {HttpErrorResponse} from "@angular/common/http";
+import {NotificationService} from "../../notification/notification.service";
+import {SubSink} from "subsink";
 
 @Component({
   selector: 'app-exercise-list',
@@ -15,6 +23,13 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 export class ExerciseListComponent implements OnInit {
 
   public selectedExercise: Exercise = new Exercise;
+  public progressUser: ProgressUser;
+  public user: User;
+  public resultNumberOfPoint: number = 0;
+  public currentAttempt: number = 0;
+  public currentStrokes: number = 1;
+  public endAttempt: boolean = false;
+  public endExercises: boolean = false;
   public timeEnd: boolean = false;
   public clicked: boolean = false;
   public clickStart: boolean = false;
@@ -22,6 +37,7 @@ export class ExerciseListComponent implements OnInit {
   public blockedButtonStart: boolean = false;
   public blockedButtonPause = false;
   public videoUrl: SafeResourceUrl = "";
+  private subs = new SubSink();
   private dangerousVideoUrl: string = "";
   private subscription: Subscription;
   private timePassed: number = 0;
@@ -35,15 +51,163 @@ export class ExerciseListComponent implements OnInit {
   index: number = +this.route.snapshot.params['id']
   progressMap: Map<string, ProgressExercise> = new Map<string, ProgressExercise>();
 
+
   constructor(private exerciseService: ExerciseService,
               private progressSharedService: ProgressSharedService,
               private sanitizer: DomSanitizer,
+              private userServiceShow: UserService,
+              private notificationService: NotificationService,
+              private authenticationService: AuthenticationService,
               private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.progressSharedService.progressExerciseMap$.subscribe((progress) => this.progressMap = progress);
     this.loadExerciseList()
+    this.user = this.authenticationService.getUserFromLocalCache();
+    this.userServiceShow.userCurrent$.subscribe((user) => {
+      this.user = user
+    });
+  }
+
+  public onAddProgressUser(progressUser: ProgressUser): void {
+    const formData = this.exerciseService.createProgressUserFormDate(progressUser)
+    this.subs.add(
+      this.exerciseService.addProgressUser(formData).subscribe(
+        (response: ProgressUser) => {
+          this.reload();
+          this.sendNotification(NotificationType.SUCCESS, `Save your progress`)
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    );
+  }
+
+  private sendNotification(notificationType: NotificationType, message: any): void {
+    if (message) {
+      this.notificationService.notify(notificationType, message);
+    } else {
+      this.notificationService.notify(notificationType, 'An error occurred, Please try again.');
+    }
+  }
+
+  private checkEndExercises(): boolean {
+    return this.currentAttempt >= this.selectedExercise.numberOfAttempts;
+  }
+
+  private checkEndAttempt(): boolean {
+    return this.currentStrokes >= this.selectedExercise.numberOfStrokesInOneAttempt;
+  }
+
+  private logicAttempt() {
+    if (this.checkEndAttempt()) {
+      this.currentAttempt += 1;
+      this.currentStrokes = 1;
+    } else {
+      this.currentStrokes += 1;
+
+    }
+  }
+
+  private logicAttemptMiss() {
+      this.currentAttempt += 1;
+      this.currentStrokes = 1;
+  }
+
+  private changeLevelToNumber(level: string): number {
+    switch (level) {
+      case "WHITE": {
+        return 0;
+      }
+      case "RED": {
+        return 1;
+      }
+      case "YELLOW": {
+        return 2;
+      }
+      case "GREEN": {
+        return 3;
+      }
+      case "BROWN": {
+        return 4;
+      }
+      case "BLUE": {
+        return 5;
+      }
+      case "PINK": {
+        return 6;
+      }
+      case "BLACK": {
+        return 7;
+      }
+    }
+    return 0;
+  }
+
+  progressStart(): ProgressUser {
+    this.progressUser = new ProgressUser();
+    this.progressUser.idExercise = this.selectedExercise.exerciseId;
+    this.progressUser.numberLevel = this.changeLevelToNumber(this.selectedExercise.level);
+    this.progressUser.numberOfPointsToPassed = this.selectedExercise.numberOfPointsToPassed;
+    this.progressUser.resultNumberOfPoint = this.resultNumberOfPoint;
+    this.progressUser.dateTimeExercise = Date.now();
+    this.progressUser.userId = this.user.userId;
+    return this.progressUser;
+  }
+
+  clickPointPass() {
+    this.resultNumberOfPoint += 1;
+    this.logicAttempt();
+    this.endExercises = this.checkEndExercises();
+  }
+
+  clickPointMiss() {
+    this.logicAttemptMiss();
+    this.endExercises = this.checkEndExercises();
+  }
+
+  clickPointRed() {
+    this.resultNumberOfPoint += 1;
+    this.logicAttempt();
+    this.endExercises = this.checkEndExercises();
+  }
+
+  clickPointYellow() {
+    this.resultNumberOfPoint += 2;
+    this.logicAttempt();
+    this.endExercises = this.checkEndExercises();
+  }
+
+  clickPointGreen() {
+    this.resultNumberOfPoint += 3;
+    this.logicAttempt();
+    this.endExercises = this.checkEndExercises();
+  }
+
+  clickPointBrown() {
+    this.resultNumberOfPoint += 4;
+    this.logicAttempt();
+    this.endExercises = this.checkEndExercises();
+  }
+
+  clickPointBlue() {
+    this.resultNumberOfPoint += 5;
+    this.logicAttempt();
+    this.endExercises = this.checkEndExercises();
+  }
+
+  clickPointPink() {
+    this.resultNumberOfPoint += 6;
+    this.logicAttempt();
+    this.endExercises = this.checkEndExercises();
+  }
+
+  clickPointBlack() {
+    this.resultNumberOfPoint += 7;
+    this.logicAttempt();
+    this.endExercises = this.checkEndExercises();
   }
 
   updateVideoUrl(id: string) {

@@ -163,7 +163,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" data-bs-target="#workout3" data-bs-toggle="modal" data-bs-dismiss="modal"
-                [disabled]="!timeEnd" (click)="refresh()">
+                [disabled]="!timeEnd" (click)="refresh(); progressStart();">
           Scoring test
         </button>
       </div>
@@ -185,53 +185,62 @@
           <div class="col-4">
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <button class="btn btn-success m-1 mt-2 mt-lg-1 w-75" [hidden]="!selectedExercise.buttonPass">PASS</button>
+                <button class="btn btn-success m-1 mt-2 mt-lg-1 w-75" [hidden]="!selectedExercise.buttonPass"
+                        (click)="clickPointPass()" [disabled]="endExercises">PASS</button>
               </div>
             </div>
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <button class="btn btn-danger m-1 mt-2 mt-lg-1 w-75">MISS</button>
+                <button class="btn btn-danger m-1 mt-2 mt-lg-1 w-75"
+                        (click)="clickPointMiss()" [disabled]="endExercises">MISS</button>
               </div>
             </div>
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <button class="btn-red w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.red">
+                <button class="btn-red w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.red"
+                        (click)="clickPointRed()" [disabled]="endExercises">
                   <img src="assets/image/red.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 1</button>
               </div>
             </div>
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <button class="btn-yellow w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.yellow">
+                <button class="btn-yellow w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.yellow"
+                        (click)="clickPointYellow()" [disabled]="endExercises">
                   <img src="assets/image/yellow.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 2</button>
               </div>
             </div>
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <button class="btn-green w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.green">
+                <button class="btn-green w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.green"
+                        (click)="clickPointGreen()" [disabled]="endExercises">
                   <img src="assets/image/green.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 3</button>
               </div>
             </div>
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <button class="btn-brown w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.brown">
+                <button class="btn-brown w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.brown"
+                        (click)="clickPointBrown()" [disabled]="endExercises">
                   <img src="assets/image/brown.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 4</button>
               </div>
             </div>
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <button class="btn-blue w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.blue">
+                <button class="btn-blue w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.blue"
+                        (click)="clickPointBlue()" [disabled]="endExercises">
                   <img src="assets/image/blue.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 5</button>
               </div>
             </div>
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <button class="btn-pink w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.pink">
+                <button class="btn-pink w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.pink"
+                        (click)="clickPointPink()" [disabled]="endExercises">
                   <img src="assets/image/pink.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 6</button>
               </div>
             </div>
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <button class="btn-black w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.black">
+                <button class="btn-black w-75 mt-2 mt-lg-1 " [hidden]="!selectedExercise.black"
+                        (click)="clickPointBlack()" [disabled]="endExercises">
                   <img src="assets/image/black.png" class="img-fluid mx-auto mb-1" alt="...">&nbsp; 7</button>
               </div>
             </div>
@@ -245,12 +254,12 @@
             <div class="row">
               <div class="col-lg-4 d-flex justify-content-center">
                 <div class="alert alert-success text-start row m-1 w-100" role="alert">
-                  <span class="col-12 text-font-scoring text-center"><small>Points</small> <br> 5</span>
+                  <span class="col-12 text-font-scoring text-center"><small>Points</small> <br> {{resultNumberOfPoint}}</span>
                 </div>
               </div>
               <div class="col-lg-4 d-flex justify-content-center">
                 <div class="alert alert-info text-start row m-1 w-100" role="alert">
-                  <span class="col-12 text-font-scoring text-center"><small>Attempt</small> <br> 1</span>
+                  <span class="col-12 text-font-scoring text-center"><small>Attempt</small> <br> {{currentAttempt}}</span>
                 </div>
               </div>
               <div class="col-lg-4 d-flex justify-content-center">
@@ -263,7 +272,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-dismiss="modal" (click)="reload()">Save</button>
+        <button class="btn btn-primary" data-bs-dismiss="modal" (click)="onAddProgressUser(progressStart())" [disabled]="!endExercises">Save</button>
       </div>
     </div>
   </div>

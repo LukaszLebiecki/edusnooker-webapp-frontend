@@ -272,6 +272,9 @@
                   <li class="list-group-item"><i class="float-start fw-bold">Number of
                     attempts:&nbsp;</i>{{selectedExercise?.numberOfAttempts}}
                   </li>
+                  <li class="list-group-item"><i class="float-start fw-bold">Number of
+                    strokes in one attempt:&nbsp;</i>{{selectedExercise?.numberOfStrokesInOneAttempt}}
+                  </li>
                   <li class="list-group-item"><i class="float-start fw-bold">
                     <div class="col-12">
                       <img [hidden]="!selectedExercise?.white" class="img-fluid" src="assets/image/white.png"/>
@@ -420,6 +423,10 @@
                 <div class="form-group my-2">
                   <label id="numberOfAttempts">Number of attempts</label>
                   <input type="number" name="numberOfAttempts" required ngModel class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label id="numberOfStrokesInOneAttempt">Number of strokes in one attempt</label>
+                  <input type="number" name="numberOfStrokesInOneAttempt" required ngModel class="form-control">
                 </div>
                 <div class="form-group my-2">
                   <label id="level">Level</label>
@@ -647,6 +654,10 @@
                 <div class="form-group my-2">
                   <label for="numberOfAttempts">Number of attempts</label>
                   <input type="number" name="numberOfAttempts" required [(ngModel)]="editExercise.numberOfAttempts" class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label for="numberOfStrokesInOneAttempt">Number of strokes in one attempt</label>
+                  <input type="number" name="numberOfStrokesInOneAttempt" required [(ngModel)]="editExercise.numberOfStrokesInOneAttempt" class="form-control">
                 </div>
                 <div class="form-group my-2">
                   <label for="level">Level</label>
