@@ -5,7 +5,6 @@ import {ActivatedRoute} from "@angular/router";
 import {ProgressSharedService} from "../progress-shared.service";
 import {AuthenticationService} from "../../auth/authentication.service";
 
-
 @Component({
   selector: '[app-progress-exercise]',
   templateUrl: './progress-exercise.component.html',
