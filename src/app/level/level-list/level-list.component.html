@@ -1,9 +1,9 @@
 <div *ngFor="let level of levelsInfo; let i = index " class="container">
   <div class="row justify-content-center p-4">
-    <div class="card shadow p-3 mb-5 bg-body rounded">
+    <div class="card shadow p-3 mb-2 bg-body rounded">
       <div class="row">
         <div class="col-lg-3">
-          <div class="row h3 text-center m-3 text-uppercase">
+          <div class="row h4 text-center m-3 text-uppercase">
             <p>LEVEL {{i}}</p>
           </div>
           <div class="row">
@@ -16,7 +16,7 @@
           <div class="row h5 m-4 text-center">
             <p>Progerss</p>
           </div>
-          <div class="row m-3">
+          <div class="row">
             <div class="col">
               <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
@@ -25,10 +25,10 @@
               </div>
             </div>
           </div>
-          <div class="row h5 m-2 text-center">
+          <div class="row h6 text-center">
             <p>{{progressLevel[i]?.numberOfCompletedExercises}}/{{level?.numberOfExercise}}</p>
           </div>
-          <div class="row h5 text-center">
+          <div class="row text-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-check-lg noActive"
                  [ngClass]="{'ok': levelIsPass[i]}" viewBox="0 0 16 16">
               <path
@@ -44,8 +44,8 @@
             </div>
           </div>
           <div class="row m-2">
-            <button *ngIf="i === 0" [routerLink]="['/level', 0]"  type="button" class="btn btn-success text-uppercase">view exercises</button>
-            <button *ngIf="!(i ===0)" [routerLink]="['/level', i]" [disabled]="!levelIsPass[i-1]"  type="button" class="btn btn-success text-uppercase">view exercises</button>
+            <button *ngIf="i === 0" [routerLink]="['/level', 0]"  type="button" class="btn btn-success btn-sm text-uppercase">view exercises</button>
+            <button *ngIf="!(i ===0)" [routerLink]="['/level', i]" [disabled]="!levelIsPass[i-1]"  type="button" class="btn btn-success btn-sm text-uppercase">view exercises</button>
           </div>
         </div>
       </div>
