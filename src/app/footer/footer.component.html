@@ -1,19 +1,19 @@
 <footer class="container-fluid bg-light fixed-bottom">
   <div class="row-cols-1 border-top">
     <ul class="nav justify-content-center footer">
-      <li class="nav-item">
-        <a class="nav-link h6 text-black text-uppercase" href="#">statute</a>
+      <li class="nav-item small">
+        <a class="nav-link h6 text-black text-uppercase" href="#"><small>statute</small></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link h6 text-black text-uppercase" href="#">privacy policy</a>
+      <li class="nav-item small">
+        <a class="nav-link h6 text-black text-uppercase" href="#"><small>privacy policy</small></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link h6 text-black text-uppercase" href="#">contact</a>
+      <li class="nav-item small">
+        <a class="nav-link h6 text-black text-uppercase" href="#"><small>contact</small></a>
       </li>
     </ul>
   </div>
   <div class="row-cols-1 text-center bg-success text-white">
-    <p>edusnooker.pl © 2022</p>
+    <p class="small">edusnooker.pl © 2022</p>
   </div>
   <button [hidden]="!isAdmin" [routerLink]="['/user/management']" class="btn btn-warning btn-admin">Admin panel</button>
 </footer>
