@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 p-4 ">
     <tbody *ngFor="let exercise of exerciseList; let i = index" class="col">
-      <div class="card shadow p-3 m-auto my-3 bg-body rounded text-dark bg-warning" style="width: 24rem; height: 30rem">
+      <div class="card shadow p-3 m-auto my-3 bg-body rounded text-dark bg-warning" style="width: 22rem; height: 32rem">
         <div class="level-color-{{index}}">
           <img src="assets/image/{{exercise.img}}" class="card-img-top" alt="...">
-          <div class="card-body" style="height: 15rem">
+          <div class="card-body" style="height: 18.5rem">
             <div class="row">
               <div class="col-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
                      class="bi bi-check-lg noActive"  [ngClass]="{'ok': progressMap?.get(exercise.exerciseId)?.pass}"
                      viewBox="0 0 16 16">
                   <path
@@ -15,13 +15,13 @@
                 </svg>
               </div>
               <div class="col-9">
-                <h5 style="height: 3rem" class="card-title">{{exercise.name}}</h5>
+                <h5 style="height: 3.5rem" class="card-title">{{exercise.name}}</h5>
               </div>
               <div class="col-2 text-end"
                    app-progress-exercise [exercise]="exercise.exerciseId">
               </div>
             </div>
-            <p style="height: 6.5rem" class="card-text">{{exercise.description}}</p>
+            <p style="height: 9.5rem" class="card-text">{{exercise.description}}</p>
             <div class="container-fluid">
               <div class="row-cols-1">
                 <a class="btn btn-success btn-sm w-100 justify-content-center" role="button" data-bs-toggle="modal"
@@ -248,7 +248,7 @@
           <div class="col-8">
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <img src="/assets/image/e001.png" class="img-fluid" alt="...">
+                <img src="/assets/image/{{selectedExercise.img}}" class="img-fluid" alt="...">
               </div>
             </div>
             <div class="row">
@@ -259,12 +259,12 @@
               </div>
               <div class="col-lg-4 d-flex justify-content-center">
                 <div class="alert alert-info text-start row m-1 w-100" role="alert">
-                  <span class="col-12 text-font-scoring text-center"><small>Attempt</small> <br> {{currentAttempt}}</span>
+                  <span class="col-12 text-font-scoring text-center"><small>Attempt</small> <br> {{currentAttempt}}/{{selectedExercise.numberOfAttempts}}</span>
                 </div>
               </div>
               <div class="col-lg-4 d-flex justify-content-center">
                 <div class="alert alert-danger text-start row m-1 w-100" role="alert">
-                  <span class="col-12 text-font-scoring text-center"><small>Max points</small> <br> 5/{{selectedExercise.maxPoints}}</span>
+                  <span class="col-12 text-font-scoring text-center"><small>Max points</small> <br> {{selectedExercise.maxPoints}}</span>
                 </div>
               </div>
             </div>
