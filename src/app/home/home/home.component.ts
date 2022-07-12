@@ -33,11 +33,12 @@ export class HomeComponent implements OnInit {
   public timeEnd: boolean = false;
   public clicked: boolean = false;
   public clickStart: boolean = false;
-  public TIME_LIMIT: number = 1200;
+  public TIME_LIMIT: number = 5;
   public blockedButtonStart: boolean = false;
   public blockedButtonPause = false;
   public videoUrl: SafeResourceUrl = "";
   public lastExercise: Exercise;
+  public tipsAndTrivia: string;
   private subs = new SubSink();
   private dangerousVideoUrl: string = "";
   private subscription: Subscription;
@@ -46,6 +47,7 @@ export class HomeComponent implements OnInit {
   private WARNING_THRESHOLD: number = 10;
   private ALERT_THRESHOLD: number = 5;
   private FULL_DASH_ARRAY: number = 283;
+  private listTipsAndTrivia: string[] = [];
 
 
   private audio: any = new Audio();
@@ -70,6 +72,44 @@ export class HomeComponent implements OnInit {
       this.user = user
     });
     this.loadLastExercise()
+    this.randomTipsAndTrivia()
+  }
+
+  getRandomInt(max: number): number {
+    return Math.floor(Math.random() * max);
+  }
+
+  randomTipsAndTrivia() {
+    this.listTipsAndTrivia.push("The referee is allowed to inform a colour-blind player the colour of a specific ball if he is requested to do so by the player.");
+    this.listTipsAndTrivia.push("If your cue has a 9.5mm tip when you come to replacing it put on a 10mm tip and trim it down with a sharp knife. This is much easier than trying to place a tip on the cue that is the exact size.");
+    this.listTipsAndTrivia.push("Joe Davis compiled the first officially recognized maximum break on Saturday 22 January 1955. The break was made at the home of Billiards and Snooker, the famous Thurston's Hall.");
+    this.listTipsAndTrivia.push("The most important piece of equipment a coach should carry in his bag? Deodorant!");
+    this.listTipsAndTrivia.push("In 1799 John Thurston established a business based in the Strand in London making furniture and Billiard tables.");
+    this.listTipsAndTrivia.push("Exert a little more pressure through the index finger of the bridge hand. This stabilizes the bridge and helps it to remain still when playing the shot.");
+    this.listTipsAndTrivia.push("The quickest century break ever made in a tournament was done so by Tony Drago in just 3 minutes and 31 seconds.");
+    this.listTipsAndTrivia.push("Try to learn a little about the game of billiards and in your snooker practice also try to incorporate a few billiards shot.");
+    this.listTipsAndTrivia.push("Good players need to experience as many competitions as possible in order to progress.");
+    this.listTipsAndTrivia.push("Once you have found a cue you are happy and confident with please just forget it. Forget it when you are playing and let it become a part of you.");
+    this.listTipsAndTrivia.push("If you want to get a rhythm into your cueing try using a metronome. Slowly but surely the background rhythm begins to penetrate your cue arm.");
+    this.listTipsAndTrivia.push("If you have a competition that's important and at a venue with which you are unfamiliar,try to get there the day before.");
+    this.listTipsAndTrivia.push("It may at first seem impossible and your mind may want to fight against it but practise playing with your opposite hand.");
+    this.listTipsAndTrivia.push("The World Snooker Championships used to be held in a challenge format. This was changed in 1969 to the present knockout format.");
+    this.listTipsAndTrivia.push("Eye on the cue bal or the object ball? Object ball and halfway through your final backswing transfer your eyes to the object ball until the shot is played");
+    this.listTipsAndTrivia.push("The Crucible - a situation of severe trial, or in which different elements interact, leading to the creation of something new.");
+    this.listTipsAndTrivia.push("Having aimed when standing up do not take your eyes off the point on the object ball you wish to hit until your hand touches the cloth.");
+    this.listTipsAndTrivia.push("Be gentle and use the minimum pace necessary for the shot and you will be surprised at how your game will improve!");
+    this.listTipsAndTrivia.push("After you have played your stroke stay down and gain valuable knowledge about the shot you have played. Ask yourself if you stayed still on the shot and if your tip went where you wanted it to");
+    this.listTipsAndTrivia.push("If you have a hard physical job and you have had a busy day avoid playing snooker. Potting balls in the same way as you would normally is impossible after very hard physical exertion.");
+    this.listTipsAndTrivia.push("The original balls for snooker were made of wood and then ivory. Thankfully this has changed with the most popular balls being Aramith, which is a synthetic compound.");
+    this.listTipsAndTrivia.push("It's not advisable to let the tip of your cue overhang, because when applying side to a ball you don't get the backing of the ferrule to ensure a solid shot.");
+    this.listTipsAndTrivia.push("Don't become a constant good loser - yes, losing is part of life and learning but being satisfied with losing means you will not work as hard as you need to in order to start winning.");
+    this.listTipsAndTrivia.push("A fast cloth is a delight for a good player but slow cloth makes for heavy going and harder for break-building.");
+    this.listTipsAndTrivia.push("You may be sublimely talented with a cue action like a Rolls-Royce, but without practice, practice and more practice you will soon be a jerky shadow of your former self.");
+    this.listTipsAndTrivia.push("There are 5 sections of slate in the bed of a full-size table and on the old tables these can weigh over a tonne.");
+
+
+    this.tipsAndTrivia = this.listTipsAndTrivia[this.getRandomInt(this.listTipsAndTrivia.length)];
+    // this.tipsAndTrivia = this.listTipsAndTrivia[(this.listTipsAndTrivia.length-1)];
   }
 
   public onAddProgressUser(progressUser: ProgressUser): void {
