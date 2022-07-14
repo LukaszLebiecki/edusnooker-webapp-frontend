@@ -444,7 +444,9 @@ export class HomeComponent implements OnInit {
   public barChartData: ChartData<'bar'> = {
     labels: [ 'January', 'February', 'March ', 'April ', 'May ', 'June ', 'July ', 'August ', 'September ', 'October ', 'November ', 'December '],
     datasets: [
-      { data: [ 3, 0, 1, 8, 0, 5, 4, 0, 0, 0, 0 ,0], label: 'Number of exercises performed in a given month.', backgroundColor: 'rgba(38, 166, 91, 0.7)'}
+      { data: [ 3, 0, 1, 8, 0, 5, 4, 0, 0, 0, 0 ,0], label: 'Number of exercises performed in a given month.',
+        backgroundColor: 'rgba(38, 166, 91, 0.7)',
+        hoverBackgroundColor: 'rgba(38, 166, 91, 0.9)'}
     ]
   };
 
