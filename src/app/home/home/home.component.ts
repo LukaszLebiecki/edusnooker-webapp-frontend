@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Exercise} from "../../user/models/exercise";
 import {ProgressUser} from "../../progress/models/progress-user";
 import {User} from "../../user/models/user";
@@ -15,6 +15,8 @@ import {ActivatedRoute} from "@angular/router";
 import {NotificationType} from "../../notification/notification-type.enum";
 import {HttpErrorResponse} from "@angular/common/http";
 import {HomeService} from "../home.service";
+import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
+import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-home',
@@ -39,6 +41,7 @@ export class HomeComponent implements OnInit {
   public videoUrl: SafeResourceUrl = "";
   public lastExercise: Exercise;
   public tipsAndTrivia: string;
+  public isProgress: boolean = false;
   private subs = new SubSink();
   private dangerousVideoUrl: string = "";
   private subscription: Subscription;
@@ -109,7 +112,7 @@ export class HomeComponent implements OnInit {
 
 
     this.tipsAndTrivia = this.listTipsAndTrivia[this.getRandomInt(this.listTipsAndTrivia.length)];
-    // this.tipsAndTrivia = this.listTipsAndTrivia[(this.listTipsAndTrivia.length-1)];
+    // this.tipsAndTrivia = this.listTipsAndTrivia[(this.listTipsAndTrivia.length-1)]; // do sprawdzenia czy się dobrze wyświetla
   }
 
   public onAddProgressUser(progressUser: ProgressUser): void {
@@ -261,7 +264,15 @@ export class HomeComponent implements OnInit {
   loadLastExercise() {
     this.homeService.getLastExercise(this.user.userId).subscribe((e) => {
       this.lastExercise = e;
+      if (e.exerciseId !== "empty") {
+        this.isProgress = true;
+      } else {
+        this.isProgress = false;
+        e.name = "no exercise performed";
+        e.img = "e000.png";
+      }
     });
+
   }
 
   public onSelectExercise(): void {
@@ -400,5 +411,41 @@ export class HomeComponent implements OnInit {
         .classList.add(warning.color);
     }
   }
+
+  // CHARTS
+
+  public barChartType: ChartType = 'bar';
+  public barChartPlugins = [
+    DataLabelsPlugin
+  ];
+
+  public barChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: {
+      x: {
+      },
+      y: {
+
+      }
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+      datalabels: {
+        anchor: 'end',
+        align: 'end'
+      }
+    }
+  };
+
+
+  public barChartData: ChartData<'bar'> = {
+    labels: [ 'January', 'February', 'March ', 'April ', 'May ', 'June ', 'July ', 'August ', 'September ', 'October ', 'November ', 'December '],
+    datasets: [
+      { data: [ 3, 0, 1, 8, 0, 5, 4, 0, 0, 0, 0 ,0], label: 'Number of exercises performed in a given month.', backgroundColor: 'rgba(38, 166, 91, 0.7)'}
+    ]
+  };
 
 }

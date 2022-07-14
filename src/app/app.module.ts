@@ -30,6 +30,7 @@ import {FormsModule} from "@angular/forms";
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ExerciseComponent } from './exercise/exercise/exercise.component';
+import {NgChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -44,19 +45,20 @@ import { ExerciseComponent } from './exercise/exercise/exercise.component';
     ResetpasswordComponent,
     ExerciseComponent
   ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    CoreModule,
-    FormsModule,
-    LevelModule,
-    LoginModule,
-    AppRoutingModule,
-    LoginRoutingModule,
-    LevelRoutingModule,
-    HttpClientModule,
-    NotificationModule
-  ],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        CoreModule,
+        FormsModule,
+        LevelModule,
+        LoginModule,
+        AppRoutingModule,
+        LoginRoutingModule,
+        LevelRoutingModule,
+        HttpClientModule,
+        NotificationModule,
+        NgChartsModule
+    ],
   providers: [
     LevelService,
     ExerciseService,

@@ -17,6 +17,18 @@
     <p class="cytat">"In order to succeed, we must first believe that we can"</p>
   </div>
   <div class="row justify-content-end">
+    <div  class="col-xl-6 col-lg-12">
+      <div>
+        <div>
+          <canvas height="100" baseChart
+                  [data]="barChartData"
+                  [options]="barChartOptions"
+                  [plugins]="barChartPlugins">
+
+          </canvas>
+        </div>
+      </div>
+    </div>
     <div class="col-xl-2 col-lg-4">
       <div class="card card-width card-height text-center shadow p-1 mb-2 bg-body rounded text-dark bg-warning container-fluid">
         <div class="card-body">
@@ -41,7 +53,7 @@
           <h5 class="card-title">Last exercise performed</h5>
           <h6>{{lastExercise.name}}</h6>
           <img src="/assets/image/{{lastExercise.img}}" class="img-fluid" alt="...">
-          <a data-bs-toggle="modal" href="#workout1" (click)="onSelectExercise()" class="btn btn-success">Practice again</a>
+          <button data-bs-toggle="modal" href="#workout1" (click)="onSelectExercise()" [disabled]="!isProgress" class="btn btn-success">Practice again</button>
         </div>
       </div>
     </div>
