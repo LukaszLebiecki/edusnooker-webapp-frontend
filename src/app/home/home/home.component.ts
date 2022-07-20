@@ -15,15 +15,19 @@ import {ActivatedRoute} from "@angular/router";
 import {NotificationType} from "../../notification/notification-type.enum";
 import {HttpErrorResponse} from "@angular/common/http";
 import {HomeService} from "../home.service";
-import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
-import DataLabelsPlugin from 'chartjs-plugin-datalabels';
+import {ChartConfiguration, ChartData, ChartType} from 'chart.js';
+import {ProgressChartsHome} from "../../progress/models/progress-charts-home";
+import {BaseChartDirective} from "ng2-charts";
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit{
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective | undefined;
+
   public selectedExercise: Exercise = new Exercise;
   public progressUser: ProgressUser;
   public user: User;
@@ -42,6 +46,9 @@ export class HomeComponent implements OnInit {
   public lastExercise: Exercise;
   public tipsAndTrivia: string;
   public isProgress: boolean = false;
+  public progressChartsHome: ProgressChartsHome = new ProgressChartsHome();
+  public progressChartsHomeTable: number[] = [6,2];
+  public loaded: boolean = false;
   private subs = new SubSink();
   private dangerousVideoUrl: string = "";
   private subscription: Subscription;
@@ -68,14 +75,16 @@ export class HomeComponent implements OnInit {
               private route: ActivatedRoute) {
   }
 
+
   ngOnInit(): void {
     this.progressSharedService.progressExerciseMap$.subscribe((progress) => this.progressMap = progress);
     this.user = this.authenticationService.getUserFromLocalCache();
     this.userServiceShow.userCurrent$.subscribe((user) => {
       this.user = user
     });
-    this.loadLastExercise()
-    this.randomTipsAndTrivia()
+    this.loadProgressChartsHome();
+    this.loadLastExercise();
+    this.randomTipsAndTrivia();
   }
 
   getRandomInt(max: number): number {
@@ -272,7 +281,6 @@ export class HomeComponent implements OnInit {
         e.img = "e000.png";
       }
     });
-
   }
 
   public onSelectExercise(): void {
@@ -412,42 +420,27 @@ export class HomeComponent implements OnInit {
     }
   }
 
+
   // CHARTS
 
-  public barChartType: ChartType = 'bar';
-  public barChartPlugins = [
-    DataLabelsPlugin
-  ];
-
-  public barChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
-    scales: {
-      x: {
-      },
-      y: {
-
-      }
-    },
-    plugins: {
-      legend: {
-        display: true,
-      },
-      datalabels: {
-        anchor: 'end',
-        align: 'end'
-      }
-    }
-  };
-
-
-  public barChartData: ChartData<'bar'> = {
+  public barChartData: ChartData = {
     labels: [ 'January', 'February', 'March ', 'April ', 'May ', 'June ', 'July ', 'August ', 'September ', 'October ', 'November ', 'December '],
     datasets: [
-      { data: [ 3, 0, 1, 8, 0, 5, 4, 0, 0, 0, 0 ,0], label: 'Number of exercises performed in a given month.',
+      { data: this.progressChartsHomeTable,
+        label: 'Number of exercises performed in a given month.',
         backgroundColor: 'rgba(38, 166, 91, 0.7)',
         hoverBackgroundColor: 'rgba(38, 166, 91, 0.9)'}
     ]
   };
+
+  loadProgressChartsHome(): void {
+    this.homeService.getChartsHome(this.user.userId).subscribe((p) => {
+      this.progressChartsHome.chartsHome = p.chartsHome;
+      this.barChartData.datasets[0].data = this.progressChartsHome.chartsHome
+      this.chart?.update();
+      this.loaded = true;
+    });
+
+  }
 
 }

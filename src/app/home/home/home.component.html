@@ -20,11 +20,8 @@
     <div  class="col-xl-6 col-lg-12">
       <div>
         <div>
-          <canvas height="100" baseChart
-                  [data]="barChartData"
-                  [options]="barChartOptions"
-                  [plugins]="barChartPlugins">
-
+          <canvas *ngIf="loaded" height="100" id="myChart" baseChart
+                  [data]="barChartData">
           </canvas>
         </div>
       </div>

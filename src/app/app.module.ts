@@ -30,7 +30,7 @@ import {FormsModule} from "@angular/forms";
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ExerciseComponent } from './exercise/exercise/exercise.component';
-import {NgChartsModule} from "ng2-charts";
+import { NgChartsModule } from "ng2-charts";
 
 @NgModule({
   declarations: [
