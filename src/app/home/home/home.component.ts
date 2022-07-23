@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Exercise} from "../../user/models/exercise";
 import {ProgressUser} from "../../progress/models/progress-user";
 import {User} from "../../user/models/user";
@@ -21,7 +21,11 @@ import {HomeService} from "../home.service";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit, AfterViewInit{
+
+  @ViewChild("animatedPointsScored") animatedPointsScored: ElementRef;
+  @ViewChild("animatedExercisesPerformed") animatedExercisesPerformed: ElementRef;
+  @ViewChild("animatedCompletedExercises") animatedCompletedExercises: ElementRef;
 
   public selectedExercise: Exercise = new Exercise;
   public progressUser: ProgressUser;
@@ -42,6 +46,11 @@ export class HomeComponent implements OnInit{
   public tipsAndTrivia: string;
   public isProgress: boolean = false;
   public loaded: boolean = false;
+  public pointsScored: number = 147;
+  public exercisePerformed: number = 25;
+  public completedExercises: number = 17;
+  public duration: number;
+  public steps: number;
   private subs = new SubSink();
   private dangerousVideoUrl: string = "";
   private subscription: Subscription;
@@ -65,7 +74,8 @@ export class HomeComponent implements OnInit{
               private userServiceShow: UserService,
               private notificationService: NotificationService,
               private authenticationService: AuthenticationService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private elRef: ElementRef) {
   }
 
 
@@ -77,6 +87,12 @@ export class HomeComponent implements OnInit{
     });
     this.loadLastExercise();
     this.randomTipsAndTrivia();
+  }
+
+  ngAfterViewInit() {
+    this.animateCount(this.pointsScored, this.animatedPointsScored);
+    this.animateCount(this.exercisePerformed, this.animatedExercisesPerformed);
+    this.animateCount(this.completedExercises, this.animatedCompletedExercises);
   }
 
   getRandomInt(max: number): number {
@@ -412,4 +428,39 @@ export class HomeComponent implements OnInit{
     }
   }
 
+  animateCount(digit: number, animated: ElementRef) {
+    if (!this.duration) {
+      this.duration = 1000;
+    }
+
+    if (typeof digit === "number") {
+      this.counterFunc(digit, this.duration, animated);
+    }
+  }
+
+  counterFunc(endValue, durationMs, element) {
+    if (!this.steps) {
+      this.steps = 12;
+    }
+
+    const stepCount = Math.abs(durationMs / this.steps);
+    const valueIncrement = (endValue - 0) / stepCount;
+    const sinValueIncrement = Math.PI / stepCount;
+
+    let currentValue = 0;
+    let currentSinValue = 0;
+
+    function step() {
+      currentSinValue += sinValueIncrement;
+      currentValue += valueIncrement * Math.sin(currentSinValue) ** 2 * 2;
+
+      element.nativeElement.textContent = Math.abs(Math.floor(currentValue));
+
+      if (currentSinValue < Math.PI) {
+        window.requestAnimationFrame(step);
+      }
+    }
+
+    step();
+  }
 }
