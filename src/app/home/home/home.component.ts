@@ -21,7 +21,7 @@ import {HomeService} from "../home.service";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit{
+export class HomeComponent implements OnInit, AfterViewInit {
 
   @ViewChild("animatedPointsScored") animatedPointsScored: ElementRef;
   @ViewChild("animatedExercisesPerformed") animatedExercisesPerformed: ElementRef;
@@ -46,9 +46,9 @@ export class HomeComponent implements OnInit, AfterViewInit{
   public tipsAndTrivia: string;
   public isProgress: boolean = false;
   public loaded: boolean = false;
-  public pointsScored: number = 147;
-  public exercisePerformed: number = 25;
-  public completedExercises: number = 17;
+  public pointsScored: number = 0;
+  public exercisePerformed: number = 0;
+  public completedExercises: number = 0;
   public duration: number;
   public steps: number;
   private subs = new SubSink();
@@ -85,6 +85,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
     this.userServiceShow.userCurrent$.subscribe((user) => {
       this.user = user
     });
+    this.loadProgressCounterHome();
     this.loadLastExercise();
     this.randomTipsAndTrivia();
   }
@@ -288,6 +289,14 @@ export class HomeComponent implements OnInit, AfterViewInit{
         e.name = "no exercise performed";
         e.img = "e000.png";
       }
+    });
+  }
+
+  loadProgressCounterHome() {
+    this.homeService.getCounterHome(this.user.userId).subscribe((p) => {
+      this.pointsScored = p.pointScored;
+      this.exercisePerformed = p.exercisePerformed;
+      this.completedExercises = p.completedExercises;
     });
   }
 
