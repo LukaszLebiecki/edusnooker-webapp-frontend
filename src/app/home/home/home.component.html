@@ -16,7 +16,7 @@
   <div class="row">
     <div class="col-12">
       <div class="d-grid gap-2 col-lg-3 col-md-12 mx-auto">
-        <a [routerLink]="'/level'" class="btn btn-success">GO TO THE WORKOUT LIST</a>
+        <a [routerLink]="'/level'" class="btn btn-outline-success">GO TO THE WORKOUT LIST</a>
       </div>
     </div>
   </div>
@@ -107,7 +107,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
         <h5>#{{selectedExercise?.exerciseId}}</h5>
         <div class="ratio ratio-16x9">
           <iframe class="d-flex e2e-iframe-trusted-src" [src]="videoUrl"
@@ -175,7 +174,7 @@
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="workout2ToggleLabel">Training</h5>
+        <h5 class="modal-title" id="workout2ToggleLabel">{{selectedExercise?.name}} - <small class="fst-italic">practice makes perfect</small></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="refresh()"></button>
       </div>
       <div class="modal-body">
@@ -240,7 +239,7 @@
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="workout3ToggleLabel">Scoring test</h5>
+        <h5 class="modal-title" id="workout3ToggleLabel">{{selectedExercise?.name}} - <small class="fst-italic">exercise exam</small></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
