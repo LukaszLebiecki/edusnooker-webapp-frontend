@@ -31,6 +31,8 @@ import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ExerciseComponent } from './exercise/exercise/exercise.component';
 import { NgChartsModule } from "ng2-charts";
+import { StatisticsComponent } from './statistics/statistics.component';
+import { TechniqueComponent } from './technique/technique.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { NgChartsModule } from "ng2-charts";
     UserComponent,
     MyaccountComponent,
     ResetpasswordComponent,
-    ExerciseComponent
+    ExerciseComponent,
+    StatisticsComponent,
+    TechniqueComponent
   ],
     imports: [
         CommonModule,

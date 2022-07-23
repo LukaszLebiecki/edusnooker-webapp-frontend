@@ -9,7 +9,8 @@ import {UserComponent} from "./user/user.component";
 import {LoginComponent} from "./login/login.component";
 import {MyaccountComponent} from "./myaccount/myaccount.component";
 import {ResetpasswordComponent} from "./resetpassword/resetpassword.component";
-import {ExerciseComponent} from "./exercise/exercise/exercise.component";
+import {StatisticsComponent} from "./statistics/statistics.component";
+import {TechniqueComponent} from "./technique/technique.component";
 
 const APP_ROUTES: Route[] = [
   {path: 'login', component: LoginComponent},
@@ -20,6 +21,8 @@ const APP_ROUTES: Route[] = [
   {path: 'level', component: LevelListComponent, canActivate: [AuthGuard]},
   {path: 'favorite', component: FavoriteComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard]},
+  {path: 'technique', component: TechniqueComponent, canActivate: [AuthGuard]},
   {path: '', pathMatch: 'full', redirectTo: '/login'}
 ]
 

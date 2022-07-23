@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Exercise} from "../../user/models/exercise";
 import {ProgressUser} from "../../progress/models/progress-user";
 import {User} from "../../user/models/user";
@@ -15,10 +15,6 @@ import {ActivatedRoute} from "@angular/router";
 import {NotificationType} from "../../notification/notification-type.enum";
 import {HttpErrorResponse} from "@angular/common/http";
 import {HomeService} from "../home.service";
-import {ChartConfiguration, ChartData, ChartType} from 'chart.js';
-import {ProgressChartsHome} from "../../progress/models/progress-charts-home";
-import {BaseChartDirective} from "ng2-charts";
-
 
 @Component({
   selector: 'app-home',
@@ -26,7 +22,6 @@ import {BaseChartDirective} from "ng2-charts";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective | undefined;
 
   public selectedExercise: Exercise = new Exercise;
   public progressUser: ProgressUser;
@@ -46,8 +41,6 @@ export class HomeComponent implements OnInit{
   public lastExercise: Exercise;
   public tipsAndTrivia: string;
   public isProgress: boolean = false;
-  public progressChartsHome: ProgressChartsHome = new ProgressChartsHome();
-  public progressChartsHomeTable: number[] = [6,2];
   public loaded: boolean = false;
   private subs = new SubSink();
   private dangerousVideoUrl: string = "";
@@ -82,7 +75,6 @@ export class HomeComponent implements OnInit{
     this.userServiceShow.userCurrent$.subscribe((user) => {
       this.user = user
     });
-    this.loadProgressChartsHome();
     this.loadLastExercise();
     this.randomTipsAndTrivia();
   }
@@ -418,29 +410,6 @@ export class HomeComponent implements OnInit{
         .getElementById("base-timer-path-remaining")
         .classList.add(warning.color);
     }
-  }
-
-
-  // CHARTS
-
-  public barChartData: ChartData = {
-    labels: [ 'January', 'February', 'March ', 'April ', 'May ', 'June ', 'July ', 'August ', 'September ', 'October ', 'November ', 'December '],
-    datasets: [
-      { data: this.progressChartsHomeTable,
-        label: 'Number of exercises performed in a given month.',
-        backgroundColor: 'rgba(38, 166, 91, 0.7)',
-        hoverBackgroundColor: 'rgba(38, 166, 91, 0.9)'}
-    ]
-  };
-
-  loadProgressChartsHome(): void {
-    this.homeService.getChartsHome(this.user.userId).subscribe((p) => {
-      this.progressChartsHome.chartsHome = p.chartsHome;
-      this.barChartData.datasets[0].data = this.progressChartsHome.chartsHome
-      this.chart?.update();
-      this.loaded = true;
-    });
-
   }
 
 }
