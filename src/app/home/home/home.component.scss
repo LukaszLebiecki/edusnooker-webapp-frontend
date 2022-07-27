@@ -26,7 +26,9 @@ letter-spacing: 3px;
   position: relative;
   top: 40%;
   left: 70%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
+  margin-top: 100px;
+
 }
 
 .cytat {
@@ -294,6 +296,12 @@ letter-spacing: 3px;
 .counter.blue:after,
 .counter.blue .counter-icon{
   background: linear-gradient(45deg,#1E90FF 49%,#7EBEE1 50%);
+}
+
+.counter.black{ color: #696969; }
+.counter.black:after,
+.counter.black .counter-icon{
+  background: linear-gradient(45deg,#696969 49%,#A9A9A9 50%);
 }
 
 .counter.red2{ color: #E00102; }

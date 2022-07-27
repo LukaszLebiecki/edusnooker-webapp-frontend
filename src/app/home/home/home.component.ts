@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {Exercise} from "../../user/models/exercise";
 import {ProgressUser} from "../../progress/models/progress-user";
 import {User} from "../../user/models/user";
@@ -74,8 +74,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
               private userServiceShow: UserService,
               private notificationService: NotificationService,
               private authenticationService: AuthenticationService,
-              private route: ActivatedRoute,
-              private elRef: ElementRef) {
+              private route: ActivatedRoute
+              ) {
   }
 
 
@@ -95,6 +95,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.animateCount(this.exercisePerformed, this.animatedExercisesPerformed);
     this.animateCount(this.completedExercises, this.animatedCompletedExercises);
   }
+
 
   getRandomInt(max: number): number {
     return Math.floor(Math.random() * max);
