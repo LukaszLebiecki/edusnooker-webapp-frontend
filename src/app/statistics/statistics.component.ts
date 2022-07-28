@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ChartData, ChartType} from "chart.js";
 import {ProgressChartsHome} from "../progress/models/progress-charts-home";
 import {BaseChartDirective} from "ng2-charts";
@@ -7,6 +7,7 @@ import {AuthenticationService} from "../auth/authentication.service";
 import {UserService} from "../shared-module/services/user.service";
 import {StatisticsService} from "./statistics.service";
 import {ProgressStatistics} from "../progress/models/progress-statistics";
+
 
 @Component({
   selector: 'app-statistics',
@@ -17,20 +18,21 @@ export class StatisticsComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective | undefined;
 
   public user: User;
-  public lineChartType: ChartType = 'line';
   public barChartType: ChartType = 'bar';
-  public radarChartType: ChartType = 'radar';
   public progressChartsHome: ProgressChartsHome = new ProgressChartsHome();
   public progressStatistics: ProgressStatistics = new ProgressStatistics();
+  public currentMonth: number;
+  public currentYear: number;
+  public stringMonth: string;
   private progressCharts11: number[] = [];
   private progressCharts12: number[] = [];
-  private progressCharts13: number[] = [8, 8, 8, 0, 0, 8, 8];
-  private progressCharts21: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 8, 0, 0, 0, 0, 8, 8];
-  private progressCharts22: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 8, 0, 0, 0, 0, 8, 8];
-  private progressCharts23: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 8, 0, 0, 0, 0, 8, 8];
-  private progressCharts41: number[] = [0, 0, 0, 0, 0, 8, 8, 8, 0, 0, 8, 8];
-  private progressCharts42: number[] = [0, 0, 0, 0, 0, 8, 8, 8, 0, 0, 8, 8];
-  private progressCharts43: number[] = [0, 0, 0, 0, 0, 8, 8, 8, 0, 0, 8, 8];
+  private progressCharts13: number[] = [];
+  private progressCharts21: number[] = [];
+  private progressCharts22: number[] = [];
+  private progressCharts23: number[] = [];
+  private progressCharts41: number[] = [];
+  private progressCharts42: number[] = [];
+  private progressCharts43: number[] = [];
   public load: boolean = true;
 
   constructor(private statisticsService: StatisticsService,
@@ -44,12 +46,58 @@ export class StatisticsComponent implements OnInit {
     this.userServiceShow.userCurrent$.subscribe((user) => {
       this.user = user
     });
+    this.loadData();
     this.loadProgressChartsHome();
     this.loadStatistics();
   }
 
+
+  loadData() {
+    let date = new Date();
+    this.currentYear = date.getFullYear()
+    this.currentMonth = date.getMonth() + 1;
+    switch (this.currentMonth) {
+      case 1:
+        this.stringMonth = "January"
+        break;
+      case 2:
+        this.stringMonth = "February"
+        break;
+      case 3:
+        this.stringMonth = "March"
+        break;
+      case 4:
+        this.stringMonth = "April"
+        break;
+      case 5:
+        this.stringMonth = "May"
+        break;
+      case 6:
+        this.stringMonth = "June"
+        break;
+      case 7:
+        this.stringMonth = "July"
+        break;
+      case 8:
+        this.stringMonth = "August"
+        break;
+      case 9:
+        this.stringMonth = "September"
+        break;
+      case 10:
+        this.stringMonth = "October"
+        break;
+      case 1:
+        this.stringMonth = "November"
+        break;
+      case 12:
+        this.stringMonth = "December"
+        break;
+    }
+  }
+
   loadStatistics(): void {
-    this.statisticsService.getStatistics(this.user.userId, 4, 2022).subscribe((p) => {
+    this.statisticsService.getStatistics(this.user.userId, this.currentMonth, this.currentYear).subscribe((p) => {
       this.progressStatistics.pointsScoredToYear = p.pointsScoredToYear;
       this.progressStatistics.exercisesPerformedToYear = p.exercisesPerformedToYear;
       this.progressStatistics.exercisesCompletedToYear = p.exercisesCompletedToYear;
@@ -91,7 +139,7 @@ export class StatisticsComponent implements OnInit {
     datasets: [
       {
         data: this.progressCharts11,
-        label: 'POINTS SCORED / year',
+        label: 'POINTS SCORED',
         backgroundColor: 'rgba(224, 1, 2, 0.7)',
         hoverBackgroundColor: 'rgba(240, 128, 128, 0.9)'
       }
@@ -103,13 +151,13 @@ export class StatisticsComponent implements OnInit {
     datasets: [
       {
         data: this.progressCharts12,
-        label: 'EXERCISES PERFORMED / year',
+        label: 'EXERCISES PERFORMED',
         backgroundColor: 'rgba(105, 105, 105, 0.7)',
         hoverBackgroundColor: 'rgba(169, 169, 169, 0.9)'
       },
       {
         data: this.progressCharts13,
-        label: 'EXERCISES COMPLETED / year',
+        label: 'EXERCISES COMPLETED',
         backgroundColor: 'rgba(1, 146, 69, 0.7)',
         hoverBackgroundColor: 'rgba(144, 238, 144, 0.9)'
       }
@@ -121,7 +169,7 @@ export class StatisticsComponent implements OnInit {
     datasets: [
       {
         data: this.progressCharts21,
-        label: 'POINTS SCORED / month',
+        label: 'POINTS SCORED',
         backgroundColor: 'rgba(224, 1, 2, 0.7)',
         hoverBackgroundColor: 'rgba(240, 128, 128, 0.9)'
       }
@@ -133,13 +181,13 @@ export class StatisticsComponent implements OnInit {
     datasets: [
       {
         data: this.progressCharts22,
-        label: 'EXERCISES PERFORMED / month',
+        label: 'EXERCISES PERFORMED',
         backgroundColor: 'rgba(105, 105, 105, 0.7)',
         hoverBackgroundColor: 'rgba(169, 169, 169, 0.9)'
       },
       {
         data: this.progressCharts23,
-        label: 'COMPLETED EXERCISES / month',
+        label: 'COMPLETED EXERCISES',
         backgroundColor: 'rgba(1, 146, 69, 0.7)',
         hoverBackgroundColor: 'rgba(144, 238, 144, 0.9)'
       }
@@ -151,7 +199,7 @@ export class StatisticsComponent implements OnInit {
     datasets: [
       {
         data: this.progressCharts41,
-        label: 'POINTS SCORED / hour',
+        label: 'POINTS SCORED',
         backgroundColor: 'rgba(224, 1, 2, 0.7)',
         hoverBackgroundColor: 'rgba(240, 128, 128, 0.9)'
       }
@@ -163,17 +211,18 @@ export class StatisticsComponent implements OnInit {
     datasets: [
       {
         data: this.progressCharts42,
-        label: 'EXERCISES PERFORMED / hour',
+        label: 'EXERCISES PERFORMED',
         backgroundColor: 'rgba(105, 105, 105, 0.7)',
         hoverBackgroundColor: 'rgba(169, 169, 169, 0.9)'
       },
       {
         data: this.progressCharts43,
-        label: 'COMPLETED EXERCISES / hour',
+        label: 'COMPLETED EXERCISES',
         backgroundColor: 'rgba(1, 146, 69, 0.7)',
         hoverBackgroundColor: 'rgba(144, 238, 144, 0.9)'
       }
     ]
   };
+
 
 }
