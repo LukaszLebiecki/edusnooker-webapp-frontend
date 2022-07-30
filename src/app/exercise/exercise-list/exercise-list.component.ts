@@ -37,6 +37,9 @@ export class ExerciseListComponent implements OnInit {
   public blockedButtonStart: boolean = false;
   public blockedButtonPause = false;
   public videoUrl: SafeResourceUrl = "";
+
+  public isBonus: boolean = false;
+
   private subs = new SubSink();
   private dangerousVideoUrl: string = "";
   private subscription: Subscription;
@@ -358,3 +361,4 @@ export class ExerciseListComponent implements OnInit {
     }
   }
 }
+

@@ -87,7 +87,7 @@ export class StatisticsComponent implements OnInit {
       case 10:
         this.stringMonth = "October"
         break;
-      case 1:
+      case 11:
         this.stringMonth = "November"
         break;
       case 12:
