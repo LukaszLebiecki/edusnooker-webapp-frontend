@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ChartData, ChartType} from "chart.js";
 import {ProgressChartsHome} from "../progress/models/progress-charts-home";
 import {BaseChartDirective} from "ng2-charts";
@@ -14,7 +14,7 @@ import {ProgressStatistics} from "../progress/models/progress-statistics";
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss']
 })
-export class StatisticsComponent implements OnInit {
+export class StatisticsComponent implements OnInit, AfterViewInit {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective | undefined;
 
   public user: User;
@@ -47,9 +47,11 @@ export class StatisticsComponent implements OnInit {
       this.user = user
     });
     this.loadData();
-    this.loadProgressChartsHome();
     this.loadStatistics();
+    this.chart.update();
   }
+
+
 
 
   loadData() {
@@ -120,15 +122,6 @@ export class StatisticsComponent implements OnInit {
       this.barChartData42.datasets[0].data = this.progressStatistics.exercisesPerformedToHour;
       this.barChartData42.datasets[1].data = this.progressStatistics.exercisesCompletedToHour;
 
-      this.chart?.update();
-      this.load = false;
-    });
-  }
-
-  loadProgressChartsHome(): void {
-    this.statisticsService.getChartsHome(this.user.userId).subscribe((p) => {
-      this.progressChartsHome.chartsHome = p.chartsHome;
-      this.barChartData12.datasets[0].data = this.progressChartsHome.chartsHome
       this.chart?.update();
       this.load = false;
     });
@@ -224,5 +217,7 @@ export class StatisticsComponent implements OnInit {
     ]
   };
 
-
+  ngAfterViewInit(): void {
+    this.chart.update();
+  }
 }
