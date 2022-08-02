@@ -91,6 +91,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.loadProgressCounterHome();
     this.animateCount(this.pointsScored, this.animatedPointsScored);
     this.animateCount(this.exercisePerformed, this.animatedExercisesPerformed);
     this.animateCount(this.completedExercises, this.animatedCompletedExercises);
@@ -295,9 +296,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   loadProgressCounterHome() {
     this.homeService.getCounterHome(this.user.userId).subscribe((p) => {
-      this.pointsScored = p.pointScored;
-      this.exercisePerformed = p.exercisePerformed;
-      this.completedExercises = p.completedExercises;
+      this.pointsScored = p?.pointScored;
+      this.exercisePerformed = p?.exercisePerformed;
+      this.completedExercises = p?.completedExercises;
     });
   }
 

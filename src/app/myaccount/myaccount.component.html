@@ -106,6 +106,9 @@
                   <span>Logout</span>
                   <i class="fas fa-sign-in-alt ml-1"></i>
                 </button>
+                <button [hidden]="!isAdmin" [routerLink]="['/user/management']"
+                        class="btn btn-black btn-warning w-100">Admin panel
+                </button>
               </div>
             </div>
           </div>

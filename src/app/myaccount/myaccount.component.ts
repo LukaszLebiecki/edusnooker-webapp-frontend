@@ -9,6 +9,7 @@ import {HttpErrorResponse, HttpEvent, HttpEventType} from "@angular/common/http"
 import {BehaviorSubject, Subscription} from "rxjs";
 import {FileUploadStatus} from "./models/file-upload.status";
 import {SubSink} from "subsink";
+import {Role} from "../role/role.enum";
 
 
 @Component({
@@ -147,6 +148,14 @@ export class MyaccountComponent implements OnInit, OnDestroy {
       default:
         `Finished all processes`;
     }
+  }
+
+  public get isAdmin(): boolean {
+    return this.getUserRole() === Role.ADMIN;
+  }
+
+  private getUserRole(): string {
+    return this.authenticationService.getUserFromLocalCache().role;
   }
 
   ngOnDestroy(): void {

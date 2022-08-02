@@ -26,7 +26,7 @@ import {NotificationModule} from "./notification/notification.module";
 import {NotificationService} from "./notification/notification.service";
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ExerciseComponent } from './exercise/exercise/exercise.component';
@@ -61,7 +61,8 @@ import { TechniqueComponent } from './technique/technique.component';
         LevelRoutingModule,
         HttpClientModule,
         NotificationModule,
-        NgChartsModule
+        NgChartsModule,
+        ReactiveFormsModule
     ],
   providers: [
     LevelService,

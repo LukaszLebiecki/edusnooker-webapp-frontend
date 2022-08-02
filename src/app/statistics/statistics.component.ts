@@ -7,6 +7,7 @@ import {AuthenticationService} from "../auth/authentication.service";
 import {UserService} from "../shared-module/services/user.service";
 import {StatisticsService} from "./statistics.service";
 import {ProgressStatistics} from "../progress/models/progress-statistics";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 
 @Component({
@@ -19,11 +20,14 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
 
   public user: User;
   public barChartType: ChartType = 'bar';
-  public progressChartsHome: ProgressChartsHome = new ProgressChartsHome();
   public progressStatistics: ProgressStatistics = new ProgressStatistics();
   public currentMonth: number;
+  public month: number;
   public currentYear: number;
+  public year: number;
   public stringMonth: string;
+  public allYearStatistics: number[] = [2022, 2021, 2020] // todo create load year last
+  public dataLoadForm: FormGroup;
   private progressCharts11: number[] = [];
   private progressCharts12: number[] = [];
   private progressCharts13: number[] = [];
@@ -37,7 +41,8 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
 
   constructor(private statisticsService: StatisticsService,
               private authenticationService: AuthenticationService,
-              private userServiceShow: UserService
+              private userServiceShow: UserService,
+              private formBuilder: FormBuilder
   ) {
   }
 
@@ -48,17 +53,35 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
     });
     this.loadData();
     this.loadStatistics();
-    this.chart.update();
+    this.chart?.update();
+    this.dataLoadForm = this.buildDateLoadStatistic();
   }
 
+  buildDateLoadStatistic() {
+    return this.formBuilder.group({
+      year: this.currentYear,
+      month: this.currentMonth,
+    });
+  }
 
-
+  loadDateStatistic(): void {
+    this.year = this.dataLoadForm?.value.year;
+    this.month = +this.dataLoadForm?.value.month;
+    this.changeNumberToStringMonth(this.month);
+    this.loadStatistics();
+  }
 
   loadData() {
     let date = new Date();
     this.currentYear = date.getFullYear()
     this.currentMonth = date.getMonth() + 1;
-    switch (this.currentMonth) {
+    this.year = this.currentYear;
+    this.month = this.currentMonth;
+    this.changeNumberToStringMonth(this.month);
+  }
+
+  private changeNumberToStringMonth(month: number) {
+    switch (month) {
       case 1:
         this.stringMonth = "January"
         break;
@@ -99,32 +122,33 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
   }
 
   loadStatistics(): void {
-    this.statisticsService.getStatistics(this.user.userId, this.currentMonth, this.currentYear).subscribe((p) => {
-      this.progressStatistics.pointsScoredToYear = p.pointsScoredToYear;
-      this.progressStatistics.exercisesPerformedToYear = p.exercisesPerformedToYear;
-      this.progressStatistics.exercisesCompletedToYear = p.exercisesCompletedToYear;
-      this.progressStatistics.pointsScoredToMonth = p.pointsScoredToMonth;
-      this.progressStatistics.exercisesPerformedToMonth = p.exercisesPerformedToMonth;
-      this.progressStatistics.exercisesCompletedToMonth = p.exercisesCompletedToMonth;
-      this.progressStatistics.pointsScoredToHour = p.pointsScoredToHour;
-      this.progressStatistics.exercisesPerformedToHour = p.exercisesPerformedToHour;
-      this.progressStatistics.exercisesCompletedToHour = p.exercisesCompletedToHour;
+    this.statisticsService.getStatistics(this.user.userId, this.month, this.year).subscribe((p) => {
+      this.progressStatistics.pointsScoredToYear = p?.pointsScoredToYear;
+      this.progressStatistics.exercisesPerformedToYear = p?.exercisesPerformedToYear;
+      this.progressStatistics.exercisesCompletedToYear = p?.exercisesCompletedToYear;
+      this.progressStatistics.pointsScoredToMonth = p?.pointsScoredToMonth;
+      this.progressStatistics.exercisesPerformedToMonth = p?.exercisesPerformedToMonth;
+      this.progressStatistics.exercisesCompletedToMonth = p?.exercisesCompletedToMonth;
+      this.progressStatistics.pointsScoredToHour = p?.pointsScoredToHour;
+      this.progressStatistics.exercisesPerformedToHour = p?.exercisesPerformedToHour;
+      this.progressStatistics.exercisesCompletedToHour = p?.exercisesCompletedToHour;
 
-      this.barChartData11.datasets[0].data = this.progressStatistics.pointsScoredToYear;
-      this.barChartData12.datasets[0].data = this.progressStatistics.exercisesPerformedToYear;
-      this.barChartData12.datasets[1].data = this.progressStatistics.exercisesCompletedToYear;
+      this.barChartData11.datasets[0].data = this.progressStatistics?.pointsScoredToYear;
+      this.barChartData12.datasets[0].data = this.progressStatistics?.exercisesPerformedToYear;
+      this.barChartData12.datasets[1].data = this.progressStatistics?.exercisesCompletedToYear;
 
-      this.barChartData21.datasets[0].data = this.progressStatistics.pointsScoredToMonth;
-      this.barChartData22.datasets[0].data = this.progressStatistics.exercisesPerformedToMonth;
-      this.barChartData22.datasets[1].data = this.progressStatistics.exercisesCompletedToMonth;
+      this.barChartData21.datasets[0].data = this.progressStatistics?.pointsScoredToMonth;
+      this.barChartData22.datasets[0].data = this.progressStatistics?.exercisesPerformedToMonth;
+      this.barChartData22.datasets[1].data = this.progressStatistics?.exercisesCompletedToMonth;
 
-      this.barChartData41.datasets[0].data = this.progressStatistics.pointsScoredToHour;
-      this.barChartData42.datasets[0].data = this.progressStatistics.exercisesPerformedToHour;
-      this.barChartData42.datasets[1].data = this.progressStatistics.exercisesCompletedToHour;
+      this.barChartData41.datasets[0].data = this.progressStatistics?.pointsScoredToHour;
+      this.barChartData42.datasets[0].data = this.progressStatistics?.exercisesPerformedToHour;
+      this.barChartData42.datasets[1].data = this.progressStatistics?.exercisesCompletedToHour;
 
       this.chart?.update();
       this.load = false;
     });
+    this.chart?.update();
   }
 
   public barChartData11: ChartData = {
@@ -218,6 +242,6 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
   };
 
   ngAfterViewInit(): void {
-    this.chart.update();
+    this.chart?.update();
   }
 }
