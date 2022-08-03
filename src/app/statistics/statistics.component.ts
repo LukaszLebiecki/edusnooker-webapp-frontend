@@ -74,7 +74,7 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
     this.show = false;
     setTimeout(()=>{
       this.show = true;
-    },50);
+    },300);
 
   }
 
