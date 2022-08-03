@@ -33,8 +33,11 @@
       <div class="col-12">
         <h5 class="text-end">{{year}}</h5>
         <canvas id="myChart11" baseChart
+                *ngIf="show"
                 [data]="barChartData11"
-                [type]="barChartType">
+                [type]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
         </canvas>
       </div>
     </div>
@@ -44,8 +47,11 @@
       <div class="col-12">
         <h5 class="text-end">{{year}}</h5>
         <canvas id="myChart12" baseChart
+                *ngIf="show"
                 [data]="barChartData12"
-                [type]="barChartType">
+                [type]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
         </canvas>
       </div>
     </div>
@@ -56,8 +62,11 @@
       <div class="col-12">
         <h5 class="text-end">{{stringMonth}}, {{year}}</h5>
         <canvas id="myChart21" baseChart
+                *ngIf="show"
                 [data]="barChartData21"
-                [type]="barChartType">
+                [type]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
         </canvas>
       </div>
     </div>
@@ -67,8 +76,11 @@
       <div class="col-12">
         <h5 class="text-end">{{stringMonth}}, {{year}}</h5>
         <canvas id="myChart22" baseChart
+                *ngIf="show"
                 [data]="barChartData22"
-                [type]="barChartType">
+                [type]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
         </canvas>
       </div>
     </div>
@@ -80,7 +92,9 @@
         <h5 class="text-end">Hours</h5>
         <canvas id="myChart41" baseChart
                 [data]="barChartData41"
-                [type]="barChartType">
+                [type]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
         </canvas>
       </div>
     </div>
@@ -91,7 +105,9 @@
         <h5 class="text-end">Hours</h5>
         <canvas id="myChart42" baseChart
                 [data]="barChartData42"
-                [type]="barChartType">
+                [type]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
         </canvas>
       </div>
     </div>

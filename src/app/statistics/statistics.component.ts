@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {ChartData, ChartType} from "chart.js";
-import {ProgressChartsHome} from "../progress/models/progress-charts-home";
+import {ChartData, ChartEvent, ChartType} from "chart.js";
 import {BaseChartDirective} from "ng2-charts";
 import {User} from "../user/models/user";
 import {AuthenticationService} from "../auth/authentication.service";
@@ -26,7 +25,7 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
   public currentYear: number;
   public year: number;
   public stringMonth: string;
-  public allYearStatistics: number[] = [2022, 2021, 2020] // todo create load year last
+  public allYearStatistics: number[] = [];
   public dataLoadForm: FormGroup;
   private progressCharts11: number[] = [];
   private progressCharts12: number[] = [];
@@ -38,6 +37,7 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
   private progressCharts42: number[] = [];
   private progressCharts43: number[] = [];
   public load: boolean = true;
+  public show: boolean = true;
 
   constructor(private statisticsService: StatisticsService,
               private authenticationService: AuthenticationService,
@@ -51,9 +51,9 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
     this.userServiceShow.userCurrent$.subscribe((user) => {
       this.user = user
     });
+    this.loadYears();
     this.loadData();
     this.loadStatistics();
-    this.chart?.update();
     this.dataLoadForm = this.buildDateLoadStatistic();
   }
 
@@ -68,7 +68,14 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
     this.year = this.dataLoadForm?.value.year;
     this.month = +this.dataLoadForm?.value.month;
     this.changeNumberToStringMonth(this.month);
+
     this.loadStatistics();
+
+    this.show = false;
+    setTimeout(()=>{
+      this.show = true;
+    },50);
+
   }
 
   loadData() {
@@ -121,6 +128,12 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
     }
   }
 
+  loadYears():void {
+    this.statisticsService.getYears(this.user.userId).subscribe((y) => {
+      this.allYearStatistics = y?.progressYear;
+    });
+  }
+
   loadStatistics(): void {
     this.statisticsService.getStatistics(this.user.userId, this.month, this.year).subscribe((p) => {
       this.progressStatistics.pointsScoredToYear = p?.pointsScoredToYear;
@@ -145,10 +158,9 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
       this.barChartData42.datasets[0].data = this.progressStatistics?.exercisesPerformedToHour;
       this.barChartData42.datasets[1].data = this.progressStatistics?.exercisesCompletedToHour;
 
-      this.chart?.update();
+      this.chart?.chart?.update();
       this.load = false;
     });
-    this.chart?.update();
   }
 
   public barChartData11: ChartData = {
@@ -241,7 +253,16 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
     ]
   };
 
+  public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+    console.log(event, active);
+  }
+
+  public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+    console.log(event, active);
+  }
+
+
   ngAfterViewInit(): void {
-    this.chart?.update();
+    this.chart?.chart.update();
   }
 }
