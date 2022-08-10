@@ -235,16 +235,17 @@
 
 <!--part-3 exercise-->
 <div class="modal fade" id="workout3" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
-     aria-labelledby="workout3ToggleLabel" tabindex="-1">
+     aria-labelledby="workout3ToggleLabel" tabindex="-1" style="z-index: 1400;">
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="workout3ToggleLabel">{{selectedExercise?.name}} - <small class="fst-italic">exercise exam</small></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="workout3ToggleLabel">{{selectedExercise?.name}} - <small class="fst-italic">exercise
+          exam</small></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="reload()"></button>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-4">
+          <div class="col-4" [hidden]="viewBonus">
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
                 <button class="btn btn-success m-1 mt-2 mt-lg-1 w-75" [hidden]="!selectedExercise.buttonPass"
@@ -316,6 +317,32 @@
               </div>
             </div>
           </div>
+          <!-- BONUS -->
+          <div class="col-4" [hidden]="!viewBonus">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <h5 class="modal-title" id="staticBackdropLabel">Extra points</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <h6>
+                  {{selectedExercise.bonusInfo}}
+                </h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button type="button" class="btn btn-success w-75 mt-2 mt-lg-1" (click)="bonusYes()">Yes</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button type="button" class="btn btn-danger w-75 mt-2 mt-lg-1" (click)="bonusNo()">No</button>
+              </div>
+            </div>
+          </div>
+
           <div class="col-8">
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
@@ -325,7 +352,8 @@
             <div class="row">
               <div class="col-lg-4 d-flex justify-content-center">
                 <div class="alert alert-success text-start row m-1 w-100" role="alert">
-                  <span class="col-12 text-font-scoring text-center"><small>Points</small> <br> {{resultNumberOfPoint}}</span>
+                <span
+                  class="col-12 text-font-scoring text-center"><small>Points</small> <br> {{resultNumberOfPoint}}</span>
                 </div>
               </div>
               <div class="col-lg-4 d-flex justify-content-center">

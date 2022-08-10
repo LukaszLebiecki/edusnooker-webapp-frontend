@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public blockedButtonStart: boolean = false;
   public blockedButtonPause = false;
   public videoUrl: SafeResourceUrl = "";
+  public viewBonus: boolean = false;
   public lastExercise: Exercise;
   public tipsAndTrivia: string;
   public isProgress: boolean = false;
@@ -222,10 +223,34 @@ export class HomeComponent implements OnInit, AfterViewInit {
     return this.progressUser;
   }
 
+  hideBonus() {
+    this.viewBonus = false;
+  }
+
+  bonusYes() {
+    this.resultNumberOfPoint += this.selectedExercise.bonusNumberOfPoints;
+    this.hideBonus();
+  }
+
+  bonusNo() {
+    this.hideBonus();
+  }
+
+  showBonus() {
+    this.viewBonus = true;
+  }
+
+  bonusLogic() {
+    if (this.selectedExercise.bonusPoint) {
+      this.showBonus();
+    }
+  }
+
   clickPointPass() {
     this.resultNumberOfPoint += 1;
     this.logicAttempt();
     this.endExercises = this.checkEndExercises();
+    this.bonusLogic();
   }
 
   clickPointMiss() {
@@ -237,42 +262,49 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.resultNumberOfPoint += 1;
     this.logicAttempt();
     this.endExercises = this.checkEndExercises();
+    this.bonusLogic();
   }
 
   clickPointYellow() {
     this.resultNumberOfPoint += 2;
     this.logicAttempt();
     this.endExercises = this.checkEndExercises();
+    this.bonusLogic();
   }
 
   clickPointGreen() {
     this.resultNumberOfPoint += 3;
     this.logicAttempt();
     this.endExercises = this.checkEndExercises();
+    this.bonusLogic();
   }
 
   clickPointBrown() {
     this.resultNumberOfPoint += 4;
     this.logicAttempt();
     this.endExercises = this.checkEndExercises();
+    this.bonusLogic();
   }
 
   clickPointBlue() {
     this.resultNumberOfPoint += 5;
     this.logicAttempt();
     this.endExercises = this.checkEndExercises();
+    this.bonusLogic();
   }
 
   clickPointPink() {
     this.resultNumberOfPoint += 6;
     this.logicAttempt();
     this.endExercises = this.checkEndExercises();
+    this.bonusLogic();
   }
 
   clickPointBlack() {
     this.resultNumberOfPoint += 7;
     this.logicAttempt();
     this.endExercises = this.checkEndExercises();
+    this.bonusLogic();
   }
 
   updateVideoUrl(id: string) {
