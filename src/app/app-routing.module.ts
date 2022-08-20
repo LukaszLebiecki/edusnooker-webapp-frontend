@@ -11,6 +11,10 @@ import {MyaccountComponent} from "./myaccount/myaccount.component";
 import {ResetpasswordComponent} from "./resetpassword/resetpassword.component";
 import {StatisticsComponent} from "./statistics/statistics.component";
 import {TechniqueComponent} from "./technique/technique.component";
+import {PaymentsComponent} from "./payments/payments/payments.component";
+import {StatuteComponent} from "./statute/statute/statute.component";
+import {PolicyComponent} from "./policy/policy/policy.component";
+import {ContactComponent} from "./contact/contact/contact.component";
 
 const APP_ROUTES: Route[] = [
   {path: 'login', component: LoginComponent},
@@ -23,7 +27,12 @@ const APP_ROUTES: Route[] = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard]},
   {path: 'technique', component: TechniqueComponent, canActivate: [AuthGuard]},
+  {path: 'payments', component: PaymentsComponent, canActivate: [AuthGuard]},
+  {path: 'statute', component: StatuteComponent, canActivate: [AuthGuard]},
+  {path: 'policy', component: PolicyComponent, canActivate: [AuthGuard]},
+  {path: 'contact', component: ContactComponent, canActivate: [AuthGuard]},
   {path: '', pathMatch: 'full', redirectTo: '/login'}
+
 ]
 
 @NgModule({

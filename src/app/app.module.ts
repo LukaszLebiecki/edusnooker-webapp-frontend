@@ -33,6 +33,10 @@ import { ExerciseComponent } from './exercise/exercise/exercise.component';
 import { NgChartsModule } from "ng2-charts";
 import { StatisticsComponent } from './statistics/statistics.component';
 import { TechniqueComponent } from './technique/technique.component';
+import { PaymentsComponent } from './payments/payments/payments.component';
+import { StatuteComponent } from './statute/statute/statute.component';
+import { PolicyComponent } from './policy/policy/policy.component';
+import { ContactComponent } from './contact/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,11 @@ import { TechniqueComponent } from './technique/technique.component';
     ResetpasswordComponent,
     ExerciseComponent,
     StatisticsComponent,
-    TechniqueComponent
+    TechniqueComponent,
+    PaymentsComponent,
+    StatuteComponent,
+    PolicyComponent,
+    ContactComponent
   ],
     imports: [
         CommonModule,

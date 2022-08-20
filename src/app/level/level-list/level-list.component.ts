@@ -6,6 +6,7 @@ import {ProgressLevel} from "../../progress/models/progress-level";
 import {ProgressExercise} from "../../progress/models/progress-exercise";
 import {ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "../../auth/authentication.service";
+import {Role} from "../../role/role.enum";
 
 
 @Component({
@@ -42,10 +43,17 @@ export class LevelListComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_id = this.getCurrentUserId();
-    this.loadLevelProgress();
+    if (this.isBasic()) {
+      this.loadLevelProgress();
+    } else {
+      this.loadLevelDemo();
+    }
 
   }
 
+  isBasic(): boolean {
+    return this.getCurrentUserRole() === Role.BASIC || this.getCurrentUserRole() === Role.ADMIN || this.getCurrentUserRole() === Role.PREMIUM;
+  }
 
   loadLevelProgress() {
     this.levelService.getLevels().subscribe((levels: Level[]) => {
@@ -58,7 +66,19 @@ export class LevelListComponent implements OnInit {
       this.loadProgressLevel();
       this.loadLevelIsPass();
     });
+  }
 
+  loadLevelDemo() {
+    this.levelService.getLevelsDemo().subscribe((levels: Level[]) => {
+      this.levelsInfo = levels;
+      this.loadProgressLevel();
+      this.loadLevelIsPass();
+    });
+    this.progressService.getProgressLevelListByUser(this.user_id).subscribe((p) => {
+      this.progressLevel = p;
+      this.loadProgressLevel();
+      this.loadLevelIsPass();
+    });
   }
 
   loadProgressLevel(): void {
@@ -78,6 +98,10 @@ export class LevelListComponent implements OnInit {
 
   private getCurrentUserId(): string {
     return this.authenticationService.getUserFromLocalCache().userId;
+  }
+
+  private getCurrentUserRole(): string {
+    return this.authenticationService.getUserFromLocalCache().role;
   }
 
 }

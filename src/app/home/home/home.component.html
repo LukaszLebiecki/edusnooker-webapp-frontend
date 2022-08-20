@@ -16,7 +16,7 @@
   <div class="row">
     <div class="col-12 my-5">
       <div class="d-grid gap-2 col-lg-3 col-md-12 mx-auto">
-        <a [routerLink]="'/level'" class="btn btn-outline-success">GO TO THE WORKOUT LIST</a>
+        <button [routerLink]="'/level'" class="btn btn-outline-success">GO TO THE WORKOUT LIST</button>
       </div>
     </div>
   </div>
@@ -67,7 +67,7 @@
         <div class="card-body">
           <h5 class="card-title">Tips and Trivia</h5>
           <p class="field-text-height fst-italic">"{{tipsAndTrivia}}"</p>
-          <a href="#" class="btn btn-success">Go to technique</a>
+          <button [routerLink]="'/technique'" class="btn btn-success">Go to technique</button>
         </div>
       </div>
     </div>
@@ -76,8 +76,7 @@
         class="card card-width card-height text-center shadow p-1 mb-2 bg-body rounded text-dark bg-warning container-fluid">
         <div class="card-body">
           <h5 class="card-title">Favorite exercises</h5>
-
-          <a [routerLink]="'/favorite'" class="btn btn-success">Go to favorites</a>
+          <button [routerLink]="'/favorite'" [disabled]="!isBasic()" class="btn btn-success">Go to favorites</button>
         </div>
       </div>
     </div>

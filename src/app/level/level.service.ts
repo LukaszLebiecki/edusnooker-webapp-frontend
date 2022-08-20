@@ -19,5 +19,9 @@ export class LevelService {
     return this.http.get<Level[]>(this.apiUrl + '/api/level');
   }
 
+  getLevelsDemo(): Observable<Level[]> {
+    return this.http.get<Level[]>(this.apiUrl + '/api/level/demo');
+  }
+
 
 }

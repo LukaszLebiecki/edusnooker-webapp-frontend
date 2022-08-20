@@ -15,6 +15,7 @@ import {ActivatedRoute} from "@angular/router";
 import {NotificationType} from "../../notification/notification-type.enum";
 import {HttpErrorResponse} from "@angular/common/http";
 import {HomeService} from "../home.service";
+import {Role} from "../../role/role.enum";
 
 @Component({
   selector: 'app-home',
@@ -101,6 +102,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   getRandomInt(max: number): number {
     return Math.floor(Math.random() * max);
+  }
+
+  isBasic(): boolean {
+    return this.user.role === Role.BASIC || this.user.role === Role.PREMIUM || this.user.role === Role.ADMIN;
   }
 
   randomTipsAndTrivia() {

@@ -52,3 +52,20 @@
     </div>
   </div>
 </div>
+<div [hidden]="isBasic()" class="container">
+  <div class="row justify-content-center p-4">
+    <div class="card shadow p-3 mb-2 bg-body rounded">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row h4 text-center m-3 text-uppercase">
+            <p>This is demo version</p>
+          </div>
+          <div class="row h4 text-center m-3 text-uppercase">
+            <button [routerLink]="['/payments']"  type="button" class="btn btn-success btn-sm text-uppercase">Go to full version</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
