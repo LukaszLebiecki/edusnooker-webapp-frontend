@@ -9,7 +9,6 @@ export class TechniqueComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {  }
 
 }
