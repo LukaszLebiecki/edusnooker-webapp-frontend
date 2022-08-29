@@ -37,6 +37,7 @@ import { PaymentsComponent } from './payments/payments/payments.component';
 import { StatuteComponent } from './statute/statute/statute.component';
 import { PolicyComponent } from './policy/policy/policy.component';
 import { ContactComponent } from './contact/contact/contact.component';
+import {FavoriteComponent} from "./exercise/favorite/favorite.component";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ContactComponent } from './contact/contact/contact.component';
     PaymentsComponent,
     StatuteComponent,
     PolicyComponent,
-    ContactComponent
+    ContactComponent,
+    FavoriteComponent
   ],
     imports: [
         CommonModule,

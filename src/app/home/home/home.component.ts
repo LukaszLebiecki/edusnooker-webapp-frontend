@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public timeEnd: boolean = false;
   public clicked: boolean = false;
   public clickStart: boolean = false;
-  public TIME_LIMIT: number = 1200;
+  public TIME_LIMIT: number = 3;
   public blockedButtonStart: boolean = false;
   public blockedButtonPause = false;
   public videoUrl: SafeResourceUrl = "";

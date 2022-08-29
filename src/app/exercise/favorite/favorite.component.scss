@@ -1,0 +1,167 @@
+@import "src/assets/styles/variables";
+
+
+.icon-info {
+  color: black;
+  opacity: 60%;
+}
+
+.noActive {
+  color: black;
+  opacity: 10%;
+}
+
+.ok {
+  color: $green;
+  opacity: 100%;
+}
+
+.text-font {
+  font-size: 1.6rem;
+}
+
+.text-font-scoring {
+  font-size: 1.1rem;
+}
+
+.font-days {
+  font-size: 0.8rem;
+}
+
+/* Sets the containers height and width */
+.base-timer {
+  position: relative;
+  height: 300px;
+  width: 300px;
+}
+
+/* Removes SVG styling that would hide the time label */
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+/* The SVG path that displays the timer's progress */
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.base-timer__label {
+  position: absolute;
+
+  /* Size should match the parent container */
+  width: 300px;
+  height: 300px;
+
+  /* Keep the label aligned to the top */
+  top: 0;
+
+  /* Create a flexible box that centers content vertically and horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Sort of an arbitrary number; adjust to your liking */
+  font-size: 48px;
+}
+
+.base-timer__svg {
+  /* Flips the svg and makes the animation to move left-to-right */
+  transform: scaleX(-1);
+}
+
+.base-timer__path-remaining.green {
+  color: rgb(65, 184, 131);
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.orange {
+  color: orange;
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.red {
+  color: red;
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  stroke: currentColor;
+}
+
+.btn-red,
+.btn-yellow,
+.btn-green,
+.btn-brown,
+.btn-blue,
+.btn-pink,
+.btn-black,
+.btn-bonus {
+  background-color: transparent;
+  text-align: center;
+  font-style: inherit;
+  border-radius: 4px;
+  font-size: 20px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.btn-red:hover,
+.btn-yellow:hover,
+.btn-green:hover,
+.btn-brown:hover,
+.btn-blue:hover,
+.btn-pink:hover,
+.btn-black:hover,
+.btn-bonus:hover {
+  opacity: 80%;
+}
+
+.btn-red {
+  border: 1px solid $level-red;
+  color: $level-red;
+}
+
+.btn-yellow {
+  border: 1px solid $level-yellow;
+  color: $level-yellow;
+}
+
+.btn-green {
+  border: 1px solid $level-green;
+  color: $level-green;
+}
+
+.btn-brown {
+  border: 1px solid $level-brown;
+  color: $level-brown;
+}
+
+.btn-blue {
+  border: 1px solid $level-blue;
+  color: $level-blue;
+}
+
+.btn-pink {
+  border: 1px solid $level-pink;
+  color: $level-pink;
+}
+
+.btn-black {
+  border: 1px solid $level-black;
+  color: $level-black;
+}

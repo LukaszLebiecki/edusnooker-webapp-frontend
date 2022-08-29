@@ -19,6 +19,7 @@ import {LevelRoutingModule} from "./level-routing.module";
     HttpClientModule,
     SharedModule,
     LevelRoutingModule
+
   ]
 })
 export class LevelModule {}
