@@ -29,6 +29,9 @@ export class FavoriteComponent implements OnInit {
   public levelSlotOne: number;
   public levelSlotTwo: number;
   public levelSlotThree: number;
+  public progressSlotOne: ProgressExercise;
+  public progressSlotTwo: ProgressExercise;
+  public progressSlotThree: ProgressExercise;
   public progressUser: ProgressUser;
   public user: User;
   public resultNumberOfPoint: number = 0;
@@ -54,7 +57,7 @@ export class FavoriteComponent implements OnInit {
   private FULL_DASH_ARRAY: number = 283;
   private audio: any = new Audio();
 
-  public progressMap: Map<string, ProgressExercise> = new Map<string, ProgressExercise>();
+  public progressExerciseMap: Map<string, ProgressExercise> = new Map<string, ProgressExercise>();
 
   constructor(private exerciseService: ExerciseService,
               private progressSharedService: ProgressSharedService,
@@ -67,7 +70,6 @@ export class FavoriteComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTestExercise()
-    this.progressSharedService.progressExerciseMap$.subscribe((progress) => this.progressMap = progress);
     this.user = this.authenticationService.getUserFromLocalCache();
     this.userServiceShow.userCurrent$.subscribe((user) => {
       this.user = user
