@@ -80,14 +80,14 @@ export class FavoriteComponent implements OnInit {
       this.exerciseSlotOne = e[0];
       this.levelSlotOne = this.changeLevelToNumber(this.exerciseSlotOne.level)
     })
-    this.exerciseService.getExerciseList(1).subscribe(e => {
-      this.exerciseSlotTwo = e[1];
-      this.levelSlotTwo = this.changeLevelToNumber(this.exerciseSlotTwo.level)
-    })
-    this.exerciseService.getExerciseList(2).subscribe(e => {
-      this.exerciseSlotThree = e[2]
-    this.levelSlotThree = this.changeLevelToNumber(this.exerciseSlotThree.level)
-    })
+    // this.exerciseService.getExerciseList(1).subscribe(e => {
+    //   this.exerciseSlotTwo = e[1];
+    //   this.levelSlotTwo = this.changeLevelToNumber(this.exerciseSlotTwo.level)
+    // })
+    // this.exerciseService.getExerciseList(2).subscribe(e => {
+    //   this.exerciseSlotThree = e[2]
+    // this.levelSlotThree = this.changeLevelToNumber(this.exerciseSlotThree.level)
+    // })
   }
 
   loadProgressExercise() {

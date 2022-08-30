@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 p-4 ">
     <tbody *ngFor="let exercise of exerciseList; let i = index" class="col">
-    <div class="card shadow p-3 m-auto my-3 bg-body rounded text-dark bg-warning" style="width: 22rem; height: 32rem">
+    <div class="card shadow p-3 m-auto my-3 bg-body rounded text-dark bg-warning" style="width: 22rem; height: 34rem">
       <div class="level-color-{{index}}">
+        <h6 class="text-center text-hash mt-2">#{{exercise.exerciseId}}</h6>
         <img src="assets/image/{{exercise.img}}" class="card-img-top" alt="...">
         <div class="card-body" style="height: 18.5rem">
           <div class="row">
