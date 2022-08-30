@@ -24,9 +24,11 @@
           <p style="height: 9.5rem" class="card-text">{{exercise.description}}</p>
           <div class="container-fluid">
             <div class="row-cols-1">
-              <a class="btn btn-success btn-sm w-100 justify-content-center" role="button" data-bs-toggle="modal"
+              <a class="btn btn-success btn-sm w-75 justify-content-center" role="button" data-bs-toggle="modal"
                  href="#workout1" (click)="onSelectExercise(exercise)">Go to exercise
               </a>
+              <a class="btn btn-sm w-auto ms-4" role="button" data-bs-toggle="modal"
+                 href="#favorite" (click)="onSelectExercise(exercise)"><i class="bi bi-star-fill btn-favorite"></i></a>
             </div>
           </div>
         </div>
@@ -321,4 +323,27 @@
   </div>
 </div>
 
+<!--favorite-->
+<div class="modal fade" id="favorite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Favorite exercises</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <button type="button" data-bs-dismiss="modal" class="btn btn-outline-secondary my-2">Save to slot 1</button>
+        </div>
+        <div class="row">
+          <button type="button" data-bs-dismiss="modal" class="btn btn-outline-secondary my-2">Save to slot 2</button>
+        </div>
+        <div class="row">
+          <button type="button" data-bs-dismiss="modal" class="btn btn-outline-secondary my-2">Save to slot 3</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 
