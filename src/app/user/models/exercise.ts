@@ -30,7 +30,7 @@ export class Exercise {
     this.name = '';
     this.description = '';
     this.videoUrl = '';
-    this.img = '';
+    this.img = 'e000.png';
     this.numberOfPointsToPassed = 0;
     this.maxPoints = 0;
     this.numberOfAttempts = 0;

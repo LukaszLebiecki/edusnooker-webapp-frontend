@@ -21,4 +21,8 @@ export class ProgressService {
   getProgressExerciseByUser(user_id: string, level_id: number): Observable<ProgressExercise[]> {
     return this.http.get<ProgressExercise[]>(this.apiUrl + "/api/" + user_id + '/progress/' + level_id);
   }
+
+  getProgressExerciseAllByUser(user_id: string): Observable<ProgressExercise[]> {
+    return this.http.get<ProgressExercise[]>(this.apiUrl + "/api/" + user_id + '/progress/all');
+  }
 }

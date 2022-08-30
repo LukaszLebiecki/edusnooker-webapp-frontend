@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ExerciseList} from "./models/exercise-list";
 import {Exercise} from "../user/models/exercise";
 import {environment} from "../../environments/environment";
 import {ProgressUser} from "../progress/models/progress-user";
@@ -35,5 +34,6 @@ export class ExerciseService {
     formData.append('userId', progressUser.userId);
     return formData;
   }
+
 
 }

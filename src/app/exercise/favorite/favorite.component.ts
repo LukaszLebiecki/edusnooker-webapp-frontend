@@ -29,9 +29,6 @@ export class FavoriteComponent implements OnInit {
   public levelSlotOne: number;
   public levelSlotTwo: number;
   public levelSlotThree: number;
-  public progressSlotOne: ProgressExercise;
-  public progressSlotTwo: ProgressExercise;
-  public progressSlotThree: ProgressExercise;
   public progressUser: ProgressUser;
   public user: User;
   public resultNumberOfPoint: number = 0;
@@ -74,6 +71,7 @@ export class FavoriteComponent implements OnInit {
     this.userServiceShow.userCurrent$.subscribe((user) => {
       this.user = user
     });
+    this.loadProgressExercise()
   }
 
   //test
@@ -92,6 +90,13 @@ export class FavoriteComponent implements OnInit {
     })
   }
 
+  loadProgressExercise() {
+    this.progressService.getProgressExerciseAllByUser(this.user.userId).subscribe((p) => {
+      for (let exercise of p) {
+        this.progressExerciseMap.set(exercise.idExercise, exercise);
+      }
+    });
+  }
 
   public onAddProgressUser(progressUser: ProgressUser): void {
     const formData = this.exerciseService.createProgressUserFormDate(progressUser)
