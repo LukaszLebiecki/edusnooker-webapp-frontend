@@ -7,7 +7,7 @@
     <div class="col">
       <div class="card shadow p-3 m-auto mb-5 bg-body rounded text-dark bg-warning" style="width: 24rem; height: 40rem;" >
         <p class="text-center text-slot"><b>SLOT - 1</b></p>
-        <div *ngIf="exerciseSlotOne.exerciseId" class="level-color-{{levelSlotOne}}" >
+        <div *ngIf="exerciseSlotOne.exerciseId !== 'e000'" class="level-color-{{levelSlotOne}}" >
           <h6 class="text-center text-hash mt-2">#{{exerciseSlotOne.exerciseId}}</h6>
           <img src="assets/image/{{exerciseSlotOne?.img}}" class="card-img-top" alt="...">
           <div class="card-body" style="height: 18.5rem">
@@ -55,7 +55,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!exerciseSlotOne.exerciseId">
+        <div *ngIf="exerciseSlotOne.exerciseId === 'e000'">
           <img class="img-fluid" src="assets/image/empty.png">
         </div>
         <p class="text-center text-slot mt-3"><b>SLOT - 1</b></p>
@@ -65,7 +65,7 @@
     <div class="col">
       <div class="card shadow p-3 m-auto mb-5 bg-body rounded text-dark bg-warning" style="width: 24rem; height: 40rem;" >
         <p class="text-center text-slot"><b>SLOT - 2</b></p>
-        <div *ngIf="exerciseSlotTwo?.exerciseId" class="level-color-{{levelSlotTwo}}" >
+        <div *ngIf="exerciseSlotTwo.exerciseId !== 'e000'" class="level-color-{{levelSlotTwo}}" >
           <h6 class="text-center text-hash mt-2">#{{exerciseSlotTwo.exerciseId}}</h6>
           <img src="assets/image/{{exerciseSlotTwo?.img}}" class="card-img-top" alt="...">
           <div class="card-body" style="height: 18.5rem">
@@ -113,7 +113,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!exerciseSlotTwo?.exerciseId">
+        <div *ngIf="exerciseSlotTwo.exerciseId === 'e000'">
           <img class="img-fluid" src="assets/image/empty.png">
         </div>
         <p class="text-center text-slot mt-3"><b>SLOT - 2</b></p>
@@ -123,7 +123,7 @@
     <div class="col">
       <div class="card shadow p-3 m-auto mb-5 bg-body rounded text-dark bg-warning" style="width: 24rem; height: 40rem;" >
         <p class="text-center text-slot"><b>SLOT - 3</b></p>
-        <div *ngIf="exerciseSlotThree.exerciseId" class="level-color-{{levelSlotThree}}" >
+        <div *ngIf="exerciseSlotThree.exerciseId !== 'e000'" class="level-color-{{levelSlotThree}}" >
           <h6 class="text-center text-hash mt-2">#{{exerciseSlotThree.exerciseId}}</h6>
           <img src="assets/image/{{exerciseSlotThree?.img}}" class="card-img-top" alt="...">
           <div class="card-body" style="height: 18.5rem">
@@ -171,7 +171,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!exerciseSlotThree.exerciseId">
+        <div *ngIf="exerciseSlotThree.exerciseId === 'e000'">
           <img class="img-fluid" src="assets/image/empty.png">
         </div>
         <p class="text-center text-slot mt-3"><b>SLOT - 3</b></p>

@@ -66,28 +66,29 @@ export class FavoriteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadTestExercise()
     this.user = this.authenticationService.getUserFromLocalCache();
     this.userServiceShow.userCurrent$.subscribe((user) => {
       this.user = user
     });
+    this.loadTestExercise()
     this.loadProgressExercise()
   }
 
+
   //test
   public loadTestExercise() {
-    this.exerciseService.getExerciseList(0).subscribe(e => {
-      this.exerciseSlotOne = e[0];
-      this.levelSlotOne = this.changeLevelToNumber(this.exerciseSlotOne.level)
+    this.exerciseService.getExerciseSlotOne(this.user.userId).subscribe(exercise => {
+      this.exerciseSlotOne = exercise;
+      this.levelSlotOne = FavoriteComponent.changeLevelToNumber(this.exerciseSlotOne.level)
     })
-    // this.exerciseService.getExerciseList(1).subscribe(e => {
-    //   this.exerciseSlotTwo = e[1];
-    //   this.levelSlotTwo = this.changeLevelToNumber(this.exerciseSlotTwo.level)
-    // })
-    // this.exerciseService.getExerciseList(2).subscribe(e => {
-    //   this.exerciseSlotThree = e[2]
-    // this.levelSlotThree = this.changeLevelToNumber(this.exerciseSlotThree.level)
-    // })
+    this.exerciseService.getExerciseSlotTwo(this.user.userId).subscribe(exercise => {
+      this.exerciseSlotTwo = exercise;
+      this.levelSlotTwo = FavoriteComponent.changeLevelToNumber(this.exerciseSlotTwo.level)
+    })
+    this.exerciseService.getExerciseSlotThree(this.user.userId).subscribe(exercise => {
+      this.exerciseSlotThree = exercise;
+      this.levelSlotThree = FavoriteComponent.changeLevelToNumber(this.exerciseSlotThree.level)
+    })
   }
 
   loadProgressExercise() {
@@ -144,7 +145,7 @@ export class FavoriteComponent implements OnInit {
     this.currentStrokes = 1;
   }
 
-  private changeLevelToNumber(level: string): number {
+  public static changeLevelToNumber(level: string): number {
     switch (level) {
       case "WHITE": {
         return 0;
@@ -177,7 +178,7 @@ export class FavoriteComponent implements OnInit {
   progressStart(): ProgressUser {
     this.progressUser = new ProgressUser();
     this.progressUser.idExercise = this.selectedExercise.exerciseId;
-    this.progressUser.numberLevel = this.changeLevelToNumber(this.selectedExercise.level);
+    this.progressUser.numberLevel = FavoriteComponent.changeLevelToNumber(this.selectedExercise.level);
     this.progressUser.numberOfPointsToPassed = this.selectedExercise.numberOfPointsToPassed;
     this.progressUser.resultNumberOfPoint = this.resultNumberOfPoint;
     this.progressUser.dateTimeExercise = Date.now();

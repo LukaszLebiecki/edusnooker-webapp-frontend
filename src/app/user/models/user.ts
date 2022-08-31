@@ -13,6 +13,9 @@ export class User {
   public role: string;
   public authorities: [];
   public progressList: [];
+  public favoriteSlotOne: string;
+  public favoriteSlotTwo: string;
+  public favoriteSlotThree: string;
 
 
   constructor() {
@@ -30,5 +33,8 @@ export class User {
     this.role = '';
     this.authorities = [];
     this.progressList = [];
+    this.favoriteSlotOne = '';
+    this.favoriteSlotTwo = '';
+    this.favoriteSlotThree = '';
   }
 }

@@ -20,6 +20,20 @@ export class ExerciseService {
     return this.http.get<Exercise[]>(this.apiUrl + "/api/level/" + level + '/exercise');
   }
 
+  getExerciseSlotOne(userId: string): Observable<Exercise> {
+    return this.http.get<Exercise>(this.apiUrl + "/api/" + userId + "/exercise/slot/one");
+  }
+
+  getExerciseSlotTwo(userId: string): Observable<Exercise> {
+    return this.http.get<Exercise>(this.apiUrl + "/api/" + userId + "/exercise/slot/two");
+  }
+
+  getExerciseSlotThree(userId: string): Observable<Exercise> {
+    return this.http.get<Exercise>(this.apiUrl + "/api/" + userId + "/exercise/slot/three");
+  }
+
+
+
   addProgressUser(formData: FormData): Observable<ProgressUser> {
     return this.http.post<ProgressUser>(`${this.apiUrl}/api/progress/add`, formData);
   }
