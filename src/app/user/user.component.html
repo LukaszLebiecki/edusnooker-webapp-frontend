@@ -429,6 +429,10 @@
                   <input type="number" name="numberOfStrokesInOneAttempt" required ngModel class="form-control">
                 </div>
                 <div class="form-group my-2">
+                  <label id="length">Length exercise (sec)</label>
+                  <input type="number" name="length" required ngModel class="form-control">
+                </div>
+                <div class="form-group my-2">
                   <label id="level">Level</label>
                   <select name="level" required ngModel class="form-control">
                     <option value="WHITE">WHITE</option>
@@ -658,6 +662,10 @@
                 <div class="form-group my-2">
                   <label for="numberOfStrokesInOneAttempt">Number of strokes in one attempt</label>
                   <input type="number" name="numberOfStrokesInOneAttempt" required [(ngModel)]="editExercise.numberOfStrokesInOneAttempt" class="form-control">
+                </div>
+                <div class="form-group my-2">
+                  <label id="length2">Length exercise (sec)</label>
+                  <input type="number" name="length" required [(ngModel)]="editExercise.length" class="form-control">
                 </div>
                 <div class="form-group my-2">
                   <label for="level">Level</label>

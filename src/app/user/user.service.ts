@@ -119,6 +119,7 @@ export class UserService {
     formData.append('isBonusPoint', JSON.stringify(exercise.bonusPoint));
     formData.append('bonusInfo', exercise.bonusInfo);
     formData.append('bonusNumberOfPoints', JSON.stringify(exercise.bonusNumberOfPoints));
+    formData.append('length', JSON.stringify(exercise.length))
     return formData;
   }
 }
