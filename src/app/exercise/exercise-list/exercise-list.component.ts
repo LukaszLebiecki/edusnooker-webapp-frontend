@@ -15,6 +15,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {NotificationService} from "../../notification/notification.service";
 import {SubSink} from "subsink";
 import {FavoriteSlot} from "../models/favorite-slot";
+import {Role} from "../../role/role.enum";
 
 @Component({
   selector: 'app-exercise-list',
@@ -147,6 +148,10 @@ export class ExerciseListComponent implements OnInit {
     } else {
       this.notificationService.notify(notificationType, 'An error occurred, Please try again.');
     }
+  }
+
+  isBasic(): boolean {
+    return this.user.role === Role.BASIC || this.user.role === Role.PREMIUM || this.user.role === Role.ADMIN;
   }
 
   private checkEndExercises(): boolean {

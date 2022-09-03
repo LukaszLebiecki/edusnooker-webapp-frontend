@@ -28,8 +28,8 @@
               <a class="btn btn-success btn-sm w-75 justify-content-center" role="button" data-bs-toggle="modal"
                  href="#workout1" (click)="onSelectExercise(exercise)">Go to exercise
               </a>
-              <a class="btn btn-sm w-auto ms-4" role="button" data-bs-toggle="modal"
-                 href="#favorite" (click)="onSelectExercise(exercise)"><i class="bi bi-star-fill btn-favorite"></i></a>
+              <button class="btn btn-sm w-auto ms-4" role="button" data-bs-toggle="modal"
+                 href="#favorite" (click)="onSelectExercise(exercise)" [disabled]="!isBasic()"><i class="bi bi-star-fill btn-favorite"></i></button>
             </div>
           </div>
         </div>
