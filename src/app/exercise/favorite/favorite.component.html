@@ -48,9 +48,11 @@
             <p style="height: 9.5rem" class="card-text">{{exerciseSlotOne.description}}</p>
             <div class="container-fluid">
               <div class="row-cols-1">
-                <a class="btn btn-success btn-sm w-100 justify-content-center" role="button" data-bs-toggle="modal"
+                <a class="btn btn-success btn-sm w-75 justify-content-center" role="button" data-bs-toggle="modal"
                    href="#workout1" (click)="onSelectExercise(exerciseSlotOne)">Go to exercise
                 </a>
+                <a class="btn btn-sm w-auto ms-4" role="button" data-bs-toggle="modal"
+                   href="#favorite" (click)="onDeleteSlotOne()"><i class="bi bi-x-circle-fill btn-favorite-delete"></i></a>
               </div>
             </div>
           </div>
@@ -106,9 +108,11 @@
             <p style="height: 9.5rem" class="card-text">{{exerciseSlotTwo.description}}</p>
             <div class="container-fluid">
               <div class="row-cols-1">
-                <a class="btn btn-success btn-sm w-100 justify-content-center" role="button" data-bs-toggle="modal"
+                <a class="btn btn-success btn-sm w-75 justify-content-center" role="button" data-bs-toggle="modal"
                    href="#workout1" (click)="onSelectExercise(exerciseSlotTwo)">Go to exercise
                 </a>
+                <a class="btn btn-sm w-auto ms-4" role="button" data-bs-toggle="modal"
+                   href="#favorite" (click)="onDeleteSlotTwo()"><i class="bi bi-x-circle-fill btn-favorite-delete"></i></a>
               </div>
             </div>
           </div>
@@ -164,9 +168,11 @@
             <p style="height: 9.5rem" class="card-text">{{exerciseSlotThree.description}}</p>
             <div class="container-fluid">
               <div class="row-cols-1">
-                <a class="btn btn-success btn-sm w-100 justify-content-center" role="button" data-bs-toggle="modal"
+                <a class="btn btn-success btn-sm w-75 justify-content-center" role="button" data-bs-toggle="modal"
                    href="#workout1" (click)="onSelectExercise(exerciseSlotThree)">Go to exercise
                 </a>
+                <a class="btn btn-sm w-auto ms-4" role="button" data-bs-toggle="modal"
+                   href="#favorite" (click)="onDeleteSlotThree()"><i class="bi bi-x-circle-fill btn-favorite-delete"></i></a>
               </div>
             </div>
           </div>

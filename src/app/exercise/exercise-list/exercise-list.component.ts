@@ -14,6 +14,7 @@ import {NotificationType} from "../../notification/notification-type.enum";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NotificationService} from "../../notification/notification.service";
 import {SubSink} from "subsink";
+import {FavoriteSlot} from "../models/favorite-slot";
 
 @Component({
   selector: 'app-exercise-list',
@@ -78,6 +79,60 @@ export class ExerciseListComponent implements OnInit {
         (response: ProgressUser) => {
           this.reload();
           this.sendNotification(NotificationType.SUCCESS, `Save your progress`)
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    );
+  }
+
+  public onUpdateSlotOne(): void {
+    const favoriteSlot:FavoriteSlot = new FavoriteSlot();
+    favoriteSlot.currentUserId = this.user.userId;
+    favoriteSlot.favoriteSlot = this.selectedExercise.exerciseId;
+    const formData = this.exerciseService.createFavoriteSlotFormDate(favoriteSlot);
+    this.subs.add(
+      this.exerciseService.updateSlotOne(formData).subscribe(
+        () => {
+          this.reload();
+          this.sendNotification(NotificationType.SUCCESS, `Save exercise to slot 1`)
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    );
+  }
+
+  public onUpdateSlotTwo(): void {
+    const favoriteSlot:FavoriteSlot = new FavoriteSlot();
+    favoriteSlot.currentUserId = this.user.userId;
+    favoriteSlot.favoriteSlot = this.selectedExercise.exerciseId;
+    const formData = this.exerciseService.createFavoriteSlotFormDate(favoriteSlot);
+    this.subs.add(
+      this.exerciseService.updateSlotTwo(formData).subscribe(
+        () => {
+          this.reload();
+          this.sendNotification(NotificationType.SUCCESS, `Save exercise to slot 2`)
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    );
+  }
+
+  public onUpdateSlotThree(): void {
+    const favoriteSlot:FavoriteSlot = new FavoriteSlot();
+    favoriteSlot.currentUserId = this.user.userId;
+    favoriteSlot.favoriteSlot = this.selectedExercise.exerciseId;
+    const formData = this.exerciseService.createFavoriteSlotFormDate(favoriteSlot);
+    this.subs.add(
+      this.exerciseService.updateSlotThree(formData).subscribe(
+        () => {
+          this.reload();
+          this.sendNotification(NotificationType.SUCCESS, `Save exercise to slot 3`)
         },
         (errorResponse: HttpErrorResponse) => {
           this.sendNotification(NotificationType.ERROR, errorResponse.error.message);

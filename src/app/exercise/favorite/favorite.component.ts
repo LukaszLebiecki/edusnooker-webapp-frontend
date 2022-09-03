@@ -14,6 +14,7 @@ import {AuthenticationService} from "../../auth/authentication.service";
 import {NotificationType} from "../../notification/notification-type.enum";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ProgressService} from "../../progress/progress.service";
+import {FavoriteSlot} from "../models/favorite-slot";
 
 @Component({
   selector: 'app-favorite',
@@ -106,6 +107,60 @@ export class FavoriteComponent implements OnInit {
         (response: ProgressUser) => {
           this.reload();
           this.sendNotification(NotificationType.SUCCESS, `Save your progress`)
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    );
+  }
+
+  public onDeleteSlotOne(): void {
+    const favoriteSlot:FavoriteSlot = new FavoriteSlot();
+    favoriteSlot.currentUserId = this.user.userId;
+    favoriteSlot.favoriteSlot = "e000";
+    const formData = this.exerciseService.createFavoriteSlotFormDate(favoriteSlot);
+    this.subs.add(
+      this.exerciseService.updateSlotOne(formData).subscribe(
+        () => {
+          this.reload();
+          this.sendNotification(NotificationType.SUCCESS, `Delete success!`)
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    );
+  }
+
+  public onDeleteSlotTwo(): void {
+    const favoriteSlot:FavoriteSlot = new FavoriteSlot();
+    favoriteSlot.currentUserId = this.user.userId;
+    favoriteSlot.favoriteSlot = "e000";
+    const formData = this.exerciseService.createFavoriteSlotFormDate(favoriteSlot);
+    this.subs.add(
+      this.exerciseService.updateSlotTwo(formData).subscribe(
+        () => {
+          this.reload();
+          this.sendNotification(NotificationType.SUCCESS, `Delete success!`)
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    );
+  }
+
+  public onDeleteSlotThree(): void {
+    const favoriteSlot:FavoriteSlot = new FavoriteSlot();
+    favoriteSlot.currentUserId = this.user.userId;
+    favoriteSlot.favoriteSlot = "e000";
+    const formData = this.exerciseService.createFavoriteSlotFormDate(favoriteSlot);
+    this.subs.add(
+      this.exerciseService.updateSlotThree(formData).subscribe(
+        () => {
+          this.reload();
+          this.sendNotification(NotificationType.SUCCESS, `Delete success!`)
         },
         (errorResponse: HttpErrorResponse) => {
           this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
