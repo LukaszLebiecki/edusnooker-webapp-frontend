@@ -335,6 +335,7 @@ export class FavoriteComponent implements OnInit {
   public onSelectExercise(selectedExercise: Exercise): void {
     this.selectedExercise = selectedExercise;
     this.updateVideoUrl(selectedExercise.videoUrl);
+    this.TIME_LIMIT = selectedExercise.length;
   }
 
   reload() {

@@ -342,6 +342,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public onSelectExercise(): void {
     this.selectedExercise = this.lastExercise;
     this.updateVideoUrl(this.lastExercise.videoUrl);
+    this.TIME_LIMIT = this.selectedExercise.length;
   }
 
   reload() {

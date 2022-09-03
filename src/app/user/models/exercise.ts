@@ -22,6 +22,7 @@ export class Exercise {
   public bonusPoint: boolean;
   public bonusInfo: string;
   public bonusNumberOfPoints: number;
+  public length: number;
 
 
   constructor() {
@@ -48,5 +49,6 @@ export class Exercise {
     this.bonusPoint = false;
     this.bonusInfo = '';
     this.bonusNumberOfPoints = 0;
+    this.length = 600;
   }
 }
