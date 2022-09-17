@@ -32,7 +32,6 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   private currentUsername: string;
   public fileStatus = new FileUploadStatus();
 
-
   constructor(private userService: UserService,
               private notificationService: NotificationService,
               private authenticationService: AuthenticationService,
@@ -68,6 +67,10 @@ export class MyaccountComponent implements OnInit, OnDestroy {
         }
       )
     );
+  }
+
+  public deleteMyAccount() {
+
   }
 
   public onProfileImageChange(event: any): void {
@@ -152,6 +155,10 @@ export class MyaccountComponent implements OnInit, OnDestroy {
 
   public get isAdmin(): boolean {
     return this.getUserRole() === Role.ADMIN;
+  }
+
+  public get isSubscribe(): boolean {
+    return this.getUserRole() === Role.BASIC || this.getUserRole() === Role.PREMIUM || this.getUserRole() === Role.ADMIN;
   }
 
   private getUserRole(): string {

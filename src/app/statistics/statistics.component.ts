@@ -7,6 +7,7 @@ import {UserService} from "../shared-module/services/user.service";
 import {StatisticsService} from "./statistics.service";
 import {ProgressStatistics} from "../progress/models/progress-statistics";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {Role} from "../role/role.enum";
 
 
 @Component({
@@ -55,6 +56,10 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
     this.loadData();
     this.loadStatistics();
     this.dataLoadForm = this.buildDateLoadStatistic();
+  }
+
+  isBasic(): boolean {
+    return this.user.role === Role.BASIC || this.user.role === Role.PREMIUM || this.user.role === Role.ADMIN;
   }
 
   buildDateLoadStatistic() {
