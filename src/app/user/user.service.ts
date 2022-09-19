@@ -43,6 +43,10 @@ export class UserService {
     return this.http.delete<CustomHttpResponse>(`${this.host}/user/delete/${username}`);
   }
 
+  public deleteMyAccount(username: string): Observable<CustomHttpResponse> {
+    return this.http.delete<CustomHttpResponse>(`${this.host}/user/deletemyaccount/${username}`);
+  }
+
   public addUsersToLocalCache(users: User[]): void {
     localStorage.setItem('users', JSON.stringify(users));
   }

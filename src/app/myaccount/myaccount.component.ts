@@ -10,6 +10,8 @@ import {BehaviorSubject, Subscription} from "rxjs";
 import {FileUploadStatus} from "./models/file-upload.status";
 import {SubSink} from "subsink";
 import {Role} from "../role/role.enum";
+import {CustomHttpResponse} from "../http/models/customHttpResponse";
+import {NgForm} from "@angular/forms";
 
 
 @Component({
@@ -29,7 +31,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   private profileImage: File;
   private fileName: null;
   public editUser = new User();
-  private currentUsername: string;
+  public currentUsername: string;
   public fileStatus = new FileUploadStatus();
 
   constructor(private userService: UserService,
@@ -40,6 +42,18 @@ export class MyaccountComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = this.authenticationService.getUserFromLocalCache();
+  }
+
+  public deleteMyAccount(username: string): void {
+    this.subscriptions.push(
+      this.userService.deleteMyAccount(username).subscribe(
+        (response: CustomHttpResponse) => {
+          this.sendNotification(NotificationType.SUCCESS, response.message);
+          this.getUsers(false);
+          this.logout();
+        }
+      )
+    )
   }
 
   public logout() {
@@ -67,10 +81,6 @@ export class MyaccountComponent implements OnInit, OnDestroy {
         }
       )
     );
-  }
-
-  public deleteMyAccount() {
-
   }
 
   public onProfileImageChange(event: any): void {
@@ -164,6 +174,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   private getUserRole(): string {
     return this.authenticationService.getUserFromLocalCache().role;
   }
+
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
