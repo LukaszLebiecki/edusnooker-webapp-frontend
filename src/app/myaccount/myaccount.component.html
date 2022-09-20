@@ -26,8 +26,8 @@
                     <div class="text-center text-sm-left mb-2 mb-sm-0">
                       <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user?.firstName}} {{user?.lastName}}</h4>
                       <p class="mb-0">{{user?.username}}</p>
-                      <div *ngIf="user?.logInDateDisplay !== null" class="text-muted"><small>Last login:
-                        {{user?.logInDateDisplay | date: 'mediumDate'}}</small></div>
+                      <div *ngIf="user?.lastLoginDate !== null" class="text-muted"><small>Last login:
+                        {{user?.lastLoginDate | date: 'mediumDate'}}</small></div>
                       <div class="mt-2">
                         <button (click)="updateProfileImage()" class="btn btn-success" type="button">
                           <i class="fa fa-fw fa-camera"></i>
@@ -218,21 +218,21 @@
       <form #deleteForm="ngForm">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel2">Delete Your Account</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clearFieldPassword()"></button>
         </div>
         <div class="modal-body">
           <div class="row">
             <div class="col">
               <div class="form-group">
                 <label>Please type <b>{{user.email}}</b> to confirm.</label>
-                <input type="text" name="password" required ngModel
+                <input type="text" name="password" required email [(ngModel)]="password"
                        class="form-control">
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearFieldPassword()">Cancel</button>
           <button type="submit" class="btn btn-danger" (click)="deleteMyAccount(user.username)"
                   [disabled]="deleteForm.invalid">
             Yes I want to delete my account

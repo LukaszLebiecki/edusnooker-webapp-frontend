@@ -181,7 +181,7 @@
                           <span [hidden]="selectedUser?.active" class="badge bg-danger">Inactive</span>
                         </div>
                         <div class="text-muted"><small>Last
-                          Login: {{selectedUser?.logInDateDisplay | date: 'mediumDate'}}</small>
+                          Login: {{selectedUser?.lastLoginDate | date: 'mediumDate'}}</small>
                         </div>
                       </div>
                       <div class="text-center text-sm-end">
@@ -200,8 +200,8 @@
                   <li class="list-group-item"><i
                     class="fa fa-shield-alt float-end"></i>{{selectedUser?.role.substring(5)}}
                   </li>
-                  <li *ngIf="selectedUser?.logInDateDisplay" class="list-group-item"><i
-                    class="fa fa-sign-in-alt float-end"></i>{{selectedUser?.logInDateDisplay | date: 'medium'}}
+                  <li *ngIf="selectedUser?.lastLoginDate" class="list-group-item"><i
+                    class="fa fa-sign-in-alt float-end"></i>{{selectedUser?.lastLoginDate | date: 'medium'}}
                   </li>
                   <li class="list-group-item">
                     <span [hidden]="selectedUser?.notLocked">

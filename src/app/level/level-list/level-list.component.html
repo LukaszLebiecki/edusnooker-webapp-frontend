@@ -56,12 +56,20 @@
   <div class="row justify-content-center p-4">
     <div class="card shadow p-3 mb-2 bg-body rounded">
       <div class="row">
-        <div class="col-lg-12">
-          <div class="row h4 text-center m-3 text-uppercase">
-            <p>This is demo version</p>
+        <div class="col">
+          <img src="assets/image/001.png" class="img-fluid rounded mx-auto d-block" alt="..." style="width: 200px">
+        </div>
+        <div class="col-lg-8">
+          <div class="row h4 text-center m-3">
+            <h4>If you want to unlock all levels subscribe</h4>
+            <h6 class="mb-5">
+              <br>
+              By subscribing you get access to all levels. Each level is a dozen or so exercises,
+              which together gives you over 100 exercises that will diversify your training and accelerate your progress.
+            </h6>
           </div>
           <div class="row h4 text-center m-3 text-uppercase">
-            <button [routerLink]="['/payments']"  type="button" class="btn btn-success btn-sm text-uppercase">Go to full version</button>
+            <button [routerLink]="['/payments']"  type="button" class="btn btn-success btn-sm text-uppercase">Subscribe <i class="bi bi-chevron-double-right"></i></button>
           </div>
         </div>
       </div>

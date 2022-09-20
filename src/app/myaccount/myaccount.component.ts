@@ -33,6 +33,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   public editUser = new User();
   public currentUsername: string;
   public fileStatus = new FileUploadStatus();
+  password: string = '';
 
   constructor(private userService: UserService,
               private notificationService: NotificationService,
@@ -45,15 +46,24 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   }
 
   public deleteMyAccount(username: string): void {
-    this.subscriptions.push(
-      this.userService.deleteMyAccount(username).subscribe(
-        (response: CustomHttpResponse) => {
-          this.sendNotification(NotificationType.SUCCESS, response.message);
-          this.getUsers(false);
-          this.logout();
-        }
+    if (this.user.email === this.password) {
+      this.subscriptions.push(
+        this.userService.deleteMyAccount(username).subscribe(
+          (response: CustomHttpResponse) => {
+            this.sendNotification(NotificationType.SUCCESS, response.message);
+            this.getUsers(false);
+            this.password = '';
+            this.logout();
+          }
+        )
       )
-    )
+    } else {
+      this.sendNotification(NotificationType.ERROR, 'Entered data not correct');
+    }
+  }
+
+  public clearFieldPassword() {
+    this.password = '';
   }
 
   public logout() {
