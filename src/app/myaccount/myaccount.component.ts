@@ -11,8 +11,6 @@ import {FileUploadStatus} from "./models/file-upload.status";
 import {SubSink} from "subsink";
 import {Role} from "../role/role.enum";
 import {CustomHttpResponse} from "../http/models/customHttpResponse";
-import {NgForm} from "@angular/forms";
-
 
 @Component({
   selector: 'app-myaccount',
@@ -33,7 +31,8 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   public editUser = new User();
   public currentUsername: string;
   public fileStatus = new FileUploadStatus();
-  password: string = '';
+  public password: string = '';
+  public testDate = new Date();
 
   constructor(private userService: UserService,
               private notificationService: NotificationService,
