@@ -32,7 +32,6 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   public currentUsername: string;
   public fileStatus = new FileUploadStatus();
   public password: string = '';
-  public testDate = new Date();
 
   constructor(private userService: UserService,
               private notificationService: NotificationService,
