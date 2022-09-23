@@ -38,6 +38,7 @@ import { StatuteComponent } from './statute/statute/statute.component';
 import { PolicyComponent } from './policy/policy/policy.component';
 import { ContactComponent } from './contact/contact/contact.component';
 import {FavoriteComponent} from "./exercise/favorite/favorite.component";
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {FavoriteComponent} from "./exercise/favorite/favorite.component";
     StatuteComponent,
     PolicyComponent,
     ContactComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    LandingPageComponent
   ],
     imports: [
         CommonModule,

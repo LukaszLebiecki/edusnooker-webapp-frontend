@@ -15,8 +15,10 @@ import {PaymentsComponent} from "./payments/payments/payments.component";
 import {StatuteComponent} from "./statute/statute/statute.component";
 import {PolicyComponent} from "./policy/policy/policy.component";
 import {ContactComponent} from "./contact/contact/contact.component";
+import {LandingPageComponent} from "./landing-page/landing-page.component";
 
 const APP_ROUTES: Route[] = [
+  {path: '', component: LandingPageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'resetpassword', component: ResetpasswordComponent},
@@ -31,7 +33,7 @@ const APP_ROUTES: Route[] = [
   {path: 'statute', component: StatuteComponent, canActivate: [AuthGuard]},
   {path: 'policy', component: PolicyComponent, canActivate: [AuthGuard]},
   {path: 'contact', component: ContactComponent, canActivate: [AuthGuard]},
-  {path: '', pathMatch: 'full', redirectTo: '/login'}
+  {path: '', pathMatch: 'full', redirectTo: ''}
 
 ]
 
