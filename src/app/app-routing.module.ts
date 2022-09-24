@@ -20,7 +20,8 @@ import {LandingPageComponent} from "./landing-page/landing-page.component";
 const APP_ROUTES: Route[] = [
   {path: '', component: LandingPageComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  // tymczasowo zablokowana rejestracja
+  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'resetpassword', component: ResetpasswordComponent},
   {path: 'user/management', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'myaccount', component: MyaccountComponent, canActivate: [AuthGuard]},

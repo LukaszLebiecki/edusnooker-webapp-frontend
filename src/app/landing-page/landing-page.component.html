@@ -1,4 +1,3 @@
-<!--hero header-->
 <div class="container-fluid fixed-top">
   <nav class="navbar bg-light navbar-expand-lg navbar-light ">
     <div class="container-fluid">
@@ -12,9 +11,12 @@
               </button>
             </li>
             <li class="nav-item row me-4 mb-1">
+              <img src="assets/image/coming.png" alt="edusnooker"
+                   style="width: 100px; position: fixed; right: 40px; z-index: 1">
+              <!--              button "Join Now"-->
               <button [routerLink]="['/register']"
                       class="btn btn-lg btn-success btn-sm me-2"
-                      type="button">Join Now
+                      type="button" disabled>Join Now
               </button>
             </li>
           </ul>
@@ -59,13 +61,15 @@
             </p>
           </div>
         </div>
+
+        <img src="assets/image/coming.png" alt="edusnooker" style="width: 150px; position: absolute; z-index: 1">
         <button [routerLink]="['/register']"
-                class="btn btn-lg btn-success mt-5" type="button">Join for FREE
+                class="btn btn-lg btn-success mt-5" type="button" disabled>Join for FREE
         </button>
+
         <p class="mt-2 text-secondary">
           <i class="bi bi-check" style="color: green"></i><b>Beginner Friendly</b>
         </p>
-
       </div>
       <div class="col-md-6">
         <p>
@@ -78,16 +82,37 @@
 
     </div>
   </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <hr class="col-8 mt-5">
+    </div>
+  </div>
+  <h3 class="text-center my-5">If you don't want to miss the premiere,<br><small> sign up for the newsletter, and you will receive more news about our plans by email.</small></h3>
+  <div class="row">
+    <div class="col-auto mx-auto">
+      <form class="row g-3">
+        <div class="col-auto">
+          <label for="email" class="visually-hidden">Email</label>
+          <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" id="email" [(ngModel)]="email">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-success btn-lg mb-3" (click)="onAddNewsletter(email)">Sign up</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </section>
 <div class="container-fluid">
   <div class="row justify-content-center">
     <hr class="col-8 mt-5">
   </div>
 </div>
-
 <section class="pt-3 md-5 my_one">
   <div class="container">
     <div class="row">
+      <div class="col-md-12 text-center">
+        <h3>Course of training</h3>
+      </div>
       <div class="col-md-3 text-center">
         <p class="lead mt-4 mb-5 text-secondary text-uppercase" style="height: 100px">
           <b>exercise selection</b>
@@ -196,7 +221,9 @@
       <div class="col-md-6 text-center">
         <h1 class="mt-5">My favorite exercises <br><small>training planning</small></h1>
         <p class="lead mt-4 mb-5 text-secondary">
-          abc
+
+<!--          TU DODAC JAKIS TEKST-->
+
         </p>
       </div>
     </div>
@@ -211,8 +238,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 text-center">
-        <h1 class="mt-5">Description of basic techniques <br><small>...</small></h1>
+        <h1 class="mt-5">Description of basic techniques <br><small>                    </small></h1>
         <p class="lead mt-4 mb-5 text-secondary">
+
+          <!--          TU DODAC JAKIS TEKST-->
 
         </p>
       </div>
@@ -228,8 +257,9 @@
 <footer class="container-fluid bg-light ">
   <div class="row-cols-1 border-top my-5 text-center">
     <h3 class="mt-4">Ready to learn to play snooker?
+      <img src="assets/image/coming.png" alt="edusnooker" style="width: 150px; position: absolute; z-index: 1">
       <button [routerLink]="['/register']"
-              class="btn btn-lg btn-success " type="button">Join for FREE
+              class="btn btn-lg btn-success " type="button" disabled>Join for FREE
       </button>
     </h3>
   </div>
@@ -237,7 +267,8 @@
     <p class="small pt-2">edusnooker.pl © 2022</p>
     <div class="row-cols-1 pb-2 text-center">
       <p><small>All rights reserved, copying, and distibution of any materials published on this website is strictly
-        prohibited.<br>This site uses cookies. You accept our use of cookies by continuing to browse this website.</small></p>
+        prohibited.<br>This site uses cookies. You accept our use of cookies by continuing to browse this
+        website.</small></p>
     </div>
   </div>
 </footer>
