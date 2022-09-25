@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {Exercise} from "../user/models/exercise";
 import {NotificationType} from "../notification/notification-type.enum";
 import {HttpErrorResponse} from "@angular/common/http";
-import {LandingPageService} from "./landing-page.service";
-import {SubSink} from "subsink";
 import {NotificationService} from "../notification/notification.service";
 import {Subscription} from "rxjs";
+import {UserService} from "../user/user.service";
+import {Router} from "@angular/router";
+import {CustomHttpResponse} from "../http/models/customHttpResponse";
 
 @Component({
   selector: 'app-landing-page',
@@ -18,7 +17,8 @@ export class LandingPageComponent implements OnInit {
   public email: string = '';
   private subscriptions: Subscription[] = [];
 
-  constructor(private landingPageService: LandingPageService,
+  constructor(private userService: UserService,
+              private router: Router,
               private notificationService: NotificationService,) {
   }
 
@@ -26,11 +26,13 @@ export class LandingPageComponent implements OnInit {
   }
 
   public onAddNewsletter(email: string): void {
+
     this.subscriptions.push(
-      this.landingPageService.addNewsletter(email).subscribe(
-        () => {
-          this.sendNotification(NotificationType.SUCCESS, `Your sign up was successful`)
+      this.userService.addNewsletter(email).subscribe(
+        (response: CustomHttpResponse) => {
+          this.sendNotification(NotificationType.SUCCESS, response.message)
           this.email = "";
+          this.router.navigateByUrl('/');
         },
         (errorResponse: HttpErrorResponse) => {
           this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
