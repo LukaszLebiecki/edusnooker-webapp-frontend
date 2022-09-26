@@ -6,6 +6,7 @@ import {Subscription} from "rxjs";
 import {UserService} from "../user/user.service";
 import {Router} from "@angular/router";
 import {CustomHttpResponse} from "../http/models/customHttpResponse";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-landing-page',
@@ -14,8 +15,9 @@ import {CustomHttpResponse} from "../http/models/customHttpResponse";
 })
 export class LandingPageComponent implements OnInit {
 
-  public email: string = '';
+  public refreshing: boolean;
   private subscriptions: Subscription[] = [];
+  public not: string = '';
 
   constructor(private userService: UserService,
               private router: Router,
@@ -25,20 +27,27 @@ export class LandingPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public onAddNewsletter(email: string): void {
-
-    this.subscriptions.push(
-      this.userService.addNewsletter(email).subscribe(
-        (response: CustomHttpResponse) => {
-          this.sendNotification(NotificationType.SUCCESS, response.message)
-          this.email = "";
-          this.router.navigateByUrl('/');
-        },
-        (errorResponse: HttpErrorResponse) => {
-          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
-        }
+  public onAddNewsletter(emailForm: NgForm): void {
+    const not = emailForm.value['not-newsletter']
+    if (not !== '') {
+      this.not = '';
+    } else {
+      this.refreshing = true;
+      const email = emailForm.value['email-newsletter'];
+      this.subscriptions.push(
+        this.userService.addNewsletter(email).subscribe(
+          (response: CustomHttpResponse) => {
+            this.sendNotification(NotificationType.SUCCESS, response.message)
+            this.refreshing = false;
+          },
+          (errorResponse: HttpErrorResponse) => {
+            this.sendNotification(NotificationType.ERROR, "Invalid format");
+            this.refreshing = false;
+          },
+          () => emailForm.reset()
+        )
       )
-    );
+    }
   }
 
   private sendNotification(notificationType: NotificationType, message: any): void {
