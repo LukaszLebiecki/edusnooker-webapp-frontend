@@ -24,14 +24,14 @@ export class LevelListComponent implements OnInit {
   progressBar: number[] = [];
   index: number = +this.route.snapshot.params['id']
   levelDescription: string[] = [
-    "Aspiring amateur players are introduced to the practice system, acquire the basics of snooker and reach their initial practice targets.",
-    "Amateurs play snooker as a sport and consolidate their basic  skills.",
-    "The snooker player continuously trains on the basic of the practice system, strengthens his/her technique and reproduces successful shot.",
-    "The trained player is now able to apply the practice elements in a frame, using the required techniques.",
-    "Players can use the skills acquired during practice in competitive environments (tournaments).",
-    "Players are increasingly confident and secure in their game. Initial success at tournaments or championships.",
-    "Players aim at playing in the upper leagues and reaching the semi-finals of national tournaments.",
-    "Participation in national championships and the premier league is open to the player.",
+    "Beginner snooker players. Training sessions, thanks to which amateur players are introduced to the basics of the game of snooker. The exercises are selected so that even people who have never had contact with snooker will achieve their first successes in this great game.",
+    "Snooker enthusiasts who play snooker recreationally with friends. At this level, players begin to consciously plan their next shots. They improve their pots and begin to control the white ball.",
+    "A snooker player who already has good training habits. The exercises at this stage reinforce the technique and the replay of successful strokes.",
+    "A trained player who knows and mastered the basic techniques of snooker. The control of white over the stronger hits, building the first breaks and building confidence at the table are the elements that training focuses on.",
+    "At this level, the player is ready to participate in its first tournaments. Exercises at this level develop a tactical game (offensive and defensive).",
+    "Players at this level are becoming more self-confident and safe in their game. They can plan their strokes three ahead. The exercises involve increasingly complex systems.",
+    "Players achieve their first successes in tournaments. The time spent at the table is getting longer and longer. Players perfect their shots. Their technique builds confidence.",
+    "The player easily builds 100+ point brakes. Exercises at this level are to ensure high form that is needed during tournaments. These are basic to advanced exercises to keep fit.",
   ]
 
   constructor(private levelService: LevelService,

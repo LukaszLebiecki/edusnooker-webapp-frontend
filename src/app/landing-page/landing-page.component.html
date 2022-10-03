@@ -92,12 +92,12 @@
   <div class="row">
     <div class="col-auto mx-auto">
       <form #emailForm="ngForm" (ngSubmit)="onAddNewsletter(emailForm)" class="form row g-3">
-        <div class="col-auto">
+        <div class="col-sm-auto mx-auto">
           <input ngModel #email="ngModel" type="email" name="email-newsletter" class="form-control form-control-lg" placeholder="Email" aria-autocomplete="none" required email>
           <input type="not" name="not-newsletter" class="form-control form-control-lg" [(ngModel)]="not" hidden>
           <span class="help-block" style="color: red" *ngIf="email.invalid && email.touched" aria-autocomplete="none">Please enter a email.</span>
         </div>
-        <div class="col-auto">
+        <div class="row-cols-1 col-sm-auto mx-auto">
           <button type="submit" [disabled]="emailForm.invalid || refreshing" class="btn btn-success btn-lg mb-3">
             <span *ngIf="refreshing">Loading...</span>
             <span *ngIf="!refreshing">Sign up</span>
