@@ -39,6 +39,7 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
   private progressCharts43: number[] = [];
   public load: boolean = true;
   public show: boolean = true;
+  public numberGMT: number = Math.floor(((new Date().getTimezoneOffset()) / 60) * -1);
 
   constructor(private statisticsService: StatisticsService,
               private authenticationService: AuthenticationService,
@@ -73,7 +74,6 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
     this.year = this.dataLoadForm?.value.year;
     this.month = +this.dataLoadForm?.value.month;
     this.changeNumberToStringMonth(this.month);
-
     this.loadStatistics();
 
     this.show = false;
@@ -144,9 +144,11 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
       this.progressStatistics.pointsScoredToYear = p?.pointsScoredToYear;
       this.progressStatistics.exercisesPerformedToYear = p?.exercisesPerformedToYear;
       this.progressStatistics.exercisesCompletedToYear = p?.exercisesCompletedToYear;
+
       this.progressStatistics.pointsScoredToMonth = p?.pointsScoredToMonth;
       this.progressStatistics.exercisesPerformedToMonth = p?.exercisesPerformedToMonth;
       this.progressStatistics.exercisesCompletedToMonth = p?.exercisesCompletedToMonth;
+
       this.progressStatistics.pointsScoredToHour = p?.pointsScoredToHour;
       this.progressStatistics.exercisesPerformedToHour = p?.exercisesPerformedToHour;
       this.progressStatistics.exercisesCompletedToHour = p?.exercisesCompletedToHour;
@@ -166,6 +168,15 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
       this.chart?.chart?.update();
       this.load = false;
     });
+  }
+
+  changeToPositionInTable(table: number[], shift: number): number[] {
+    var shift = (shift + table.length) % table.length;
+    var result: number[];
+    for (let i = 0; i < table.length; i++) {
+      result[i] = table[(i - shift + table.length) % table.length];
+    }
+    return result;
   }
 
   public barChartData11: ChartData = {
