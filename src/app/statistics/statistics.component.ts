@@ -79,7 +79,7 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
     this.show = false;
     setTimeout(()=>{
       this.show = true;
-    },300);
+    },500);
 
   }
 
@@ -161,9 +161,9 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
       this.barChartData22.datasets[0].data = this.progressStatistics?.exercisesPerformedToMonth;
       this.barChartData22.datasets[1].data = this.progressStatistics?.exercisesCompletedToMonth;
 
-      this.barChartData41.datasets[0].data = this.progressStatistics?.pointsScoredToHour;
-      this.barChartData42.datasets[0].data = this.progressStatistics?.exercisesPerformedToHour;
-      this.barChartData42.datasets[1].data = this.progressStatistics?.exercisesCompletedToHour;
+      this.barChartData41.datasets[0].data = this.changeToPositionInTable(this.progressStatistics?.pointsScoredToHour, this.numberGMT);
+      this.barChartData42.datasets[0].data = this.changeToPositionInTable(this.progressStatistics?.exercisesPerformedToHour, this.numberGMT);
+      this.barChartData42.datasets[1].data = this.changeToPositionInTable(this.progressStatistics?.exercisesCompletedToHour, this.numberGMT);
 
       this.chart?.chart?.update();
       this.load = false;
@@ -171,8 +171,8 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
   }
 
   changeToPositionInTable(table: number[], shift: number): number[] {
-    var shift = (shift + table.length) % table.length;
-    var result: number[];
+    shift = (shift + table.length) % table.length;
+    let result: number[] = [];
     for (let i = 0; i < table.length; i++) {
       result[i] = table[(i - shift + table.length) % table.length];
     }
