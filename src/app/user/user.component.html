@@ -82,9 +82,29 @@
           <td class="">
             <div class="btn-group">
               <button class="btn btn-outline-info" (click)="onEditUser(appUser)"><i class="fas fa-edit"></i></button>
-              <button class="btn btn-outline-danger" (click)="onDeleteUser(appUser.username)"><i
+              <button class="btn btn-outline-danger" (click)="writeDeleteUser(appUser.username)" data-bs-toggle="modal" data-bs-target="#deleteUserModal"><i
                 class="fas fa-trash"></i></button>
             </div>
+
+            <!--delete user-->
+            <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" style="color: red">Delete user: {{deleteUser}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are you suer?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" (click)="onDeleteUser(deleteUser)" >Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </td>
         </tr>
         </tbody>
@@ -134,8 +154,28 @@
           <td class="">
             <div class="btn-group">
               <button class="btn btn-outline-info" (click)="onEditExercise(appExercise)"><i class="fas fa-edit"></i></button>
-              <button class="btn btn-outline-danger" (click)="onDeleteExercise(appExercise.exerciseId)"><i class="fas fa-trash"></i></button>
+              <button class="btn btn-outline-danger" (click)="writeDeleteExercise(appExercise.exerciseId)" data-bs-toggle="modal" data-bs-target="#deleteExerciseModal" ><i class="fas fa-trash"></i></button>
             </div>
+
+            <!--delete exercise-->
+            <div class="modal fade" id="deleteExerciseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" style="color: red">Delete exercise {{deleteExercise}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are you suer?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" (click)="onDeleteExercise(deleteExercise)" >Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </td>
         </tr>
         </tbody>
@@ -778,3 +818,4 @@
 
   </div>
 </div>
+

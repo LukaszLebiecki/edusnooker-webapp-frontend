@@ -33,6 +33,8 @@ export class UserComponent implements OnInit, OnDestroy {
   public editExercise = new Exercise();
   private currentUsername: string;
   private currentExerciseId: string;
+  public deleteUser: string;
+  public deleteExercise: string;
 
   constructor(private userService: UserService,
               private notificationService: NotificationService,
@@ -46,6 +48,14 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public changeTitle(title: string): void {
     this.titleSubject.next(title);
+  }
+
+  public writeDeleteUser(actualUser: string) {
+    this.deleteUser = actualUser;
+  }
+
+  public writeDeleteExercise(actualExercise: string) {
+    this.deleteExercise = actualExercise;
   }
 
   public getUsers(showNotification: boolean): void {
@@ -231,6 +241,7 @@ export class UserComponent implements OnInit, OnDestroy {
         (response: CustomHttpResponse) => {
           this.sendNotification(NotificationType.SUCCESS, response.message);
           this.getUsers(false);
+          window.location.reload()
         },
         (errorResponse: HttpErrorResponse) => {
           this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
@@ -245,6 +256,7 @@ export class UserComponent implements OnInit, OnDestroy {
         (response: CustomHttpResponse) => {
           this.sendNotification(NotificationType.SUCCESS, response.message);
           this.getExercises(false);
+          window.location.reload();
         },
         (errorResponse: HttpErrorResponse) => {
           this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
