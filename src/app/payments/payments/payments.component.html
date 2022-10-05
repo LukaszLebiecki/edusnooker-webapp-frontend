@@ -30,8 +30,8 @@
             <h1 class="display-6 text-center"><b>10.00</b><i class="bi bi-currency-euro"></i> | <small>PER MONTH</small>
             </h1>
             <br>
-            <button class="btn btn-block btn-success w-100">
-              <span>BUY</span>
+            <button class="btn btn-block btn-success w-100" (click)="subscribeToPlan()" [disabled]="purchaseStarted">
+              <span>Subscribe</span>
             </button>
           </div>
         </div>
