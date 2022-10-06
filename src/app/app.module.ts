@@ -42,6 +42,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CancelComponent } from './payments/cancel/cancel.component';
 import { SuccessComponent } from './payments/success/success.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { SuccessComponent } from './payments/success/success.component';
         NotificationModule,
         NgChartsModule,
         ReactiveFormsModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
+        MatCardModule,
+        MatButtonModule,
     ],
   providers: [
     LevelService,

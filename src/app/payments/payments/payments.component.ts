@@ -11,10 +11,12 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PaymentsComponent implements OnInit {
 
+  stripePromise = loadStripe(environment.stripe);
+
   purchaseStarted = false;
   monthlyPriceId = "prod_MYjxF5WLC0Ehkm";
   private apiUrl: string = environment.apiUrl;
-  stripePromise = loadStripe(environment.stripe);
+
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +24,9 @@ export class PaymentsComponent implements OnInit {
   }
 
   async checkoutMonthly(): Promise<void> {
+    this.purchaseStarted = true;
     this.startSubscriptionCheckoutSession(this.monthlyPriceId);
+    // this.purchaseStarted = false;
   }
 
 
