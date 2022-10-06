@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {CheckoutService} from "../../checkout/checkout.service";
 import {loadStripe} from "@stripe/stripe-js";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
