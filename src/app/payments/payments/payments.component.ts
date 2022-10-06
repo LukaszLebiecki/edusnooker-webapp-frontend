@@ -14,7 +14,8 @@ export class PaymentsComponent implements OnInit {
   stripePromise = loadStripe(environment.stripe);
 
   purchaseStarted = false;
-  monthlyPriceId = "prod_MYjxF5WLC0Ehkm";
+  monthlyPriceId = "price_1LpcTJLJcGDwiGcWstBtViox";
+  private subUrl: string = environment.subUrl;
   private apiUrl: string = environment.apiUrl;
 
 
@@ -26,15 +27,14 @@ export class PaymentsComponent implements OnInit {
   async checkoutMonthly(): Promise<void> {
     this.purchaseStarted = true;
     this.startSubscriptionCheckoutSession(this.monthlyPriceId);
-    // this.purchaseStarted = false;
-  }
 
+  }
 
   private async startSubscriptionCheckoutSession(pricingPlanId: string): Promise<void> {
     const checkout = {
       priceId: pricingPlanId,
-      cancelUrl: this.apiUrl + "/canceled",
-      successUrl: this.apiUrl + "/success",
+      cancelUrl: this.subUrl + "/cancel",
+      successUrl: this.subUrl + "/success",
     };
     const stripe = await this.stripePromise;
 
@@ -46,8 +46,5 @@ export class PaymentsComponent implements OnInit {
         });
       });
   }
-
-
-
 
 }
