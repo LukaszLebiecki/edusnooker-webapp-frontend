@@ -39,6 +39,9 @@ import { PolicyComponent } from './policy/policy/policy.component';
 import { ContactComponent } from './contact/contact/contact.component';
 import {FavoriteComponent} from "./exercise/favorite/favorite.component";
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CancelComponent } from './payments/cancel/cancel.component';
+import { SuccessComponent } from './payments/success/success.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     PolicyComponent,
     ContactComponent,
     FavoriteComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    CancelComponent,
+    SuccessComponent
   ],
     imports: [
         CommonModule,
@@ -74,7 +79,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
         HttpClientModule,
         NotificationModule,
         NgChartsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NoopAnimationsModule
     ],
   providers: [
     LevelService,

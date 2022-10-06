@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CheckoutService} from "../../checkout/checkout.service";
+import {loadStripe} from "@stripe/stripe-js";
+import {environment} from "../../../environments/environment";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-payments',
@@ -9,24 +12,38 @@ import {CheckoutService} from "../../checkout/checkout.service";
 export class PaymentsComponent implements OnInit {
 
   purchaseStarted = false;
+  monthlyPriceId = "prod_MYjxF5WLC0Ehkm";
+  private apiUrl: string = environment.apiUrl;
+  stripePromise = loadStripe(environment.stripe);
 
-  constructor(private checkout: CheckoutService) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
-  subscribeToPlan() {
-    this.purchaseStarted = true;
-    this.checkout.startSubscriptionCheckoutSession("prod_MYjxF5WLC0Ehkm")
-      .subscribe(
-        () => {
-          console.log("Stripe checkout session initialized ...");
-        },
-        error => {
-          console.log("Error creating checkout session", error);
-          this.purchaseStarted = false;
-        }
-      );
+  async checkoutMonthly(): Promise<void> {
+    this.startSubscriptionCheckoutSession(this.monthlyPriceId);
   }
+
+
+  private async startSubscriptionCheckoutSession(pricingPlanId: string): Promise<void> {
+    const checkout = {
+      priceId: pricingPlanId,
+      cancelUrl: this.apiUrl + "/canceled",
+      successUrl: this.apiUrl + "/success",
+    };
+    const stripe = await this.stripePromise;
+
+    this.http
+      .post(this.apiUrl + '/api/checkout', checkout)
+      .subscribe((data: any) => {
+        stripe.redirectToCheckout({
+          sessionId: data.sessionId,
+        });
+      });
+  }
+
+
+
 
 }

@@ -16,6 +16,8 @@ import {StatuteComponent} from "./statute/statute/statute.component";
 import {PolicyComponent} from "./policy/policy/policy.component";
 import {ContactComponent} from "./contact/contact/contact.component";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
+import {SuccessComponent} from "./payments/success/success.component";
+import {CancelComponent} from "./payments/cancel/cancel.component";
 
 const APP_ROUTES: Route[] = [
   {path: '', component: LandingPageComponent},
@@ -31,6 +33,8 @@ const APP_ROUTES: Route[] = [
   {path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard]},
   {path: 'technique', component: TechniqueComponent, canActivate: [AuthGuard]},
   {path: 'payments', component: PaymentsComponent, canActivate: [AuthGuard]},
+  {path: 'cancel', component: CancelComponent, canActivate: [AuthGuard]},
+  {path: 'success', component: SuccessComponent, canActivate: [AuthGuard]},
   {path: 'statute', component: StatuteComponent, canActivate: [AuthGuard]},
   {path: 'policy', component: PolicyComponent, canActivate: [AuthGuard]},
   {path: 'contact', component: ContactComponent, canActivate: [AuthGuard]},
