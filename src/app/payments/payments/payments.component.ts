@@ -13,7 +13,7 @@ export class PaymentsComponent implements OnInit {
   stripePromise = loadStripe(environment.stripe);
 
   purchaseStarted = false;
-  monthlyPriceId = "price_1LpcTJLJcGDwiGcWstBtViox";
+  monthlyPriceId = "price_1Lq0ncLJcGDwiGcWntdz7ARz";
   private subUrl: string = environment.subUrl;
   private apiUrl: string = environment.apiUrl;
 
