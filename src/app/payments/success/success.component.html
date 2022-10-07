@@ -1,1 +1,25 @@
-<p>success works!</p>
+<div class="container-fluid">
+  <div class="row py-4 py-5">
+    <p><br></p>
+    <div class="row py-2 mt-5">
+      <div class="col">
+        <div class="text-center">
+          <h1 class="text-uppercase text-capitalize text-subject mt-2 text-success">
+            <i class="bi bi-check-circle"></i>
+          </h1>
+          <h2 class="pt-2" style="color: dimgrey">Transaction Completed Successfully</h2>
+          <h5 style="color: dimgrey">Thank you for your billing </h5>
+          <h4 class="mt-5" style="color: dimgrey">Premium access has been activated.</h4>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col text-center">
+        <button class="btn btn-success" [routerLink]="['/home']">
+          Get started
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

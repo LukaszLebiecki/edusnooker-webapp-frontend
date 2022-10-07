@@ -50,7 +50,20 @@
   <div class="container-fluid">
     <div class="row bg-success align-items-center ">
       <div class="col-12 text-end text-white">
-        <span><small>Welcome, {{user?.firstName}}</small></span>
+        <span>
+          <small>
+            Welcome, {{user?.firstName}}&nbsp; &nbsp; |
+          </small>
+          <small class="fst-italic" [hidden]="isBasic()">
+            demo version
+          </small>
+           <small class="fst-italic" [hidden]="!isBasic()">
+            <i class="bi bi-unlock"></i>premium access
+          </small>
+          <small>
+            &nbsp;|
+          </small>
+        </span>
       </div>
     </div>
   </div>

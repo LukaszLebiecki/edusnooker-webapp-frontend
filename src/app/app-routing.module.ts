@@ -22,7 +22,7 @@ import {CancelComponent} from "./payments/cancel/cancel.component";
 const APP_ROUTES: Route[] = [
   {path: '', component: LandingPageComponent},
   {path: 'login', component: LoginComponent},
-  // tymczasowo zablokowana rejestracja
+  // todo tymczasowo zablokowana rejestracja
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'resetpassword', component: ResetpasswordComponent},
   {path: 'user/management', component: UserComponent, canActivate: [AuthGuard]},

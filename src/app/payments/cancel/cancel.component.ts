@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PaymentsComponent} from "../payments/payments.component";
 
 @Component({
   selector: 'app-cancel',

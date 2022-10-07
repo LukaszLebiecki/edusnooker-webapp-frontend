@@ -1,1 +1,27 @@
-<p>cancel works!</p>
+<div class="container-fluid">
+  <div class="row py-4 py-5">
+    <p><br></p>
+    <div class="row py-2 mt-5" style="background: red">
+      <div class="col">
+        <div class="text-center">
+          <h1 class="text-uppercase text-capitalize text-subject mt-2 text-white">
+            <i class="bi bi-x-circle"></i>
+          </h1>
+          <h4 class="pt-2 text-white">Your payment has been cancelled</h4>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col text-center">
+        <button class="btn btn-outline-success mx-2" [routerLink]="['/home']">
+          <i class="bi bi-arrow-return-left"></i>
+          Back to main
+        </button>
+        <button class="btn btn-success mx-2" [routerLink]="['/payments']">
+          <i class="bi bi-arrow-repeat"></i>
+          Start again
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
