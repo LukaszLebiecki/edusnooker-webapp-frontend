@@ -16,6 +16,8 @@ export class User {
   public favoriteSlotOne: string;
   public favoriteSlotTwo: string;
   public favoriteSlotThree: string;
+  public stripeId: string;
+  public nextPay: Date;
 
 
   constructor() {
@@ -36,5 +38,7 @@ export class User {
     this.favoriteSlotOne = '';
     this.favoriteSlotTwo = '';
     this.favoriteSlotThree = '';
+    this.stripeId = '';
+    this.nextPay = new Date;
   }
 }
