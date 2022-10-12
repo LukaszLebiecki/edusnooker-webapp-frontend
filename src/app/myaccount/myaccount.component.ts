@@ -5,12 +5,14 @@ import {AuthenticationService} from "../auth/authentication.service";
 import {User} from "../user/models/user";
 import {Router} from "@angular/router";
 import {NotificationType} from "../notification/notification-type.enum";
-import {HttpErrorResponse, HttpEvent, HttpEventType} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpEvent, HttpEventType} from "@angular/common/http";
 import {BehaviorSubject, Subscription} from "rxjs";
 import {FileUploadStatus} from "./models/file-upload.status";
 import {SubSink} from "subsink";
 import {Role} from "../role/role.enum";
 import {CustomHttpResponse} from "../http/models/customHttpResponse";
+import {environment} from "../../environments/environment";
+
 
 @Component({
   selector: 'app-myaccount',
@@ -18,6 +20,7 @@ import {CustomHttpResponse} from "../http/models/customHttpResponse";
   styleUrls: ['./myaccount.component.scss']
 })
 export class MyaccountComponent implements OnInit, OnDestroy {
+
   private subs = new SubSink();
   public user: User;
   public refreshing: boolean;
@@ -32,8 +35,12 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   public currentUsername: string;
   public fileStatus = new FileUploadStatus();
   public password: string = '';
+  private subUrl: string = environment.subUrl;
+  private apiUrl: string = environment.apiUrl;
+  purchaseStarted = false;
 
   constructor(private userService: UserService,
+              private http: HttpClient,
               private notificationService: NotificationService,
               private authenticationService: AuthenticationService,
               private router: Router) {
@@ -41,6 +48,24 @@ export class MyaccountComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = this.authenticationService.getUserFromLocalCache();
+  }
+
+  async subPanel(): Promise<void> {
+    this.purchaseStarted = true;
+    this.startCustomerPanelSession();
+  }
+
+  private async startCustomerPanelSession(): Promise<void> {
+    const customerPanel = {
+      customerId: this.user.stripeId,
+      returnUrl: this.subUrl + "/myaccount",
+    };
+
+    this.http
+      .post(this.apiUrl + '/api/create-customer-portal-session', customerPanel)
+      .subscribe((data: any) => {
+        window.location.href = data.url
+      });
   }
 
   public deleteMyAccount(username: string): void {
@@ -137,6 +162,8 @@ export class MyaccountComponent implements OnInit, OnDestroy {
       )
     );
   }
+
+
 
   private sendNotification(notificationType: NotificationType, message: any): void {
     if (message) {

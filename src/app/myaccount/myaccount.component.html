@@ -131,8 +131,8 @@
                 <i class="bi bi-check" style="color: green"></i>Keeping statistics of your progress
               </p>
               <br>
-              <button class="btn btn-block btn-danger w-100">
-                <span>Cancel Subscription</span>
+              <button class="btn btn-block btn-success w-100" (click)="subPanel()" [disabled]="purchaseStarted">
+                <span>Subscription panel</span>
               </button>
             </div>
           </div>
