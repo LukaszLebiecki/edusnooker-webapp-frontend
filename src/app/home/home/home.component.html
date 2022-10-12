@@ -14,9 +14,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12 my-5">
+    <div class="col-12 my-5 py-4">
       <div class="d-grid gap-2 col-lg-3 col-md-12 mx-auto">
-        <button [routerLink]="'/level'" class="btn btn-outline-success">GO TO THE WORKOUT LIST</button>
+        <button [routerLink]="'/level'" class="btn btn-outline-success d-block d-lg-none">
+          GO TO THE WORKOUT LIST
+        </button>
       </div>
     </div>
   </div>
@@ -76,7 +78,7 @@
         class="card card-width card-height text-center shadow p-1 mb-2 bg-body rounded text-dark bg-warning container-fluid">
         <div class="card-body">
           <h5 class="card-title">Favorite exercises</h5>
-          <img src="/assets/image/favorite_icon.png" class="img-fluid mt-1 mb-3" alt="...">
+          <img src="/assets/image/favorite_icon.png" class="field-text-height img-fluid mt-1 mb-3" alt="...">
 
           <button [routerLink]="'/favorite'" [disabled]="!isBasic()" class="btn btn-success">Go to favorites</button>
         </div>
@@ -88,7 +90,7 @@
         <div class="card-body">
           <h5 class="card-title">Last exercise performed</h5>
           <h6>{{lastExercise.name}}</h6>
-          <img src="/assets/image/{{lastExercise.img}}" class="img-fluid" alt="last exercise snooker">
+          <img src="/assets/image/{{lastExercise.img}}" class="field-text-height img-fluid" alt="last exercise snooker">
           <button data-bs-toggle="modal" href="#workout1" (click)="onSelectExercise()" [disabled]="!isProgress"
                   class="btn btn-success">Practice again
           </button>

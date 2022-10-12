@@ -132,7 +132,9 @@
               </p>
               <br>
               <button class="btn btn-block btn-success w-100" (click)="subPanel()" [disabled]="purchaseStarted">
-                <span>Subscription panel</span>
+                <i *ngIf="purchaseStarted" class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp;
+                <span *ngIf="purchaseStarted">Loading...</span>
+                <span *ngIf="!purchaseStarted">Subscription panel</span>
               </button>
             </div>
           </div>

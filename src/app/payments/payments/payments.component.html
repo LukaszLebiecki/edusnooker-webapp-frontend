@@ -31,7 +31,9 @@
             </h1>
             <br>
             <button class="btn btn-block btn-success w-100" (click)="checkoutMonthly()" [disabled]="purchaseStarted">
-              <span>Subscribe</span>
+              <i *ngIf="purchaseStarted" class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp;
+              <span *ngIf="purchaseStarted">Loading...</span>
+              <span *ngIf="!purchaseStarted">Subscribe</span>
             </button>
           </div>
         </div>
