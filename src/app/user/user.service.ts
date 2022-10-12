@@ -27,6 +27,10 @@ export class UserService {
     return this.http.post<User>(`${this.host}/user/update`, formData);
   }
 
+  public updateUserToUser(formData: FormData): Observable<User> {
+    return this.http.post<User>(`${this.host}/user/updateuser`, formData);
+  }
+
   public resetPassword(email: string): Observable<CustomHttpResponse> {
     return this.http.get<CustomHttpResponse>(`${this.host}/user/resetpassword/${email}`);
   }
@@ -85,6 +89,17 @@ export class UserService {
     fromData.append('isActive', JSON.stringify(user.active));
     fromData.append('isNotLocked', JSON.stringify(user.notLocked));
   return fromData;
+  }
+
+  public createUserToUserFormDate(loggedInUsername: string, user: User, profileImage: File): FormData {
+    const fromData = new FormData();
+    fromData.append('currentUsername', loggedInUsername);
+    fromData.append('firstName', user.firstName);
+    fromData.append('lastName', user.lastName);
+    fromData.append('username', user.username);
+    fromData.append('email', user.email);
+    fromData.append('profileImage', profileImage);
+    return fromData;
   }
 
   public getExercises(): Observable<Exercise[]> {

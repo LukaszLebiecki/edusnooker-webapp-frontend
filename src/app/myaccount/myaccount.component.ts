@@ -144,15 +144,15 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   public onUpdateCurrentUser(user: User): void {
     this.refreshing = true;
     this.currentUsername = this.authenticationService.getUserFromLocalCache().username;
-    const formData = this.userService.createUserFormDate(this.currentUsername, this.user, this.profileImage);
+    const formData = this.userService.createUserToUserFormDate(this.currentUsername, this.user, this.profileImage);
     this.subs.add(
-      this.userService.updateUser(formData).subscribe(
+      this.userService.updateUserToUser(formData).subscribe(
         (response: User) => {
           this.authenticationService.addUserToLocalCache(response);
-          this.getUsers(false);
           this.fileName = null;
           this.profileImage = null;
           this.sendNotification(NotificationType.SUCCESS, `${response.firstName} ${response.lastName} updated successfully`)
+          this.refreshing = false;
         },
         (errorResponse: HttpErrorResponse) => {
           this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
