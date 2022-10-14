@@ -7,7 +7,10 @@ import {ProgressExercise} from "../../progress/models/progress-exercise";
 import {ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "../../auth/authentication.service";
 import {Role} from "../../role/role.enum";
-
+import {UserService} from "../../shared-module/services/user.service";
+import {User} from "../../user/models/user";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-level-list',
@@ -18,9 +21,9 @@ export class LevelListComponent implements OnInit {
 
   levelsInfo: Level[] = [];
   progressLevel: ProgressLevel[] = [];
-  progressExercise: ProgressExercise[] = [];
   levelIsPass: boolean[] = [];
-  progressMode: boolean = true; // todo dodac logike
+  private apiUrl: string = environment.apiUrl;
+  progressMode: boolean;
   user_id: string = "";
   progressBar: number[] = [];
   index: number = +this.route.snapshot.params['id']
@@ -38,18 +41,27 @@ export class LevelListComponent implements OnInit {
   constructor(private levelService: LevelService,
               private progressService: ProgressService,
               private authenticationService: AuthenticationService,
+              private http: HttpClient,
               private route: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
     this.user_id = this.getCurrentUserId();
+   this.loadProgressModeByUser(this.user_id);
     if (this.isBasic()) {
       this.loadLevelProgress();
     } else {
       this.loadLevelDemo();
     }
+  }
 
+  loadProgressModeByUser(user_id:string) {
+    this.http
+      .get(this.apiUrl + '/get/progressmode/' + user_id, )
+      .subscribe((data: any) => {
+        this.progressMode = data.progressMode;
+      });
   }
 
   isBasic(): boolean {

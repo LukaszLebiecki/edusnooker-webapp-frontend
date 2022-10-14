@@ -18,6 +18,7 @@ export class User {
   public favoriteSlotThree: string;
   public stripeId: string;
   public nextPay: Date;
+  public isProgressMode;
 
 
   constructor() {
@@ -40,5 +41,6 @@ export class User {
     this.favoriteSlotThree = '';
     this.stripeId = '';
     this.nextPay = new Date;
+    this.isProgressMode = false;
   }
 }
