@@ -45,7 +45,7 @@
           </div>
           <div class="row m-2">
             <button *ngIf="i === 0" [routerLink]="['/level', 0]"  type="button" class="btn btn-success btn-sm text-uppercase">view exercises</button>
-            <button *ngIf="!(i ===0)" [routerLink]="['/level', i]" [disabled]="!levelIsPass[i-1]"  type="button" class="btn btn-success btn-sm text-uppercase">view exercises</button>
+            <button *ngIf="!(i ===0)" [routerLink]="['/level', i]" [disabled]="!levelIsPass[i-1] && progressMode"  type="button" class="btn btn-success btn-sm text-uppercase">view exercises</button>
           </div>
         </div>
       </div>

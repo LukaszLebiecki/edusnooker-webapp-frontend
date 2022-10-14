@@ -20,6 +20,7 @@ export class LevelListComponent implements OnInit {
   progressLevel: ProgressLevel[] = [];
   progressExercise: ProgressExercise[] = [];
   levelIsPass: boolean[] = [];
+  progressMode: boolean = true; // todo dodac logike
   user_id: string = "";
   progressBar: number[] = [];
   index: number = +this.route.snapshot.params['id']
@@ -92,7 +93,29 @@ export class LevelListComponent implements OnInit {
     for (let i = 0; i < 8; i++) {
       let levelIsPass: boolean = (this.levelsInfo[i].numberOfPointToTarget <= this.progressLevel[i].numberOfCompletedExercises);
       this.levelIsPass.push(levelIsPass);
-
+    }
+    if (this.levelIsPass[2] == true && this.levelIsPass[1] == false) {
+      this.levelIsPass[2] = false;
+    }
+    if (this.levelIsPass[3] == true && this.levelIsPass[2] == false && this.levelIsPass[1] == false) {
+      this.levelIsPass[3] = false;
+    }
+    if (this.levelIsPass[4] == true && this.levelIsPass[3] == false && this.levelIsPass[2] == false
+      && this.levelIsPass[1] == false) {
+      this.levelIsPass[4] = false;
+    }
+    if (this.levelIsPass[5] == true && this.levelIsPass[4] == false && this.levelIsPass[3] == false
+      && this.levelIsPass[2] == false && this.levelIsPass[1] == false) {
+      this.levelIsPass[5] = false;
+    }
+    if (this.levelIsPass[6] == true && this.levelIsPass[5] == false && this.levelIsPass[4] == false
+      && this.levelIsPass[3] == false && this.levelIsPass[2] == false && this.levelIsPass[1] == false) {
+      this.levelIsPass[6] = false;
+    }
+    if (this.levelIsPass[7] == true && this.levelIsPass[6] == false && this.levelIsPass[5] == false
+      && this.levelIsPass[4] == false && this.levelIsPass[3] == false && this.levelIsPass[2] == false
+      && this.levelIsPass[1] == false) {
+      this.levelIsPass[7] = false;
     }
   }
 
