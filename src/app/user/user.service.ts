@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {User} from "../user/models/user";
 import {CustomHttpResponse} from "../http/models/customHttpResponse";
 import {Exercise} from "./models/exercise";
+import {ProgressModeModel} from "../myaccount/models/ProgressModeModel";
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,11 @@ export class UserService {
         reportProgress: true,
         observe: 'events'
       });
+  }
+
+  public updateProgressMode(formData: FormData): Observable<ProgressModeModel> {
+    return this.http.post<ProgressModeModel>(this.host + '/update/progressmode', formData);
+
   }
 
   public deleteUser(username: string): Observable<CustomHttpResponse> {

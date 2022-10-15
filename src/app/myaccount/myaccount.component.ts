@@ -13,7 +13,6 @@ import {Role} from "../role/role.enum";
 import {CustomHttpResponse} from "../http/models/customHttpResponse";
 import {environment} from "../../environments/environment";
 
-
 @Component({
   selector: 'app-myaccount',
   templateUrl: './myaccount.component.html',
@@ -38,6 +37,7 @@ export class MyaccountComponent implements OnInit, OnDestroy {
   private subUrl: string = environment.subUrl;
   private apiUrl: string = environment.apiUrl;
   purchaseStarted = false;
+  public progressMode;
 
   constructor(private userService: UserService,
               private http: HttpClient,
@@ -48,6 +48,42 @@ export class MyaccountComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = this.authenticationService.getUserFromLocalCache();
+    this.loadProgressModeByUser(this.user.userId)
+  }
+
+  loadProgressModeByUser(user_id:string) {
+    this.http
+      .get(this.apiUrl + '/get/progressmode/' + user_id, )
+      .subscribe((data: any) => {
+        this.progressMode = data.progressMode;
+      });
+  }
+
+  public onProgressMode() {
+    if (this.progressMode == false) {
+      this.progressMode = true;
+    } else {
+      this.progressMode = false;
+    }
+
+    const formData = new FormData();
+    formData.append('currentUserId', this.user.userId);
+    formData.append('progressMode', JSON.stringify(this.progressMode));
+
+    this.subscriptions.push(
+      this.userService.updateProgressMode(formData)
+        .subscribe((progress) => {
+          if (this.progressMode == true) {
+            this.sendNotification(NotificationType.SUCCESS, "Progress Mode Enable")
+          } else {
+            this.sendNotification(NotificationType.DEFAULT, "Progress Mode Disabled")
+          }
+          },
+          (errorResponse: HttpErrorResponse) => {
+            this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+          }
+        )
+    )
   }
 
   async subPanel(): Promise<void> {
@@ -162,7 +198,6 @@ export class MyaccountComponent implements OnInit, OnDestroy {
       )
     );
   }
-
 
 
   private sendNotification(notificationType: NotificationType, message: any): void {

@@ -46,7 +46,7 @@
                           novalidate>
                       <div class="row">
                         <div class="col">
-                          <div class="row">
+                          <div class="row my-3">
                             <div class="col">
                               <div class="form-group">
                                 <label>First Name</label>
@@ -62,7 +62,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="row">
+                          <div class="row my-3">
                             <div class="col">
                               <div class="form-group">
                                 <label>Username</label>
@@ -71,7 +71,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="row">
+                          <div class="row my-3">
                             <div class="col">
                               <div class="form-group">
                                 <label>Email</label>
@@ -79,6 +79,17 @@
                                        class="form-control">
                               </div>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col ms-2 mt-3">
+                          <div class="form-check form-switch">
+                            <label class="form-check-label">Progress Mode
+                              <input class="form-check-input alert-success" type="checkbox" role="switch"
+                                     (click)="onProgressMode()" [checked]="progressMode">
+                            </label>
+
                           </div>
                         </div>
                       </div>
@@ -220,7 +231,8 @@
       <form #deleteForm="ngForm">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel2">Delete Your Account</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clearFieldPassword()"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                  (click)="clearFieldPassword()"></button>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -234,7 +246,9 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearFieldPassword()">Cancel</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearFieldPassword()">
+            Cancel
+          </button>
           <button type="submit" class="btn btn-danger" (click)="deleteMyAccount(user.username)"
                   [disabled]="deleteForm.invalid">
             Yes I want to delete my account
