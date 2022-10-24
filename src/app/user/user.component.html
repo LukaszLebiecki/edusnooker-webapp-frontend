@@ -414,7 +414,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="new-user-close">Close</button>
-            <button type="button" (click)="saveNewUser()" [disabled]="newUserForm.invalid" class="btn btn-success">Save
+            <button type="button" (click)="saveNewUser()" [disabled]="newUserForm.invalid || isLoading" class="btn btn-success">Save
               changes
             </button>
           </div>

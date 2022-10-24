@@ -35,6 +35,7 @@ export class UserComponent implements OnInit, OnDestroy {
   private currentExerciseId: string;
   public deleteUser: string;
   public deleteExercise: string;
+  public isLoading: boolean = false;
 
   constructor(private userService: UserService,
               private notificationService: NotificationService,
@@ -115,6 +116,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public saveNewUser(): void {
     this.clickButton('new-user-save');
+    this.isLoading = true;
   }
 
   public onAddNewUser(userForm: NgForm): void {
