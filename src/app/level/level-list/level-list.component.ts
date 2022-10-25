@@ -106,6 +106,9 @@ export class LevelListComponent implements OnInit {
       let levelIsPass: boolean = (this.levelsInfo[i].numberOfPointToTarget <= this.progressLevel[i].numberOfCompletedExercises);
       this.levelIsPass.push(levelIsPass);
     }
+    if (this.levelIsPass[1] == true && this.levelIsPass[0] == false) {
+      this.levelIsPass[1] = false;
+    }
     if (this.levelIsPass[2] == true && this.levelIsPass[1] == false) {
       this.levelIsPass[2] = false;
     }
