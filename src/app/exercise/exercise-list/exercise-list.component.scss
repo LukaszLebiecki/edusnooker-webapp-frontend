@@ -135,6 +135,17 @@ color: darkgoldenrod;
   opacity: 80%;
 }
 
+.btn-red:active,
+.btn-yellow:active,
+.btn-green:active,
+.btn-brown:active,
+.btn-blue:active,
+.btn-pink:active,
+.btn-black:active,
+.btn-bonus:active {
+  transform: scale(0.95);
+}
+
 .btn-red {
   border: 1px solid $level-red;
   color: $level-red;
@@ -168,6 +179,10 @@ color: darkgoldenrod;
 .btn-black {
   border: 1px solid $level-black;
   color: $level-black;
+}
+
+.btn:active {
+  transform: scale(0.95);
 }
 
 

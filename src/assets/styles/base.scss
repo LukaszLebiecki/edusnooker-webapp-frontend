@@ -4,6 +4,9 @@ body {
   background: $white
 }
 
+.btn:active {
+  transform: scale(0.95);
+}
 
 .ok {
   color: $green
