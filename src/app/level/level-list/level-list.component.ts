@@ -28,14 +28,14 @@ export class LevelListComponent implements OnInit {
   progressBar: number[] = [];
   index: number = +this.route.snapshot.params['id']
   levelDescription: string[] = [
-    "Beginner snooker players. Training sessions, thanks to which amateur players are introduced to the basics of the game of snooker. The exercises are selected so that even people who have never had contact with snooker will achieve their first successes in this great game.",
-    "Snooker enthusiasts who play snooker recreationally with friends. At this level, players begin to consciously plan their next shots. They improve their pots and begin to control the white ball.",
-    "A snooker player who already has good training habits. The exercises at this stage reinforce the technique and the replay of successful strokes.",
-    "A trained player who knows and mastered the basic techniques of snooker. The control of white over the stronger hits, building the first breaks and building confidence at the table are the elements that training focuses on.",
-    "At this level, the player is ready to participate in its first tournaments. Exercises at this level develop a tactical game (offensive and defensive).",
-    "Players at this level are becoming more self-confident and safe in their game. They can plan their strokes three ahead. The exercises involve increasingly complex systems.",
-    "Players achieve their first successes in tournaments. The time spent at the table is getting longer and longer. Players perfect their shots. Their technique builds confidence.",
-    "The player easily builds 100+ point brakes. Exercises at this level are to ensure high form that is needed during tournaments. These are basic to advanced exercises to keep fit.",
+    "Novice snooker enthusiasts, take the first step towards mastering the game with our tailored training sessions. Designed for beginners, these exercises will provide a solid foundation and enable you to achieve early successes in snooker, even if you have no prior experience.",
+    "Recreational snooker players, take your game to the next level by learning to plan your shots and improve your pots. Our training sessions will help you gain control of the white ball and elevate your game among friends.",
+    "Take your snooker skills to new heights by reinforcing your technique and replicating successful strokes through our advanced training sessions, tailored for players with already established training habits.",
+    "Enhance your snooker skills by mastering control of the white ball, building your first breaks, and gaining confidence at the table through our advanced training sessions, tailored for players with basic technique mastered.",
+    "Elevate your tournament game by developing your tactical skills, both offensively and defensively through our advanced training sessions tailored for players ready to participate in their first tournaments.",
+    "As you become more self-assured and secure in your game, our advanced training sessions will help you take your game to the next level by teaching you to plan your strokes three steps ahead and master increasingly complex systems.",
+    "Elevate your tournament game by perfecting your shots, building confidence in your technique, and increasing your time at the table through our advanced training sessions tailored for players achieving their first successes in tournaments.",
+    "High-performance players, further develop your skills by consistently building 100+ point breaks and maintaining peak form during tournaments through our advanced training sessions that include basic and advanced exercises to keep you fit.",
   ]
 
   constructor(private levelService: LevelService,
