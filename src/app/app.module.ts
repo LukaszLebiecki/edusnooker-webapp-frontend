@@ -44,6 +44,8 @@ import { CancelComponent } from './payments/cancel/cancel.component';
 import { SuccessComponent } from './payments/success/success.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import { MentalComponent } from './mental/mental.component';
+import { FitnessComponent } from './fitness/fitness.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import {MatButtonModule} from "@angular/material/button";
     FavoriteComponent,
     LandingPageComponent,
     CancelComponent,
-    SuccessComponent
+    SuccessComponent,
+    MentalComponent,
+    FitnessComponent
   ],
     imports: [
         CommonModule,

@@ -32,6 +32,16 @@
               </button>
             </li>
             <li class="nav-item row me-3 mb-1">
+              <button [routerLink]="['/mental']" [routerLinkActive]="'active'" class="btn btn-lg btn-outline-success btn-sm me-2 text-uppercase"
+                      type="button">mental
+              </button>
+            </li>
+            <li class="nav-item row me-3 mb-1">
+              <button [routerLink]="['/fitness']" [routerLinkActive]="'active'" class="btn btn-lg btn-outline-success btn-sm me-2 text-uppercase"
+                      type="button">General fitness
+              </button>
+            </li>
+            <li class="nav-item row me-3 mb-1">
               <button [routerLink]="['/statistics']" [disabled]="!isBasic()" [routerLinkActive]="'active'" class="btn btn-lg btn-outline-success btn-sm me-2 text-uppercase"
                       type="button">statistics
               </button>

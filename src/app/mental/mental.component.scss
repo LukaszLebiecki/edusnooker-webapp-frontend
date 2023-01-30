@@ -1,0 +1,10 @@
+@import "src/assets/styles/variables";
+
+.active-me[aria-expanded="true"] {
+  background-color: $green;
+  color: white;
+}
+
+.text-cytat {
+  color: dimgrey;
+}

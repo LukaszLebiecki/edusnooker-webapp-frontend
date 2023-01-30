@@ -18,6 +18,8 @@ import {ContactComponent} from "./contact/contact/contact.component";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {SuccessComponent} from "./payments/success/success.component";
 import {CancelComponent} from "./payments/cancel/cancel.component";
+import {MentalComponent} from "./mental/mental.component";
+import {FitnessComponent} from "./fitness/fitness.component";
 
 const APP_ROUTES: Route[] = [
   {path: '', component: LandingPageComponent},
@@ -32,6 +34,8 @@ const APP_ROUTES: Route[] = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard]},
   {path: 'technique', component: TechniqueComponent, canActivate: [AuthGuard]},
+  {path: 'mental', component: MentalComponent, canActivate: [AuthGuard]},
+  {path: 'fitness', component: FitnessComponent, canActivate: [AuthGuard]},
   {path: 'payments', component: PaymentsComponent, canActivate: [AuthGuard]},
   {path: 'stripe-checkout/purchaseResultCancel', component: CancelComponent, canActivate: [AuthGuard]},
   {path: 'stripe-checkout/purchaseResultSuccess', component: SuccessComponent, canActivate: [AuthGuard]},
