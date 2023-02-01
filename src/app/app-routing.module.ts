@@ -20,6 +20,7 @@ import {SuccessComponent} from "./payments/success/success.component";
 import {CancelComponent} from "./payments/cancel/cancel.component";
 import {MentalComponent} from "./mental/mental.component";
 import {FitnessComponent} from "./fitness/fitness.component";
+import {BasicroutineComponent} from "./basicroutine/basicroutine.component";
 
 const APP_ROUTES: Route[] = [
   {path: '', component: LandingPageComponent},
@@ -36,6 +37,7 @@ const APP_ROUTES: Route[] = [
   {path: 'technique', component: TechniqueComponent, canActivate: [AuthGuard]},
   {path: 'mental', component: MentalComponent, canActivate: [AuthGuard]},
   {path: 'fitness', component: FitnessComponent, canActivate: [AuthGuard]},
+  {path: 'routine', component: BasicroutineComponent, canActivate: [AuthGuard]},
   {path: 'payments', component: PaymentsComponent, canActivate: [AuthGuard]},
   {path: 'stripe-checkout/purchaseResultCancel', component: CancelComponent, canActivate: [AuthGuard]},
   {path: 'stripe-checkout/purchaseResultSuccess', component: SuccessComponent, canActivate: [AuthGuard]},

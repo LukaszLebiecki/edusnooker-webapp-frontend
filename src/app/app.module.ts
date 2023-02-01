@@ -46,6 +46,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import { MentalComponent } from './mental/mental.component';
 import { FitnessComponent } from './fitness/fitness.component';
+import { BasicroutineComponent } from './basicroutine/basicroutine.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { FitnessComponent } from './fitness/fitness.component';
     CancelComponent,
     SuccessComponent,
     MentalComponent,
-    FitnessComponent
+    FitnessComponent,
+    BasicroutineComponent
   ],
     imports: [
         CommonModule,
