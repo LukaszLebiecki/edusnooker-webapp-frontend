@@ -25,8 +25,7 @@ import {BasicroutineComponent} from "./basicroutine/basicroutine.component";
 const APP_ROUTES: Route[] = [
   {path: '', component: LandingPageComponent},
   {path: 'login', component: LoginComponent},
-  // todo tymczasowo zablokowana rejestracja
-  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
+  {path: 'register', component: RegisterComponent},
   {path: 'resetpassword', component: ResetpasswordComponent},
   {path: 'user/management', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'myaccount', component: MyaccountComponent, canActivate: [AuthGuard]},

@@ -11,12 +11,12 @@
               </button>
             </li>
             <li class="nav-item row me-4 mb-1">
-              <img src="assets/image/coming.png" alt="edusnooker"
-                   style="width: 100px; position: fixed; right: 40px; z-index: 1">
+<!--              <img src="assets/image/coming.png" alt="edusnooker"-->
+<!--                   style="width: 100px; position: fixed; right: 40px; z-index: 1">-->
               <!--              button "Join Now"-->
               <button [routerLink]="['/register']"
                       class="btn btn-lg btn-success btn-sm me-2"
-                      type="button" disabled>Join Now
+                      type="button">Join Now
               </button>
             </li>
           </ul>
@@ -65,9 +65,9 @@
           </div>
         </div>
 
-        <img src="assets/image/coming.png" alt="edusnooker" style="width: 150px; position: absolute; z-index: 1">
+<!--        <img src="assets/image/coming.png" alt="edusnooker" style="width: 150px; position: absolute; z-index: 1">-->
         <button [routerLink]="['/register']"
-                class="btn btn-lg btn-success mt-5" type="button" disabled>Join for FREE
+                class="btn btn-lg btn-success mt-5" type="button">Join for FREE
         </button>
 
         <p class="mt-2 text-secondary">
@@ -86,32 +86,34 @@
     </div>
   </div>
 
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <hr class="col-8 mt-5">
-    </div>
-  </div>
-  <h3 class="text-center my-5">Stay informed and never miss a premiere by subscribing to our newsletter.<br><small>
-    You'll receive updates and information on upcoming events straight to your inbox. <br>
-    <b>Sign up now!</b>
-  </small></h3>
-  <div class="row">
-    <div class="col-auto mx-auto">
-      <form #emailForm="ngForm" (ngSubmit)="onAddNewsletter(emailForm)" class="form row g-3">
-        <div class="col-sm-auto mx-auto">
-          <input ngModel #email="ngModel" type="email" name="email-newsletter" class="form-control form-control-lg" placeholder="Email" aria-autocomplete="none" required email>
-          <input type="not" name="not-newsletter" class="form-control form-control-lg" [(ngModel)]="not" hidden>
-          <span class="help-block" style="color: red" *ngIf="email.invalid && email.touched" aria-autocomplete="none">Please enter a email.</span>
-        </div>
-        <div class="row-cols-1 col-sm-auto mx-auto">
-          <button type="submit" [disabled]="emailForm.invalid || refreshing" class="btn btn-success btn-lg mb-3">
-            <span *ngIf="refreshing">Loading...</span>
-            <span *ngIf="!refreshing">Sign up</span>
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+<!--  <div class="container-fluid">-->
+<!--    <div class="row justify-content-center">-->
+<!--      <hr class="col-8 mt-5">-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <h3 class="text-center my-5">Stay informed and never miss a premiere by subscribing to our newsletter.<br><small>-->
+<!--    You'll receive updates and information on upcoming events straight to your inbox. <br>-->
+<!--    <b>Sign up now!</b>-->
+<!--  </small></h3>-->
+
+<!--  <div class="row">-->
+<!--    <div class="col-auto mx-auto">-->
+<!--      <form #emailForm="ngForm" (ngSubmit)="onAddNewsletter(emailForm)" class="form row g-3">-->
+<!--        <div class="col-sm-auto mx-auto">-->
+<!--          <input ngModel #email="ngModel" type="email" name="email-newsletter" class="form-control form-control-lg" placeholder="Email" aria-autocomplete="none" required email>-->
+<!--          <input type="not" name="not-newsletter" class="form-control form-control-lg" [(ngModel)]="not" hidden>-->
+<!--          <span class="help-block" style="color: red" *ngIf="email.invalid && email.touched" aria-autocomplete="none">Please enter a email.</span>-->
+<!--        </div>-->
+<!--        <div class="row-cols-1 col-sm-auto mx-auto">-->
+<!--          <button type="submit" [disabled]="emailForm.invalid || refreshing" class="btn btn-success btn-lg mb-3">-->
+<!--            <span *ngIf="refreshing">Loading...</span>-->
+<!--            <span *ngIf="!refreshing">Sign up</span>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->
 
 </section>
 <div class="container-fluid">
@@ -288,15 +290,15 @@
 
 <footer class="container-fluid bg-light ">
   <div class="row-cols-1 border-top my-5 text-center">
-    <img src="assets/image/coming.png" alt="edusnooker" style="width: 150px; position: absolute; z-index: 1">
+<!--    <img src="assets/image/coming.png" alt="edusnooker" style="width: 150px; position: absolute; z-index: 1">-->
     <h3 class="mt-4">Ready to learn to play snooker?
       <button [routerLink]="['/register']"
-              class="btn btn-lg btn-success " type="button" disabled>Join for FREE
+              class="btn btn-lg btn-success " type="button">Join for FREE
       </button>
     </h3>
   </div>
   <div class="row-cols-1 text-center bg-success text-white">
-    <p class="small pt-2">edusnooker.pl © 2022</p>
+    <p class="small pt-2">edusnooker.pl © 2023</p>
     <div class="row-cols-1 pb-2 text-center">
       <p><small>All rights reserved, copying, and distibution of any materials published on this website is strictly
         prohibited.<br>This site uses cookies. You accept our use of cookies by continuing to browse this

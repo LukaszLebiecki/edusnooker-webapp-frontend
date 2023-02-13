@@ -17,7 +17,7 @@ export class PaymentsComponent implements OnInit {
   user: User
 
   purchaseStarted = false;
-  monthlyPriceId = "price_1Lq0ncLJcGDwiGcWntdz7ARz";
+  monthlyPriceId = "price_1Mb7eLLJcGDwiGcWljBHFsWC";
   private subUrl: string = environment.subUrl;
   private apiUrl: string = environment.apiUrl;
 
