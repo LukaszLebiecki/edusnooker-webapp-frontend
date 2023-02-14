@@ -21,11 +21,13 @@ import {CancelComponent} from "./payments/cancel/cancel.component";
 import {MentalComponent} from "./mental/mental.component";
 import {FitnessComponent} from "./fitness/fitness.component";
 import {BasicroutineComponent} from "./basicroutine/basicroutine.component";
+import {RodoComponent} from "./rodo/rodo.component";
 
 const APP_ROUTES: Route[] = [
   {path: '', component: LandingPageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'information', component: RodoComponent},
   {path: 'resetpassword', component: ResetpasswordComponent},
   {path: 'user/management', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'myaccount', component: MyaccountComponent, canActivate: [AuthGuard]},
